@@ -6,8 +6,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Plataforma Rede Campoo"),
+      body: ListView(
+        children: [
+          
+        ],
       ),
     );
   }
