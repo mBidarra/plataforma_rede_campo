@@ -12,9 +12,8 @@ class HomeScreen extends StatelessWidget {
         children: [
           PreferredSize(
             preferredSize: Size(screenSize.width, 1000),
-            child: Container(
+            child: SizedBox(
               height: 390,
-              width: screenSize.width,
               child: Stack(
                 children: [
                   Image.asset(
