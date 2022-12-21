@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:plataforma_rede_campo/stores/login_store.dart';
@@ -80,16 +82,22 @@ class LoginScreen extends StatelessWidget {
                         const TitleTextForm(
                           title: "EMAIL",
                         ),
-                        TextFormField(
-                          style: const TextStyle(fontSize: 25),
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: const Color.fromRGBO(239, 231, 231, 1),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(7),
+                        Observer(
+                          builder: (context) => TextFormField(
+                            style: const TextStyle(fontSize: 25),
+                            onChanged: loginStore.setEmail,
+                            keyboardType: TextInputType.emailAddress,
+                            enabled: !loginStore.loading,
+                            decoration: InputDecoration(
+                              errorText: loginStore.emailError,
+                              filled: true,
+                              fillColor: const Color.fromRGBO(239, 231, 231, 1),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(7),
+                              ),
                             ),
+                            textInputAction: TextInputAction.next,
                           ),
-                          textInputAction: TextInputAction.next,
                         ),
                         const SizedBox(
                           height: 17,
@@ -97,16 +105,22 @@ class LoginScreen extends StatelessWidget {
                         const TitleTextForm(
                           title: "SENHA",
                         ),
-                        TextFormField(
-                          style: const TextStyle(fontSize: 25),
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: const Color.fromRGBO(239, 231, 231, 1),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(7),
+                        Observer(
+                          builder: (context) => TextFormField(
+                            style: const TextStyle(fontSize: 25),
+                            onChanged: loginStore.setPassword,
+                            obscureText: true,
+                            enabled: !loginStore.loading,
+                            decoration: InputDecoration(
+                              errorText: loginStore.passwordError,
+                              filled: true,
+                              fillColor: const Color.fromRGBO(239, 231, 231, 1),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(7),
+                              ),
                             ),
+                            textInputAction: TextInputAction.next,
                           ),
-                          textInputAction: TextInputAction.next,
                         ),
                         const SizedBox(
                           height: 30,
@@ -116,14 +130,15 @@ class LoginScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Checkbox(
-                                  value: false,
-                                  onChanged: (x) {
-                                    if (kDebugMode) {
-                                      print("");
-                                    }
-                                  },
-                                  hoverColor: Color.fromRGBO(217, 217, 217, 1),
+                                Observer(
+                                  builder: (context) => Checkbox(
+                                    value: loginStore.manterConectado,
+                                    onChanged: (x) {
+                                      loginStore.setManterConectado();
+                                    },
+                                    hoverColor:
+                                        Color.fromRGBO(217, 217, 217, 1),
+                                  ),
                                 ),
                                 const Text(
                                   "Mantenha-me conectado",
@@ -152,26 +167,28 @@ class LoginScreen extends StatelessWidget {
                           height: 50,
                         ),
                         Center(
-                          child: SizedBox(
-                            height: 58,
-                            width: 248,
-                            child: GestureDetector(
-                              onTap: loginStore.invalidSendPressed,
-                              child: ElevatedButton(
-                                onPressed: loginStore.loginPressed,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Color.fromRGBO(237, 179, 29, 1),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
+                          child: Observer(
+                            builder: (context) => SizedBox(
+                              height: 58,
+                              width: 248,
+                              child: GestureDetector(
+                                onTap: loginStore.invalidSendPressed,
+                                child: ElevatedButton(
+                                  onPressed: loginStore.loginPressed,
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        Color.fromRGBO(237, 179, 29, 1),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
                                   ),
-                                ),
-                                child: const Text(
-                                  "LOGIN",
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w800,
-                                    color: Color.fromRGBO(255, 255, 255, 1),
+                                  child: const Text(
+                                    "LOGIN",
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w800,
+                                      color: Color.fromRGBO(255, 255, 255, 1),
+                                    ),
                                   ),
                                 ),
                               ),

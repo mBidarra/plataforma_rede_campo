@@ -53,6 +53,18 @@ abstract class _LoginStore with Store {
     }
   }
 
+  @observable
+  bool passwordVisible = false;
+
+  @action
+  void setObscurePassword() => this.passwordVisible = !passwordVisible;
+
+  @observable
+  bool manterConectado = true;
+
+  @action
+  void setManterConectado() => this.manterConectado = !manterConectado;
+
   //para exibir os erros ou nao
   @observable
   bool exibirErros = false;
