@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class BarButton extends StatelessWidget {
-  BarButton({Key? key, required this.label, required this.onTap})
+  BarButton(
+      {Key? key, required this.label, required this.onTap, required this.color})
       : super(key: key);
 
   final String label;
+  final Color color;
   final VoidCallback onTap;
 
   @override
@@ -18,17 +20,14 @@ class BarButton extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: Color.fromRGBO(217, 217, 217, 1),
+                color: color,
               ),
             ),
           ),
           child: Text(
             label,
-            style: const TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.w600,
-              color: Color.fromRGBO(217, 217, 217, 1),
-            ),
+            style: TextStyle(
+                fontSize: 32, fontWeight: FontWeight.w600, color: color),
           ),
         ),
       ),
