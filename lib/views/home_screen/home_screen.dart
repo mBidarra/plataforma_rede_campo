@@ -14,19 +14,15 @@ class HomeScreen extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("images/header.png"),
+                image: AssetImage("images/header2.png"),
                 fit: BoxFit.cover,
               ),
             ),
             height: 390,
             width: screenSize.width,
             child: Stack(
-              children: [
-                /*Image.asset(
-                  'images/Header.png',
-                  fit: BoxFit.cover,
-                ),*/
-                const Align(
+              children: const [
+                Align(
                   alignment: Alignment.center,
                   child: Text(
                     "Rede Campo",
@@ -39,27 +35,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: NavigationBarra(
-
-                      /*: [
-                      NavigationBarButton(
-                        label: '',
-                        onTap: () {},
-                      ),
-                      NavigationBarButton(
-                        label: '',
-                        onTap: () {},
-                      ),
-                      NavigationBarButton(
-                        label: '',
-                        onTap: () {},
-                      ),
-                      NavigationBarButton(
-                        label: '',
-                        onTap: () {},
-                      ),
-                    ],*/
-                      ),
+                  child: NavigationBarra(),
                 )
               ],
             ),
