@@ -15,14 +15,23 @@ class NavigationBarra extends StatelessWidget {
         ),
       ),
       height: 117,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      alignment: Alignment.center,
+      width: MediaQuery.of(context).size.width,
+      child: Wrap(
+        //mainAxisAlignment: MainAxisAlignment.center,
+        alignment: WrapAlignment.start,
+        direction: Axis.horizontal,
+        spacing: 28,
+        runSpacing: 5.0,
         children: [
           NavigationBarraButton(label: "Home", onTap: () {}),
-          const SizedBox(width: 20),
           NavigationBarraButton(label: "Projetos", onTap: () {}),
-          const SizedBox(width: 20),
-          NavigationBarraButton(label: "Noticias", onTap: () {}),
+          NavigationBarraButton(label: "Notícias", onTap: () {}),
+          NavigationBarraButton(label: "Galeria", onTap: () {}),
+          NavigationBarraButton(label: "Parcerias", onTap: () {}),
+          NavigationBarraButton(label: "Eventos", onTap: () {}),
+          NavigationBarraButton(label: "Equipe", onTap: () {}),
+          NavigationBarraButton(label: "Painel", onTap: () {}),
         ],
       ),
     );
