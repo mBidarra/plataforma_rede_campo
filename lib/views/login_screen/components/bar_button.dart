@@ -27,7 +27,11 @@ class BarButton extends StatelessWidget {
           child: Text(
             label,
             style: TextStyle(
-                fontSize: 32, fontWeight: FontWeight.w600, color: color),
+              fontFamily: 'SF Pro Display',
+              fontSize: 32,
+              fontWeight: FontWeight.w600,
+              color: color,
+            ),
           ),
         ),
       ),

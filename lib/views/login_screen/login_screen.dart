@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:plataforma_rede_campo/stores/login_store.dart';
+import 'package:plataforma_rede_campo/views/login_screen/components/navigation_button.dart';
 import 'components/bar_button.dart';
 import 'components/title_text_form.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -143,6 +144,7 @@ class LoginScreen extends StatelessWidget {
                                 const Text(
                                   "Mantenha-me conectado",
                                   style: TextStyle(
+                                    fontFamily: 'Chillax',
                                     fontSize: 17,
                                     fontWeight: FontWeight.w700,
                                     color: Color.fromRGBO(255, 255, 255, 1),
@@ -155,6 +157,7 @@ class LoginScreen extends StatelessWidget {
                                 "Esqueceu sua senha?",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
+                                  fontFamily: 'Chillax',
                                   fontSize: 14,
                                   fontWeight: FontWeight.w700,
                                   color: Color.fromRGBO(255, 255, 255, 1),
@@ -185,6 +188,7 @@ class LoginScreen extends StatelessWidget {
                                   child: const Text(
                                     "LOGIN",
                                     style: TextStyle(
+                                      fontFamily: 'SF Pro Display',
                                       fontSize: 25,
                                       fontWeight: FontWeight.w800,
                                       color: Color.fromRGBO(255, 255, 255, 1),
@@ -209,6 +213,7 @@ class LoginScreen extends StatelessWidget {
               child: Text(
                 "Rede Campo",
                 style: TextStyle(
+                  fontFamily: 'Chillax',
                   fontSize: 37,
                   fontWeight: FontWeight.w700,
                   color: Color.fromRGBO(120, 231, 33, 1),
@@ -216,6 +221,35 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
           ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Container(
+              margin: const EdgeInsets.only(
+                left: 14,
+                top: 30,
+              ),
+              child: Column(
+                children: [
+                  NavigationButton(
+                    label: 'Home',
+                    onTap: () {},
+                  ),
+                  NavigationButton(
+                    label: 'Noticias',
+                    onTap: () {},
+                  ),
+                  NavigationButton(
+                    label: 'Projetos',
+                    onTap: () {},
+                  ),
+                  NavigationButton(
+                    label: 'Painel',
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
