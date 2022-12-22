@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plataforma_rede_campo/components/navigation_bar/navigation_barra.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class HomeScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            height: screenSize.height * 0.45,
+            height: 390,
             width: screenSize.width,
             child: Stack(
               children: [
@@ -25,16 +26,41 @@ class HomeScreen extends StatelessWidget {
                   'images/Header.png',
                   fit: BoxFit.cover,
                 ),*/
-                Align(
+                const Align(
                   alignment: Alignment.center,
                   child: Text(
                     "Rede Campo",
                     style: TextStyle(
+                        fontFamily: 'Chillax',
                         color: Color.fromRGBO(41, 208, 78, 1),
                         fontSize: 100,
                         fontWeight: FontWeight.w700),
                   ),
                 ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: NavigationBarra(
+
+                      /*: [
+                      NavigationBarButton(
+                        label: '',
+                        onTap: () {},
+                      ),
+                      NavigationBarButton(
+                        label: '',
+                        onTap: () {},
+                      ),
+                      NavigationBarButton(
+                        label: '',
+                        onTap: () {},
+                      ),
+                      NavigationBarButton(
+                        label: '',
+                        onTap: () {},
+                      ),
+                    ],*/
+                      ),
+                )
               ],
             ),
           )

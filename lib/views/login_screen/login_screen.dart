@@ -132,13 +132,23 @@ class LoginScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Observer(
-                                  builder: (context) => Checkbox(
-                                    value: loginStore.manterConectado,
-                                    onChanged: (x) {
-                                      loginStore.setManterConectado();
-                                    },
-                                    hoverColor:
-                                        Color.fromRGBO(217, 217, 217, 1),
+                                  builder: (context) => Theme(
+                                    data: Theme.of(context).copyWith(
+                                      unselectedWidgetColor:
+                                          const Color.fromRGBO(
+                                              217, 217, 217, 1),
+                                    ),
+                                    child: Checkbox(
+                                      value: loginStore.manterConectado,
+                                      onChanged: (x) {
+                                        loginStore.setManterConectado();
+                                      },
+                                      hoverColor: const Color.fromRGBO(
+                                          217, 217, 217, 1),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(3),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 const Text(
@@ -229,6 +239,7 @@ class LoginScreen extends StatelessWidget {
                 top: 30,
               ),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   NavigationButton(
                     label: 'Home',
