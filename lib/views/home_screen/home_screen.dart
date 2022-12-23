@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:plataforma_rede_campo/components/navigation_bar/navigation_barra.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -106,6 +107,43 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Container(
+            height: 587,
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(217, 217, 217, 1),
+            ),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 46,
+                ),
+                Text(
+                  "Parceiros",
+                  style: TextStyle(
+                    fontSize: 60,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'SF Pro Display',
+                    color: Color.fromRGBO(28, 38, 50, 1),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 70,
+                    right: 70,
+                    top: 10,
+                    bottom: 30,
+                  ),
+                  child: Row(
+                    children: [
+                      Image.asset('images/utfpr.png'),
+                      Image.asset('images/idr-pr.png'),
+                      Image.asset('images/utfpr.png'),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
             height: 315,
             alignment: Alignment.center,
             decoration: BoxDecoration(
@@ -118,19 +156,22 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
+                      onTap: () {},
                       child: Image.asset('icons/instagram.png'),
                     ),
                     SizedBox(
                       width: 17,
                     ),
                     GestureDetector(
+                      onTap: () {},
                       child: Image.asset('icons/facebook.png'),
                     ),
                     SizedBox(
                       width: 17,
                     ),
                     GestureDetector(
-                      child: Image.asset('icons/facebook.png'),
+                      onTap: () {},
+                      child: SvgPicture.asset('icons/twitter.svg'),
                     ),
                   ],
                 ),
@@ -140,7 +181,7 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        ' Donec nec mi vitae eros pretium iaculis. Pellentesque consectetur sem nisl, a dignissim ipsum cursus vitae. Praesent lacinia, mi in dapibus accumsan.',
+                        'Donec nec mi vitae eros pretium iaculis. Pellentesque consectetur sem nisl, a dignissim ipsum cursus vitae. Praesent lacinia, mi in dapibus accumsan.',
                         style: TextStyle(
                           color: Color.fromRGBO(134, 205, 47, 1),
                           fontWeight: FontWeight.w600,
