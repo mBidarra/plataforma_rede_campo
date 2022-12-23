@@ -157,14 +157,14 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {},
-                      child: Image.asset('icons/instagram.png'),
+                      child: SvgPicture.asset('icons/instagram.svg'),
                     ),
                     SizedBox(
                       width: 17,
                     ),
                     GestureDetector(
                       onTap: () {},
-                      child: Image.asset('icons/facebook.png'),
+                      child: SvgPicture.asset('icons/facebook.svg'),
                     ),
                     SizedBox(
                       width: 17,
