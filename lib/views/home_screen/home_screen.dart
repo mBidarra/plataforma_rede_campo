@@ -112,9 +112,10 @@ class HomeScreen extends StatelessWidget {
               color: Color.fromRGBO(217, 217, 217, 1),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  height: 46,
+                  height: 2,
                 ),
                 Text(
                   "Parceiros",
@@ -127,16 +128,17 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    left: 70,
-                    right: 70,
-                    top: 10,
-                    bottom: 30,
+                    /*left: 70,
+                    right: 70,*/
+                    bottom: 120,
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Image.asset('images/utfpr.png'),
+                      //SvgPicture.asset('images/utf.svg'),
                       Image.asset('images/idr-pr.png'),
-                      Image.asset('images/utfpr.png'),
+                      SvgPicture.asset('images/prefeitura.svg'),
                     ],
                   ),
                 )
@@ -155,21 +157,21 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GestureDetector(
+                    InkWell(
                       onTap: () {},
                       child: SvgPicture.asset('icons/instagram.svg'),
                     ),
                     SizedBox(
                       width: 17,
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: () {},
                       child: SvgPicture.asset('icons/facebook.svg'),
                     ),
                     SizedBox(
                       width: 17,
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: () {},
                       child: SvgPicture.asset('icons/twitter.svg'),
                     ),
@@ -179,7 +181,7 @@ class HomeScreen extends StatelessWidget {
                   width: 783,
                   margin: EdgeInsets.symmetric(vertical: 14),
                   child: Column(
-                    children: [
+                    children: const [
                       Text(
                         'Donec nec mi vitae eros pretium iaculis. Pellentesque consectetur sem nisl, a dignissim ipsum cursus vitae. Praesent lacinia, mi in dapibus accumsan.',
                         style: TextStyle(
