@@ -39,6 +39,134 @@ class HomeScreen extends StatelessWidget {
                 )
               ],
             ),
+          ),
+          Container(
+            height: 638,
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(52, 61, 67, 1),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 10,
+                  ),
+                  child: Text(
+                    "Nossos Projetos",
+                    style: TextStyle(
+                      fontSize: 60,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 75),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(23, 42, 56, 1),
+                          shape: CircleBorder(),
+                          padding: EdgeInsets.all(20),
+                        ),
+                        onPressed: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Image.asset('icons/left.png'),
+                        ),
+                      ),
+                      /*Container(
+                        width: ,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [],
+                        ),
+                      ),*/
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(23, 42, 56, 1),
+                          shape: CircleBorder(),
+                          padding: EdgeInsets.all(20),
+                        ),
+                        onPressed: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Image.asset(
+                            'icons/rigth.png',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            height: 315,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(52, 61, 67, 1),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      child: Image.asset('icons/instagram.png'),
+                    ),
+                    SizedBox(
+                      width: 17,
+                    ),
+                    GestureDetector(
+                      child: Image.asset('icons/facebook.png'),
+                    ),
+                    SizedBox(
+                      width: 17,
+                    ),
+                    GestureDetector(
+                      child: Image.asset('icons/facebook.png'),
+                    ),
+                  ],
+                ),
+                Container(
+                  width: 783,
+                  margin: EdgeInsets.symmetric(vertical: 14),
+                  child: Column(
+                    children: [
+                      Text(
+                        ' Donec nec mi vitae eros pretium iaculis. Pellentesque consectetur sem nisl, a dignissim ipsum cursus vitae. Praesent lacinia, mi in dapibus accumsan.',
+                        style: TextStyle(
+                          color: Color.fromRGBO(134, 205, 47, 1),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 25,
+                          fontFamily: 'SF Pro Display',
+                        ),
+                      ),
+                      Text(
+                        'Santa helena | Paraná | Brasil',
+                        style: TextStyle(
+                          color: Color.fromRGBO(
+                            214,
+                            202,
+                            202,
+                            1,
+                          ),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 25,
+                          fontFamily: 'SF Pro Display',
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),
