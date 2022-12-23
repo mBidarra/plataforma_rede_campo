@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:plataforma_rede_campo/views/cadastro_screen/cadastro_screen.dart';
 import 'package:plataforma_rede_campo/views/home_screen/home_screen.dart';
 import 'package:plataforma_rede_campo/views/login_screen/login_screen.dart';
 
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Plataforma Rede Campo",
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: CadastroScreen(),
     );
   }
 }
