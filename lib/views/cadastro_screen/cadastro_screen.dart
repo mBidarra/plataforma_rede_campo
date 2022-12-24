@@ -1,12 +1,17 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
+import 'package:plataforma_rede_campo/stores/cadastro_store.dart';
 import 'package:plataforma_rede_campo/views/cadastro_screen/components/title_text_form_cadastro.dart';
-
 import '../../components/navigation_bar/navigation_barra.dart';
 
 class CadastroScreen extends StatelessWidget {
-  const CadastroScreen({Key? key}) : super(key: key);
+  CadastroScreen({Key? key}) : super(key: key);
+
+  CadastroStore cadastroStore = CadastroStore();
 
   @override
   Widget build(BuildContext context) {
@@ -81,20 +86,23 @@ class CadastroScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                TextFormField(
-                  style: const TextStyle(fontSize: 25),
-                  //onChanged: loginStore.setPassword,
-                  //enabled: !loginStore.loading,
-                  decoration: InputDecoration(
-                    //errorText: loginStore.passwordError,
-                    filled: true,
-                    fillColor: const Color.fromRGBO(193, 193, 193, 1),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4),
-                      borderSide: BorderSide.none,
+                Observer(
+                  builder: (context) => TextFormField(
+                    initialValue: cadastroStore.nome,
+                    onChanged: cadastroStore.setNome,
+                    enabled: !cadastroStore.loading,
+                    style: const TextStyle(fontSize: 25),
+                    decoration: InputDecoration(
+                      errorText: cadastroStore.nomeError,
+                      filled: true,
+                      fillColor: const Color.fromRGBO(193, 193, 193, 1),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
+                    textInputAction: TextInputAction.next,
                   ),
-                  textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(
                   height: 33,
@@ -103,20 +111,23 @@ class CadastroScreen extends StatelessWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                TextFormField(
-                  style: const TextStyle(fontSize: 25),
-                  //onChanged: loginStore.setPassword,
-                  //enabled: !loginStore.loading,
-                  decoration: InputDecoration(
-                    //errorText: loginStore.passwordError,
-                    filled: true,
-                    fillColor: const Color.fromRGBO(193, 193, 193, 1),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4),
-                      borderSide: BorderSide.none,
+                Observer(
+                  builder: (context) => TextFormField(
+                    initialValue: cadastroStore.email,
+                    onChanged: cadastroStore.setEmail,
+                    enabled: !cadastroStore.loading,
+                    style: const TextStyle(fontSize: 25),
+                    decoration: InputDecoration(
+                      errorText: cadastroStore.emailError,
+                      filled: true,
+                      fillColor: const Color.fromRGBO(193, 193, 193, 1),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
+                    textInputAction: TextInputAction.next,
                   ),
-                  textInputAction: TextInputAction.next,
                 ),
                 SizedBox(
                   height: 33,
@@ -125,87 +136,113 @@ class CadastroScreen extends StatelessWidget {
                 SizedBox(
                   height: 15,
                 ),
-                TextFormField(
-                  style: const TextStyle(fontSize: 25),
-                  //onChanged: loginStore.setPassword,
-                  //enabled: !loginStore.loading,
-                  decoration: InputDecoration(
-                    //errorText: loginStore.passwordError,
-                    filled: true,
-                    fillColor: const Color.fromRGBO(193, 193, 193, 1),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4),
-                      borderSide: BorderSide.none,
+                Observer(
+                  builder: (context) => TextFormField(
+                    initialValue: cadastroStore.idadeText,
+                    onChanged: cadastroStore.setIdadeText,
+                    enabled: !cadastroStore.loading,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    style: const TextStyle(fontSize: 25),
+                    decoration: InputDecoration(
+                      errorText: cadastroStore.idadeError,
+                      filled: true,
+                      fillColor: const Color.fromRGBO(193, 193, 193, 1),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
+                    textInputAction: TextInputAction.next,
                   ),
-                  textInputAction: TextInputAction.next,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 33,
                 ),
                 const TitleTextFormCadastro(title: "Telefone:"),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                TextFormField(
-                  style: const TextStyle(fontSize: 25),
-                  //onChanged: loginStore.setPassword,
-                  //enabled: !loginStore.loading,
-                  decoration: InputDecoration(
-                    //errorText: loginStore.passwordError,
-                    filled: true,
-                    fillColor: const Color.fromRGBO(193, 193, 193, 1),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(4),
-                      borderSide: BorderSide.none,
+                Observer(
+                  builder: (context) => TextFormField(
+                    initialValue: cadastroStore.telefone,
+                    onChanged: cadastroStore.setTelefone,
+                    enabled: !cadastroStore.loading,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      TelefoneInputFormatter(),
+                    ],
+                    style: const TextStyle(fontSize: 25),
+                    decoration: InputDecoration(
+                      errorText: cadastroStore.telefoneError,
+                      filled: true,
+                      fillColor: const Color.fromRGBO(193, 193, 193, 1),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
                   ),
-                  textInputAction: TextInputAction.next,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 68,
                 ),
-                SizedBox(
-                  height: 73,
-                  width: 439,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(72, 125, 59, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      textStyle: const TextStyle(
-                        fontSize: 38,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'SF Pro Display',
-                        color: Color.fromRGBO(246, 245, 244, 1),
+                Observer(
+                  builder: (context) => SizedBox(
+                    height: 73,
+                    width: 439,
+                    child: GestureDetector(
+                      onTap: cadastroStore.invalidSendPressed,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(72, 125, 59, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          textStyle: const TextStyle(
+                            fontSize: 38,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'SF Pro Display',
+                            color: Color.fromRGBO(246, 245, 244, 1),
+                          ),
+                        ),
+                        onPressed: cadastroStore.cadastrarPressed,
+                        child: cadastroStore.loading
+                            ? CircularProgressIndicator(
+                                color: Color.fromRGBO(246, 245, 244, 1),
+                              )
+                            : const Text("Salvar alterações"),
                       ),
                     ),
-                    onPressed: () {},
-                    child: Text("Salvar alterações"),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 22,
                 ),
-                SizedBox(
-                  height: 73,
-                  width: 439,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(182, 60, 60, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                Observer(
+                  builder: (context) => SizedBox(
+                    height: 73,
+                    width: 439,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(182, 60, 60, 1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        textStyle: const TextStyle(
+                          fontSize: 38,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'SF Pro Display',
+                          color: Color.fromRGBO(246, 245, 244, 1),
+                        ),
                       ),
-                      textStyle: const TextStyle(
-                        fontSize: 38,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'SF Pro Display',
-                        color: Color.fromRGBO(246, 245, 244, 1),
-                      ),
+                      onPressed: !cadastroStore.loading ? () {} : null,
+                      child: Text("Excluir conta"),
                     ),
-                    onPressed: () {},
-                    child: Text("Excluir conta"),
                   ),
                 )
               ],
