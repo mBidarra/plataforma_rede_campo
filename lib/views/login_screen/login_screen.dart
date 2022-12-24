@@ -195,15 +195,21 @@ class LoginScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                   ),
-                                  child: const Text(
-                                    "LOGIN",
-                                    style: TextStyle(
-                                      fontFamily: 'SF Pro Display',
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w800,
-                                      color: Color.fromRGBO(255, 255, 255, 1),
-                                    ),
-                                  ),
+                                  child: loginStore.loading
+                                      ? CircularProgressIndicator(
+                                          color:
+                                              Color.fromRGBO(246, 245, 244, 1),
+                                        )
+                                      : Text(
+                                          "LOGIN",
+                                          style: TextStyle(
+                                            fontFamily: 'SF Pro Display',
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.w800,
+                                            color: Color.fromRGBO(
+                                                255, 255, 255, 1),
+                                          ),
+                                        ),
                                 ),
                               ),
                             ),

@@ -96,5 +96,11 @@ abstract class _LoginStore with Store {
   //se os dados de login e senha sao validos e nao esta carregando ativa o botao e quando clicado chama a funcao _login
   dynamic get loginPressed => (isFormValid && !loading) ? _login : null;
 
-  Future<void> _login() async {}
+  Future<void> _login() async {
+    setLoading(true);
+
+    await Future.delayed(const Duration(seconds: 4));
+
+    setLoading(false);
+  }
 }

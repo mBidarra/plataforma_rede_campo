@@ -198,6 +198,7 @@ class CadastroScreen extends StatelessWidget {
                     child: GestureDetector(
                       onTap: cadastroStore.invalidSendPressed,
                       child: ElevatedButton(
+                        onPressed: cadastroStore.cadastrarPressed,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromRGBO(72, 125, 59, 1),
                           shape: RoundedRectangleBorder(
@@ -210,7 +211,6 @@ class CadastroScreen extends StatelessWidget {
                             color: Color.fromRGBO(246, 245, 244, 1),
                           ),
                         ),
-                        onPressed: cadastroStore.cadastrarPressed,
                         child: cadastroStore.loading
                             ? CircularProgressIndicator(
                                 color: Color.fromRGBO(246, 245, 244, 1),

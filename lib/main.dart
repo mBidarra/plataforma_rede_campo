@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Plataforma Rede Campo",
       debugShowCheckedModeBanner: false,
-      home: CadastroScreen(),
+      home: LoginScreen(),
     );
   }
 }
