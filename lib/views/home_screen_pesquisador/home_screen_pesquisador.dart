@@ -168,33 +168,59 @@ class HomeScreenPesquisador extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 245,
-                width: 703,
-                child: Card(
-                  color: const Color.fromRGBO(217, 217, 217, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                  elevation: 0,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text('sd'),
+              InkWell(
+                onTap: () {},
+                borderRadius: BorderRadius.circular(14),
+                child: SizedBox(
+                  height: 245,
+                  width: 703,
+                  child: Card(
+                    color: const Color.fromRGBO(217, 217, 217, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    elevation: 0,
+                    child: Center(
+                      child: Text(
+                        'Editar projetos',
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(57, 51, 51, 1),
+                          //fontFamily: "SF Pro Text",
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
               SizedBox(
                 width: 60,
               ),
-              SizedBox(
-                height: 245,
-                width: 703,
-                child: Card(
-                  color: const Color.fromRGBO(217, 217, 217, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+              InkWell(
+                onTap: () {},
+                borderRadius: BorderRadius.circular(14),
+                child: SizedBox(
+                  height: 245,
+                  width: 703,
+                  child: Card(
+                    color: const Color.fromRGBO(217, 217, 217, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    elevation: 0,
+                    child: Center(
+                      child: Text(
+                        'Editar noticias',
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(57, 51, 51, 1),
+                          //fontFamily: "SF Pro Text",
+                        ),
+                      ),
+                    ),
                   ),
-                  elevation: 0,
                 ),
               ),
             ],
