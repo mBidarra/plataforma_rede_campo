@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
 
 import '../../components/navigation_bar/navigation_barra.dart';
@@ -61,36 +62,102 @@ class HomeScreenPesquisador extends StatelessWidget {
             "O que deseja fazer?",
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 45,
-                fontWeight: FontWeight.w500,
-                fontFamily: "SF Pro Text"),
+              fontSize: 45,
+              fontWeight: FontWeight.w500,
+              fontFamily: "SF Pro Text",
+            ),
           ),
           SizedBox(
             height: 85,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 407,
-                width: 703,
-                child: Card(
-                  color: const Color.fromRGBO(217, 217, 217, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+              InkWell(
+                onTap: () {},
+                borderRadius: BorderRadius.circular(14),
+                //hoverColor: Colors.red,
+                child: SizedBox(
+                  height: 407,
+                  width: 703,
+                  child: Card(
+                    color: const Color.fromRGBO(217, 217, 217, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    elevation: 0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Adicionar",
+                          style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.w500,
+                            color: Color.fromRGBO(57, 51, 51, 1),
+                            //fontFamily: "SF Pro Text",
+                          ),
+                        ),
+                        SvgPicture.asset(
+                          'icons/add.svg',
+                        ),
+                        Text(
+                          "novo projeto",
+                          style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.w500,
+                            color: Color.fromRGBO(57, 51, 51, 1),
+                            //fontFamily: "SF Pro Text",
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  elevation: 0,
                 ),
               ),
               SizedBox(
-                height: 407,
-                width: 703,
-                child: Card(
-                  color: const Color.fromRGBO(217, 217, 217, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+                width: 60,
+              ),
+              InkWell(
+                onTap: () {},
+                borderRadius: BorderRadius.circular(14),
+                //hoverColor: Colors.red,
+                child: SizedBox(
+                  height: 407,
+                  width: 703,
+                  child: Card(
+                    color: const Color.fromRGBO(217, 217, 217, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    elevation: 0,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Adicionar",
+                          style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.w500,
+                            color: Color.fromRGBO(57, 51, 51, 1),
+                            //fontFamily: "SF Pro Text",
+                          ),
+                        ),
+                        SvgPicture.asset(
+                          'icons/add.svg',
+                        ),
+                        Text(
+                          "nova notícia",
+                          style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.w500,
+                            color: Color.fromRGBO(57, 51, 51, 1),
+                            //fontFamily: "SF Pro Text",
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  elevation: 0,
                 ),
               ),
             ],
@@ -99,7 +166,7 @@ class HomeScreenPesquisador extends StatelessWidget {
             height: 67,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 height: 245,
@@ -110,7 +177,14 @@ class HomeScreenPesquisador extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14),
                   ),
                   elevation: 0,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text('sd'),
+                  ),
                 ),
+              ),
+              SizedBox(
+                width: 60,
               ),
               SizedBox(
                 height: 245,
