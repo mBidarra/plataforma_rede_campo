@@ -353,5 +353,6 @@ class NovoProjetoScreen extends StatelessWidget {
 
   Future<void> getImage() async {
     Uint8List? bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
+    print(bytesFromPicker);
   }
 }
