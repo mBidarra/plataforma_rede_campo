@@ -46,63 +46,98 @@ class HomeScreenPesquisador extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(
-            height: 145,
-          ),
-          Text(
-            "Bem-vindo pesquisador.",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 56,
-                fontWeight: FontWeight.w600,
-                fontFamily: "Chillax"),
-          ),
-          const SizedBox(
-            height: 48,
-          ),
-          Text(
-            "O que deseja fazer?",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 45,
-              fontWeight: FontWeight.w500,
-              fontFamily: "SF Pro Text",
-            ),
-          ),
-          const SizedBox(
-            height: 85,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Stack(
             children: [
-              TopButton(text: 'novo projeto', onTap: () {}),
-              const SizedBox(
-                width: 60,
+              Column(
+                children: [
+                  const SizedBox(
+                    height: 145,
+                  ),
+                  const Text(
+                    "Bem-vindo pesquisador.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 56,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: "Chillax"),
+                  ),
+                  const SizedBox(
+                    height: 48,
+                  ),
+                  const Text(
+                    "O que deseja fazer?",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 45,
+                      fontWeight: FontWeight.w500,
+                      //fontFamily: "SF Pro Text",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 85,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TopButton(text: 'novo projeto', onTap: () {}),
+                      const SizedBox(
+                        width: 60,
+                      ),
+                      TopButton(text: 'nova notícia', onTap: () {}),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 67,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      BottonButton(
+                        text: 'Editar projetos',
+                        onTap: () {},
+                      ),
+                      const SizedBox(
+                        width: 60,
+                      ),
+                      BottonButton(
+                        text: 'Editar noticias',
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 67,
+                  ),
+                ],
               ),
-              TopButton(text: 'nova notícia', onTap: () {}),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 100,
+                    right: 72,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        child: SvgPicture.asset(
+                          'icons/account_settings.svg',
+                          alignment: Alignment.center,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 32,
+                      ),
+                      InkWell(
+                        child: SvgPicture.asset('icons/sign_out.svg'),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ],
-          ),
-          const SizedBox(
-            height: 67,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BottonButton(
-                text: 'Editar projetos',
-                onTap: () {},
-              ),
-              const SizedBox(
-                width: 60,
-              ),
-              BottonButton(
-                text: 'Editar noticias',
-                onTap: () {},
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 67,
           ),
           BottonPanel(),
         ],
