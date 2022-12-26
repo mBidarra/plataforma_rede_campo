@@ -1,8 +1,9 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker_web/image_picker_web.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
-
 import '../../components/navigation_bar/navigation_barra.dart';
 
 class NovoProjetoScreen extends StatelessWidget {
@@ -58,7 +59,8 @@ class NovoProjetoScreen extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: getImage,
+                //if (Platform.isWindows) {}
                 hoverColor: const Color.fromRGBO(217, 217, 217, 20),
                 child: SizedBox(
                   height: 590,
@@ -214,6 +216,16 @@ class NovoProjetoScreen extends StatelessWidget {
                             ),
                           ),
                         ),
+                        InkWell(
+                          onTap: () {},
+                          hoverColor: Colors.transparent,
+                          borderRadius: BorderRadius.circular(4),
+                          radius: 4,
+                          child: SvgPicture.asset(
+                            'icons/plus.svg',
+                            height: 65,
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -236,6 +248,16 @@ class NovoProjetoScreen extends StatelessWidget {
                               ),
                               textInputAction: TextInputAction.next,
                             ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          hoverColor: Colors.transparent,
+                          borderRadius: BorderRadius.circular(4),
+                          radius: 4,
+                          child: SvgPicture.asset(
+                            'icons/plus.svg',
+                            height: 65,
                           ),
                         ),
                       ],
@@ -271,7 +293,16 @@ class NovoProjetoScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Icon(Icons.add),
+                        InkWell(
+                          onTap: () {},
+                          hoverColor: Colors.transparent,
+                          borderRadius: BorderRadius.circular(4),
+                          radius: 4,
+                          child: SvgPicture.asset(
+                            'icons/plus.svg',
+                            height: 65,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -285,23 +316,25 @@ class NovoProjetoScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    SizedBox(
-                      width: 437,
-                      height: 60,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(72, 125, 59, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                    Observer(
+                      builder: (context) => SizedBox(
+                        width: 437,
+                        height: 60,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromRGBO(72, 125, 59, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            textStyle: const TextStyle(
+                              fontSize: 38,
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromRGBO(246, 245, 244, 1),
+                            ),
                           ),
-                          textStyle: const TextStyle(
-                            fontSize: 38,
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromRGBO(246, 245, 244, 1),
-                          ),
+                          child: Text("Publicar"),
                         ),
-                        child: Text("Publicar"),
                       ),
                     )
                   ],
@@ -316,5 +349,9 @@ class NovoProjetoScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> getImage() async {
+    Uint8List? bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
   }
 }
