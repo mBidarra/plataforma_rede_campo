@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
+import 'package:plataforma_rede_campo/views/home_screen_pesquisador/components/bottom_button.dart';
 
 import '../../components/navigation_bar/navigation_barra.dart';
+import 'components/top_button.dart';
 
 class HomeScreenPesquisador extends StatelessWidget {
   const HomeScreenPesquisador({Key? key}) : super(key: key);
@@ -44,7 +46,7 @@ class HomeScreenPesquisador extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 145,
           ),
           Text(
@@ -55,7 +57,7 @@ class HomeScreenPesquisador extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 fontFamily: "Chillax"),
           ),
-          SizedBox(
+          const SizedBox(
             height: 48,
           ),
           Text(
@@ -67,165 +69,39 @@ class HomeScreenPesquisador extends StatelessWidget {
               fontFamily: "SF Pro Text",
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 85,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                onTap: () {},
-                borderRadius: BorderRadius.circular(14),
-                //hoverColor: Colors.red,
-                child: SizedBox(
-                  height: 407,
-                  width: 703,
-                  child: Card(
-                    color: const Color.fromRGBO(217, 217, 217, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    elevation: 0,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Adicionar",
-                          style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(57, 51, 51, 1),
-                            //fontFamily: "SF Pro Text",
-                          ),
-                        ),
-                        SvgPicture.asset(
-                          'icons/add.svg',
-                        ),
-                        Text(
-                          "novo projeto",
-                          style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(57, 51, 51, 1),
-                            //fontFamily: "SF Pro Text",
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
+              TopButton(text: 'novo projeto', onTap: () {}),
+              const SizedBox(
                 width: 60,
               ),
-              InkWell(
-                onTap: () {},
-                borderRadius: BorderRadius.circular(14),
-                //hoverColor: Colors.red,
-                child: SizedBox(
-                  height: 407,
-                  width: 703,
-                  child: Card(
-                    color: const Color.fromRGBO(217, 217, 217, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    elevation: 0,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Adicionar",
-                          style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(57, 51, 51, 1),
-                            //fontFamily: "SF Pro Text",
-                          ),
-                        ),
-                        SvgPicture.asset(
-                          'icons/add.svg',
-                        ),
-                        Text(
-                          "nova notícia",
-                          style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(57, 51, 51, 1),
-                            //fontFamily: "SF Pro Text",
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              TopButton(text: 'nova notícia', onTap: () {}),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 67,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
+              BottonButton(
+                text: 'Editar projetos',
                 onTap: () {},
-                borderRadius: BorderRadius.circular(14),
-                child: SizedBox(
-                  height: 245,
-                  width: 703,
-                  child: Card(
-                    color: const Color.fromRGBO(217, 217, 217, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    elevation: 0,
-                    child: Center(
-                      child: Text(
-                        'Editar projetos',
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w500,
-                          color: Color.fromRGBO(57, 51, 51, 1),
-                          //fontFamily: "SF Pro Text",
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 60,
               ),
-              InkWell(
+              BottonButton(
+                text: 'Editar noticias',
                 onTap: () {},
-                borderRadius: BorderRadius.circular(14),
-                child: SizedBox(
-                  height: 245,
-                  width: 703,
-                  child: Card(
-                    color: const Color.fromRGBO(217, 217, 217, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    elevation: 0,
-                    child: Center(
-                      child: Text(
-                        'Editar noticias',
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w500,
-                          color: Color.fromRGBO(57, 51, 51, 1),
-                          //fontFamily: "SF Pro Text",
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 67,
           ),
           BottonPanel(),

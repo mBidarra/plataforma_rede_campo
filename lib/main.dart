@@ -11,7 +11,7 @@ void setupLocators() {}
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //inicializando o ParseServer
-  await inicializeParse();
+  //await inicializeParse();
   //chamar a funcao setupLocators() para que os objetos contidos nela possam ser acessados de qualquer local do app
   setupLocators();
   runApp(const MyApp());
