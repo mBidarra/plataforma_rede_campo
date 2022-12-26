@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
+import 'package:plataforma_rede_campo/views/cadastro_screen/cadastro_screen.dart';
 import 'package:plataforma_rede_campo/views/home_screen_pesquisador/components/bottom_button.dart';
+import 'package:plataforma_rede_campo/views/nova_noticia_screen/nova_noticia_screen.dart';
+import 'package:plataforma_rede_campo/views/novo_projeto_screen/novo_projeto_screen.dart';
 
 import '../../components/navigation_bar/navigation_barra.dart';
+import '../login_screen/login_screen.dart';
 import 'components/top_button.dart';
 
 class HomeScreenPesquisador extends StatelessWidget {
@@ -79,11 +83,29 @@ class HomeScreenPesquisador extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TopButton(text: 'novo projeto', onTap: () {}),
+                      TopButton(
+                        text: 'novo projeto',
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => NovoProjetoScreen(),
+                            ),
+                          );
+                        },
+                      ),
                       const SizedBox(
                         width: 60,
                       ),
-                      TopButton(text: 'nova notícia', onTap: () {}),
+                      TopButton(
+                        text: 'nova notícia',
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => NovaNoticiaScreen(),
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   ),
                   const SizedBox(
@@ -121,17 +143,37 @@ class HomeScreenPesquisador extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      InkWell(
-                        child: SvgPicture.asset(
-                          'icons/account_settings.svg',
-                          alignment: Alignment.center,
+                      Tooltip(
+                        message: "Editar Conta",
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => CadastroScreen(),
+                              ),
+                            );
+                          },
+                          child: SvgPicture.asset(
+                            'icons/account_settings.svg',
+                          ),
                         ),
                       ),
                       SizedBox(
                         width: 32,
                       ),
-                      InkWell(
-                        child: SvgPicture.asset('icons/sign_out.svg'),
+                      Tooltip(
+                        message: "Sair",
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                              (route) => false,
+                            );
+                          },
+                          child: SvgPicture.asset('icons/sign_out.svg'),
+                        ),
                       )
                     ],
                   ),
