@@ -12,6 +12,7 @@ class BottonButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(14),
+      hoverColor: const Color.fromRGBO(217, 217, 217, 20),
       child: SizedBox(
         height: 245,
         width: 703,
