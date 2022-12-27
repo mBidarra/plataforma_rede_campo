@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
+import 'package:plataforma_rede_campo/components/sign_out_button.dart';
 import 'package:plataforma_rede_campo/views/cadastro_screen/cadastro_screen.dart';
 import 'package:plataforma_rede_campo/views/home_screen_pesquisador/components/bottom_button.dart';
 import 'package:plataforma_rede_campo/views/nova_noticia_screen/nova_noticia_screen.dart';
@@ -161,20 +162,7 @@ class HomeScreenPesquisador extends StatelessWidget {
                       SizedBox(
                         width: 32,
                       ),
-                      Tooltip(
-                        message: "Sair",
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ),
-                              (route) => false,
-                            );
-                          },
-                          child: SvgPicture.asset('icons/sign_out.svg'),
-                        ),
-                      )
+                      SignOutButton(),
                     ],
                   ),
                 ),

@@ -4,9 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
+import 'package:plataforma_rede_campo/components/home_button.dart';
 import 'package:plataforma_rede_campo/stores/cadastro_store.dart';
 import 'package:plataforma_rede_campo/views/cadastro_screen/components/title_text_form_cadastro.dart';
 import 'package:plataforma_rede_campo/views/login_screen/login_screen.dart';
+import '../../components/sign_out_button.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
 
 class CadastroScreen extends StatelessWidget {
@@ -56,27 +58,8 @@ class CadastroScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Tooltip(
-                  message: "Home",
-                  child: InkWell(
-                    onTap: () {},
-                    child: SvgPicture.asset('icons/home.svg'),
-                  ),
-                ),
-                Tooltip(
-                  message: "Sair",
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
-                        ),
-                        (route) => false,
-                      );
-                    },
-                    child: SvgPicture.asset('icons/sign_out.svg'),
-                  ),
-                ),
+                HomeButton(),
+                SignOutButton(),
               ],
             ),
           ),
