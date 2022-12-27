@@ -4,10 +4,13 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
+import 'package:plataforma_rede_campo/stores/novo_projeto_store.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
 
 class NovoProjetoScreen extends StatelessWidget {
-  const NovoProjetoScreen({Key? key}) : super(key: key);
+  NovoProjetoScreen({Key? key}) : super(key: key);
+
+  NovoProjetoStore novoProjetoStore = NovoProjetoStore();
 
   @override
   Widget build(BuildContext context) {
@@ -58,41 +61,45 @@ class NovoProjetoScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              InkWell(
-                onTap: getImage,
-                //if (Platform.isWindows) {}
-                hoverColor: const Color.fromRGBO(217, 217, 217, 20),
-                child: SizedBox(
-                  height: 590,
-                  width: 1360,
-                  child: Card(
-                    color: const Color.fromRGBO(217, 217, 217, 1),
-                    elevation: 0,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Adicionar',
-                          style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(57, 51, 51, 1),
-                            //fontFamily: "SF Pro Text",
+              Observer(
+                builder: (context) => InkWell(
+                  onTap: getImage,
+                  //if (Platform.isWindows) {}
+                  hoverColor: const Color.fromRGBO(217, 217, 217, 20),
+                  child: novoProjetoStore.images.isNotEmpty
+                      ? Image.memory(novoProjetoStore.images.first)
+                      : SizedBox(
+                          height: 590,
+                          width: 1360,
+                          child: Card(
+                            color: const Color.fromRGBO(217, 217, 217, 1),
+                            elevation: 0,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  'Adicionar',
+                                  style: TextStyle(
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromRGBO(57, 51, 51, 1),
+                                    //fontFamily: "SF Pro Text",
+                                  ),
+                                ),
+                                SvgPicture.asset('icons/add.svg'),
+                                const Text(
+                                  'imagem',
+                                  style: TextStyle(
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color.fromRGBO(57, 51, 51, 1),
+                                    //fontFamily: "SF Pro Text",
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        SvgPicture.asset('icons/add.svg'),
-                        const Text(
-                          'imagem',
-                          style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(57, 51, 51, 1),
-                            //fontFamily: "SF Pro Text",
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 ),
               ),
               SizedBox(
@@ -208,8 +215,7 @@ class NovoProjetoScreen extends StatelessWidget {
                               decoration: InputDecoration(
                                 //errorText: loginStore.emailError,
                                 filled: true,
-                                fillColor:
-                                    const Color.fromRGBO(217, 217, 217, 1),
+                                fillColor: const Color.fromRGBO(217, 217, 217, 1),
                                 border: InputBorder.none,
                               ),
                               textInputAction: TextInputAction.next,
@@ -285,8 +291,7 @@ class NovoProjetoScreen extends StatelessWidget {
                               decoration: InputDecoration(
                                 //errorText: loginStore.emailError,
                                 filled: true,
-                                fillColor:
-                                    const Color.fromRGBO(217, 217, 217, 1),
+                                fillColor: const Color.fromRGBO(217, 217, 217, 1),
                                 border: InputBorder.none,
                               ),
                               textInputAction: TextInputAction.next,
@@ -352,7 +357,7 @@ class NovoProjetoScreen extends StatelessWidget {
   }
 
   Future<void> getImage() async {
-    Uint8List? bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
-    print(bytesFromPicker);
+    final image = await ImagePickerWeb.getImageAsBytes();
+    novoProjetoStore.images.add(image);
   }
 }
