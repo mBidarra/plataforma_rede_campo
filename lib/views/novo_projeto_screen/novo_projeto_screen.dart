@@ -69,38 +69,57 @@ class NovoProjetoScreen extends StatelessWidget {
                   child: SizedBox(
                     height: 590,
                     width: 1340,
-                    child: Card(
-                      color: const Color.fromRGBO(217, 217, 217, 1),
-                      elevation: 0,
-                      child: novoProjetoStore.images.isNotEmpty
-                          ? Image.memory(
-                              novoProjetoStore.images.first,
-                              fit: BoxFit.contain,
-                            )
-                          : Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  'Adicionar',
-                                  style: TextStyle(
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color.fromRGBO(57, 51, 51, 1),
-                                    //fontFamily: "SF Pro Text",
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Card(
+                          color: const Color.fromRGBO(217, 217, 217, 1),
+                          elevation: 0,
+                          child: novoProjetoStore.images.isNotEmpty
+                              ? Image.memory(
+                                  novoProjetoStore.images.first,
+                                  fit: BoxFit.contain,
+                                )
+                              : Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      'Adicionar',
+                                      style: TextStyle(
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color.fromRGBO(57, 51, 51, 1),
+                                        //fontFamily: "SF Pro Text",
+                                      ),
+                                    ),
+                                    SvgPicture.asset('icons/add.svg'),
+                                    const Text(
+                                      'imagem',
+                                      style: TextStyle(
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color.fromRGBO(57, 51, 51, 1),
+                                        //fontFamily: "SF Pro Text",
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                        ),
+                        novoProjetoStore.images.isNotEmpty
+                            ? Padding(
+                                padding: const EdgeInsets.all(22),
+                                child: Align(
+                                  alignment: Alignment.topLeft,
+                                  child: InkWell(
+                                    onTap: novoProjetoStore.images.clear,
+                                    child: SvgPicture.asset(
+                                      "icons/remove.svg",
+                                    ),
                                   ),
                                 ),
-                                SvgPicture.asset('icons/add.svg'),
-                                const Text(
-                                  'imagem',
-                                  style: TextStyle(
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color.fromRGBO(57, 51, 51, 1),
-                                    //fontFamily: "SF Pro Text",
-                                  ),
-                                ),
-                              ],
-                            ),
+                              )
+                            : Container(),
+                      ],
                     ),
                   ),
                 ),

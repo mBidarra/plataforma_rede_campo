@@ -204,7 +204,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 8,
                         ),
                         SizedBox(
