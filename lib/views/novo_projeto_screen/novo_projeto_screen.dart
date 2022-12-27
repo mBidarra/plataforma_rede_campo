@@ -361,6 +361,9 @@ class NovoProjetoScreen extends StatelessWidget {
 
   Future<void> getImage() async {
     final image = await ImagePickerWeb.getImageAsBytes();
-    novoProjetoStore.images.add(image);
+    if (image != null) {
+      novoProjetoStore.images.clear();
+      novoProjetoStore.images.add(image);
+    }
   }
 }
