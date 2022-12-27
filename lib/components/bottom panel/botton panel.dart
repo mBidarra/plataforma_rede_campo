@@ -56,7 +56,7 @@ class BottonPanel extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  'Santa helena | Paraná | Brasil',
+                  'Santa Helena | Paraná | Brasil',
                   style: TextStyle(
                     color: Color.fromRGBO(
                       214,
