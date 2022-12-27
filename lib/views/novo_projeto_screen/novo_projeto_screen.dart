@@ -52,7 +52,7 @@ class NovoProjetoScreen extends StatelessWidget {
           Column(
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 132, bottom: 56),
+                padding: EdgeInsets.only(top: 103, bottom: 56),
                 child: Text(
                   "Adicionar projeto",
                   style: TextStyle(
@@ -68,7 +68,7 @@ class NovoProjetoScreen extends StatelessWidget {
                   hoverColor: const Color.fromRGBO(217, 217, 217, 20),
                   child: SizedBox(
                     height: 590,
-                    width: 1360,
+                    width: 1340,
                     child: Card(
                       color: const Color.fromRGBO(217, 217, 217, 1),
                       elevation: 0,
@@ -218,7 +218,8 @@ class NovoProjetoScreen extends StatelessWidget {
                               decoration: InputDecoration(
                                 //errorText: loginStore.emailError,
                                 filled: true,
-                                fillColor: const Color.fromRGBO(217, 217, 217, 1),
+                                fillColor:
+                                    const Color.fromRGBO(217, 217, 217, 1),
                                 border: InputBorder.none,
                               ),
                               textInputAction: TextInputAction.next,
@@ -294,7 +295,8 @@ class NovoProjetoScreen extends StatelessWidget {
                               decoration: InputDecoration(
                                 //errorText: loginStore.emailError,
                                 filled: true,
-                                fillColor: const Color.fromRGBO(217, 217, 217, 1),
+                                fillColor:
+                                    const Color.fromRGBO(217, 217, 217, 1),
                                 border: InputBorder.none,
                               ),
                               textInputAction: TextInputAction.next,
@@ -353,7 +355,7 @@ class NovoProjetoScreen extends StatelessWidget {
               ),
             ],
           ),
-          BottonPanel(),
+          const BottonPanel(),
         ],
       ),
     );
