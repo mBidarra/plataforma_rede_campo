@@ -265,7 +265,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(8),
                                       borderSide: BorderSide.none,
                                     ),
-                                    hintText: "Leganda da imagem/Subtitulo",
+                                    hintText: "Conteúdo da noticia",
                                     hintStyle: TextStyle(
                                       fontSize: 20,
                                       color: Color.fromRGBO(52, 61, 67, 1),
@@ -379,7 +379,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 64,
+                    height: 51,
                   ),
                 ],
               ),
