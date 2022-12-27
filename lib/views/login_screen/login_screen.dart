@@ -28,7 +28,7 @@ class LoginScreen extends StatelessWidget {
             ),
             child: Center(
               child: SizedBox(
-                width: 978,
+                width: 970,
                 child: Card(
                   //margin: EdgeInsets.symmetric(horizontal: 400),
                   color: const Color.fromRGBO(52, 61, 67, 1),
