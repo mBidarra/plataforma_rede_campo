@@ -66,15 +66,18 @@ class NovoProjetoScreen extends StatelessWidget {
                   onTap: getImage,
                   //if (Platform.isWindows) {}
                   hoverColor: const Color.fromRGBO(217, 217, 217, 20),
-                  child: novoProjetoStore.images.isNotEmpty
-                      ? Image.memory(novoProjetoStore.images.first)
-                      : SizedBox(
-                          height: 590,
-                          width: 1360,
-                          child: Card(
-                            color: const Color.fromRGBO(217, 217, 217, 1),
-                            elevation: 0,
-                            child: Column(
+                  child: SizedBox(
+                    height: 590,
+                    width: 1360,
+                    child: Card(
+                      color: const Color.fromRGBO(217, 217, 217, 1),
+                      elevation: 0,
+                      child: novoProjetoStore.images.isNotEmpty
+                          ? Image.memory(
+                              novoProjetoStore.images.first,
+                              fit: BoxFit.contain,
+                            )
+                          : Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
@@ -98,8 +101,8 @@ class NovoProjetoScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          ),
-                        ),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(

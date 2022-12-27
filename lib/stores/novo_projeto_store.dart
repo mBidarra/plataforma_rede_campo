@@ -11,4 +11,10 @@ class NovoProjetoStore = _NovoProjetoStore with _$NovoProjetoStore;
 
 abstract class _NovoProjetoStore with Store {
   ObservableList images = ObservableList();
+
+  @observable
+  bool loading = false;
+
+  @action
+  void setLoading(bool value) => loading = value;
 }
