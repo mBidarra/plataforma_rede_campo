@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
+import 'package:plataforma_rede_campo/components/remove_button.dart';
 import 'package:plataforma_rede_campo/stores/novo_projeto_store.dart';
 import '../../components/home_button.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
@@ -135,17 +136,10 @@ class NovoProjetoScreen extends StatelessWidget {
                                           padding: const EdgeInsets.all(22),
                                           child: Align(
                                             alignment: Alignment.topLeft,
-                                            child: Tooltip(
-                                              message: "Remover imagem",
-                                              child: InkWell(
-                                                onTap: novoProjetoStore
-                                                    .image.clear,
-                                                borderRadius:
-                                                    BorderRadius.circular(90),
-                                                child: SvgPicture.asset(
-                                                  "icons/remove.svg",
-                                                ),
-                                              ),
+                                            child: RemoveButton(
+                                              message: 'Remover imagem',
+                                              onTap:
+                                                  novoProjetoStore.image.clear,
                                             ),
                                           ),
                                         )

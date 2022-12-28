@@ -7,6 +7,7 @@ import 'package:plataforma_rede_campo/stores/nova_noticia_store.dart';
 
 import '../../components/bottom panel/botton panel.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
+import '../../components/remove_button.dart';
 
 class NovaNoticiaScreen extends StatelessWidget {
   NovaNoticiaScreen({Key? key}) : super(key: key);
@@ -117,11 +118,9 @@ class NovaNoticiaScreen extends StatelessWidget {
                                     padding: const EdgeInsets.all(22),
                                     child: Align(
                                       alignment: Alignment.topLeft,
-                                      child: InkWell(
+                                      child: RemoveButton(
+                                        message: 'Remover imagem',
                                         onTap: novaNoticiaStore.images.clear,
-                                        child: SvgPicture.asset(
-                                          "icons/remove.svg",
-                                        ),
                                       ),
                                     ),
                                   )
@@ -201,12 +200,10 @@ class NovaNoticiaScreen extends StatelessWidget {
                                               padding: const EdgeInsets.all(22),
                                               child: Align(
                                                 alignment: Alignment.topLeft,
-                                                child: InkWell(
+                                                child: RemoveButton(
+                                                  message: 'Remover imagem',
                                                   onTap: novaNoticiaStore
                                                       .images.clear,
-                                                  child: SvgPicture.asset(
-                                                    "icons/remove.svg",
-                                                  ),
                                                 ),
                                               ),
                                             )
