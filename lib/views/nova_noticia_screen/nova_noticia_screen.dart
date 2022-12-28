@@ -355,20 +355,28 @@ class NovaNoticiaScreen extends StatelessWidget {
                           builder: (context) => SizedBox(
                             width: 437,
                             height: 60,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromRGBO(72, 125, 59, 1),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                            child: GestureDetector(
+                              onTap: novaNoticiaStore.invalidSendPressed,
+                              child: ElevatedButton(
+                                onPressed: novaNoticiaStore.publicarPressed,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Color.fromRGBO(72, 125, 59, 1),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  textStyle: const TextStyle(
+                                    fontSize: 38,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromRGBO(246, 245, 244, 1),
+                                  ),
                                 ),
-                                textStyle: const TextStyle(
-                                  fontSize: 38,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color.fromRGBO(246, 245, 244, 1),
-                                ),
+                                child: novaNoticiaStore.loading
+                                    ? CircularProgressIndicator(
+                                        color: Color.fromRGBO(246, 245, 244, 1),
+                                      )
+                                    : Text("Publicar"),
                               ),
-                              child: Text("Publicar"),
                             ),
                           ),
                         )

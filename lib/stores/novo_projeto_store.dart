@@ -62,7 +62,7 @@ abstract class _NovoProjetoStore with Store {
   bool get formValid => imageValid && tituloValid && descricaoValid;
 
   @computed
-  dynamic get publicarPressed => formValid ? _publicar : null;
+  dynamic get publicarPressed => (formValid && !loading) ? _publicar : null;
 
   @observable
   bool loading = false;
