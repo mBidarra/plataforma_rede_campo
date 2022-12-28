@@ -38,13 +38,13 @@ abstract class _CadastroStore with Store {
   void setEmail(String? value) => email = value;
 
   @computed
-  bool get emailValid =>
-      email == null || email!.isEmpty || email!.isEmailValid();
+  bool get emailValid => email != null && email!.isEmailValid();
+
   String? get emailError {
     if (!exibirErros || emailValid) {
       return null;
     } else {
-      return 'Email invalido';
+      return 'E-mail invalido';
     }
   }
 
