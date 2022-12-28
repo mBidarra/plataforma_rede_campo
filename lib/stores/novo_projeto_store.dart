@@ -22,8 +22,44 @@ abstract class _NovoProjetoStore with Store {
     }
   }
 
+  @observable
+  String? titulo = '';
+
+  @action
+  void setTitulo(String? value) => titulo = value;
+
   @computed
-  bool get formValid => imageValid;
+  bool get tituloValid => titulo!.length >= 6;
+  String? get tituloError {
+    if (!showErrors || tituloValid) {
+      return null;
+    } else if (titulo!.isEmpty) {
+      return 'Campo obrigatório';
+    } else {
+      return 'Título muito curto';
+    }
+  }
+
+  @observable
+  String? descricao = '';
+
+  @action
+  void setDescricao(String? value) => descricao = value;
+
+  @computed
+  bool get descricaoValid => descricao!.length >= 100;
+  String? get descricaoError {
+    if (!showErrors || descricaoValid) {
+      return null;
+    } else if (descricao!.isEmpty) {
+      return 'Campo obrigatório';
+    } else {
+      return 'Descrição muito curta';
+    }
+  }
+
+  @computed
+  bool get formValid => imageValid && tituloValid && descricaoValid;
 
   @computed
   dynamic get publicarPressed => formValid ? _publicar : null;
@@ -35,7 +71,7 @@ abstract class _NovoProjetoStore with Store {
   void setLoading(bool value) => loading = value;
 
   @observable
-  bool showErrors = true;
+  bool showErrors = false;
 
   @action
   void invalidSendPressed() => showErrors = true;

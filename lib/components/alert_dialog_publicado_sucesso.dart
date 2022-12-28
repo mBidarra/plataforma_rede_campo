@@ -8,8 +8,6 @@ class AlertDialogPublicadoSucesso extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    print(screenSize.height);
-    print(screenSize.width);
 
     return AlertDialog(
       backgroundColor: Color.fromRGBO(255, 255, 255, 0.8),

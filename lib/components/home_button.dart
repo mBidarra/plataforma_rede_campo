@@ -17,6 +17,7 @@ class HomeButton extends StatelessWidget {
               ),
               (route) => false);
         },
+        borderRadius: BorderRadius.circular(90),
         child: SvgPicture.asset(
           'icons/home.svg',
         ),

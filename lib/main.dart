@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Plataforma Rede Campo",
       debugShowCheckedModeBanner: false,
-      home: HomeScreenPesquisador(),
+      home: NovoProjetoScreen(),
     );
   }
 }

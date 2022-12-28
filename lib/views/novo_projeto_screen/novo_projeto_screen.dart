@@ -1,9 +1,7 @@
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker_web/image_picker_web.dart';
-import 'package:plataforma_rede_campo/components/alert_dialog_publicado_sucesso.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
 import 'package:plataforma_rede_campo/stores/novo_projeto_store.dart';
 import '../../components/home_button.dart';
@@ -84,6 +82,20 @@ class NovoProjetoScreen extends StatelessWidget {
                                     color: novoProjetoStore.image.isEmpty
                                         ? const Color.fromRGBO(217, 217, 217, 1)
                                         : Colors.transparent,
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        color:
+                                            novoProjetoStore.imageError != null
+                                                ? Colors.red.shade700
+                                                : const Color.fromRGBO(
+                                                    217,
+                                                    217,
+                                                    217,
+                                                    1,
+                                                  ),
+                                        width: 1, //<-- SEE HERE
+                                      ),
+                                    ),
                                     elevation: 0,
                                     child: novoProjetoStore.image.isNotEmpty
                                         ? Image.memory(
@@ -123,11 +135,16 @@ class NovoProjetoScreen extends StatelessWidget {
                                           padding: const EdgeInsets.all(22),
                                           child: Align(
                                             alignment: Alignment.topLeft,
-                                            child: InkWell(
-                                              onTap:
-                                                  novoProjetoStore.image.clear,
-                                              child: SvgPicture.asset(
-                                                "icons/remove.svg",
+                                            child: Tooltip(
+                                              message: "Remover imagem",
+                                              child: InkWell(
+                                                onTap: novoProjetoStore
+                                                    .image.clear,
+                                                borderRadius:
+                                                    BorderRadius.circular(90),
+                                                child: SvgPicture.asset(
+                                                  "icons/remove.svg",
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -139,11 +156,12 @@ class NovoProjetoScreen extends StatelessWidget {
                           ),
                           if (novoProjetoStore.imageError != null)
                             Container(
+                              padding: const EdgeInsets.fromLTRB(25, 7, 0, 0),
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 novoProjetoStore.imageError!,
                                 style: TextStyle(
-                                  color: Colors.red,
+                                  color: Colors.red.shade700,
                                 ),
                               ),
                             ),
@@ -174,13 +192,26 @@ class NovoProjetoScreen extends StatelessWidget {
                           builder: (context) => TextFormField(
                             style: const TextStyle(fontSize: 25),
                             maxLines: 1,
-                            //onChanged: loginStore.setEmail,
-                            //enabled: !loginStore.loading,
+                            onChanged: novoProjetoStore.setTitulo,
+                            enabled: !novoProjetoStore.loading,
                             decoration: InputDecoration(
-                              //errorText: loginStore.emailError,
+                              errorText: novoProjetoStore.tituloError,
                               filled: true,
                               fillColor: const Color.fromRGBO(217, 217, 217, 1),
-                              border: InputBorder.none,
+                              border: novoProjetoStore.tituloError == null
+                                  ? InputBorder.none
+                                  : OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        width: 1,
+                                        color: Colors.redAccent,
+                                      ),
+                                    ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 1,
+                                  color: Colors.redAccent,
+                                ),
+                              ),
                             ),
                             textInputAction: TextInputAction.next,
                           ),
@@ -211,13 +242,26 @@ class NovoProjetoScreen extends StatelessWidget {
                           builder: (context) => TextFormField(
                             style: const TextStyle(fontSize: 25),
                             maxLines: 20,
-                            //onChanged: loginStore.setEmail,
-                            //enabled: !loginStore.loading,
+                            onChanged: novoProjetoStore.setDescricao,
+                            enabled: !novoProjetoStore.loading,
                             decoration: InputDecoration(
-                              //errorText: loginStore.emailError,
+                              errorText: novoProjetoStore.descricaoError,
                               filled: true,
                               fillColor: const Color.fromRGBO(217, 217, 217, 1),
-                              border: InputBorder.none,
+                              border: novoProjetoStore.descricaoError == null
+                                  ? InputBorder.none
+                                  : OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        width: 1,
+                                        color: Colors.redAccent,
+                                      ),
+                                    ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 1,
+                                  color: Colors.redAccent,
+                                ),
+                              ),
                             ),
                             textInputAction: TextInputAction.next,
                           ),
@@ -376,27 +420,28 @@ class NovoProjetoScreen extends StatelessWidget {
                           builder: (context) => SizedBox(
                             width: 437,
                             height: 60,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                showDialog(
-                                  barrierDismissible: false,
-                                  context: context,
-                                  builder: (context) =>
-                                      AlertDialogPublicadoSucesso(),
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromRGBO(72, 125, 59, 1),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                            child: GestureDetector(
+                              onTap: novoProjetoStore.invalidSendPressed,
+                              child: ElevatedButton(
+                                onPressed: novoProjetoStore.publicarPressed,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Color.fromRGBO(72, 125, 59, 1),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  textStyle: const TextStyle(
+                                    fontSize: 38,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromRGBO(246, 245, 244, 1),
+                                  ),
                                 ),
-                                textStyle: const TextStyle(
-                                  fontSize: 38,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color.fromRGBO(246, 245, 244, 1),
-                                ),
+                                child: novoProjetoStore.loading
+                                    ? CircularProgressIndicator(
+                                        color: Color.fromRGBO(246, 245, 244, 1),
+                                      )
+                                    : Text("Publicar"),
                               ),
-                              child: Text("Publicar"),
                             ),
                           ),
                         )
