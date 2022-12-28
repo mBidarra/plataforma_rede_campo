@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker_web/image_picker_web.dart';
+import 'package:plataforma_rede_campo/components/alert_dialog_publicado_sucesso.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
 import 'package:plataforma_rede_campo/stores/novo_projeto_store.dart';
 import '../../components/home_button.dart';
@@ -66,68 +67,87 @@ class NovoProjetoScreen extends StatelessWidget {
                     ),
                   ),
                   Observer(
-                    builder: (context) => InkWell(
-                      onTap: getImage,
-                      //if (Platform.isWindows) {}
-                      hoverColor: const Color.fromRGBO(217, 217, 217, 20),
-                      child: SizedBox(
-                        height: 590,
-                        width: 1340,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Card(
-                              color: const Color.fromRGBO(217, 217, 217, 1),
-                              elevation: 0,
-                              child: novoProjetoStore.images.isNotEmpty
-                                  ? Image.memory(
-                                      novoProjetoStore.images.first,
-                                      fit: BoxFit.contain,
-                                    )
-                                  : Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Text(
-                                          'Adicionar',
-                                          style: TextStyle(
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.w500,
-                                            color:
-                                                Color.fromRGBO(57, 51, 51, 1),
-                                            //fontFamily: "SF Pro Text",
+                    builder: (context) => SizedBox(
+                      width: 1340,
+                      child: Column(
+                        children: [
+                          InkWell(
+                            onTap: getImage,
+                            hoverColor: const Color.fromRGBO(217, 217, 217, 20),
+                            child: SizedBox(
+                              height: 590,
+                              width: 1340,
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Card(
+                                    color: novoProjetoStore.image.isEmpty
+                                        ? const Color.fromRGBO(217, 217, 217, 1)
+                                        : Colors.transparent,
+                                    elevation: 0,
+                                    child: novoProjetoStore.image.isNotEmpty
+                                        ? Image.memory(
+                                            novoProjetoStore.image.first,
+                                            fit: BoxFit.contain,
+                                          )
+                                        : Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                'Adicionar',
+                                                style: TextStyle(
+                                                  fontSize: 40,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color.fromRGBO(
+                                                      57, 51, 51, 1),
+                                                  //fontFamily: "SF Pro Text",
+                                                ),
+                                              ),
+                                              SvgPicture.asset('icons/add.svg'),
+                                              const Text(
+                                                'imagem',
+                                                style: TextStyle(
+                                                  fontSize: 40,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color.fromRGBO(
+                                                      57, 51, 51, 1),
+                                                  //fontFamily: "SF Pro Text",
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        SvgPicture.asset('icons/add.svg'),
-                                        const Text(
-                                          'imagem',
-                                          style: TextStyle(
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.w500,
-                                            color:
-                                                Color.fromRGBO(57, 51, 51, 1),
-                                            //fontFamily: "SF Pro Text",
+                                  ),
+                                  novoProjetoStore.image.isNotEmpty
+                                      ? Padding(
+                                          padding: const EdgeInsets.all(22),
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: InkWell(
+                                              onTap:
+                                                  novoProjetoStore.image.clear,
+                                              child: SvgPicture.asset(
+                                                "icons/remove.svg",
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
+                                        )
+                                      : Container(),
+                                ],
+                              ),
                             ),
-                            novoProjetoStore.images.isNotEmpty
-                                ? Padding(
-                                    padding: const EdgeInsets.all(22),
-                                    child: Align(
-                                      alignment: Alignment.topLeft,
-                                      child: InkWell(
-                                        onTap: novoProjetoStore.images.clear,
-                                        child: SvgPicture.asset(
-                                          "icons/remove.svg",
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                : Container(),
-                          ],
-                        ),
+                          ),
+                          if (novoProjetoStore.imageError != null)
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                novoProjetoStore.imageError!,
+                                style: TextStyle(
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                     ),
                   ),
@@ -357,7 +377,14 @@ class NovoProjetoScreen extends StatelessWidget {
                             width: 437,
                             height: 60,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  builder: (context) =>
+                                      AlertDialogPublicadoSucesso(),
+                                );
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Color.fromRGBO(72, 125, 59, 1),
                                 shape: RoundedRectangleBorder(
@@ -402,8 +429,8 @@ class NovoProjetoScreen extends StatelessWidget {
   Future<void> getImage() async {
     final image = await ImagePickerWeb.getImageAsBytes();
     if (image != null) {
-      novoProjetoStore.images.clear();
-      novoProjetoStore.images.add(image);
+      novoProjetoStore.image.clear();
+      novoProjetoStore.image.add(image);
     }
   }
 }
