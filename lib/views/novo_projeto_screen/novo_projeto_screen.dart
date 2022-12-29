@@ -150,7 +150,7 @@ class NovoProjetoScreen extends StatelessWidget {
                           ),
                           if (novoProjetoStore.imageError != null)
                             Container(
-                              padding: const EdgeInsets.fromLTRB(25, 7, 0, 0),
+                              padding: const EdgeInsets.fromLTRB(14, 7, 0, 0),
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 novoProjetoStore.imageError!,

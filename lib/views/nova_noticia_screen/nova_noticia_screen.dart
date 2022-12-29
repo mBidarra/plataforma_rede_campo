@@ -73,7 +73,6 @@ class NovaNoticiaScreen extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: getImage,
-                            //if (Platform.isWindows) {}
                             hoverColor: const Color.fromRGBO(217, 217, 217, 20),
                             child: SizedBox(
                               height: 590,
@@ -152,7 +151,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                           ),
                           if (novaNoticiaStore.image1Error != null)
                             Container(
-                              padding: const EdgeInsets.fromLTRB(25, 7, 0, 0),
+                              padding: const EdgeInsets.fromLTRB(14, 7, 0, 0),
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 novaNoticiaStore.image1Error!,
@@ -174,30 +173,34 @@ class NovaNoticiaScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          children: [
-                            Observer(
-                              builder: (context) => InkWell(
-                                onTap: getImage,
-                                //if (Platform.isWindows) {}
-                                hoverColor:
-                                    const Color.fromRGBO(217, 217, 217, 20),
-                                child: SizedBox(
-                                  height: 594,
-                                  width: 655,
-                                  child: Stack(
-                                    fit: StackFit.expand,
-                                    children: [
-                                      Card(
-                                        margin: EdgeInsets.zero,
-                                        color: novaNoticiaStore.image2.isEmpty
-                                            ? const Color.fromRGBO(
-                                                217, 217, 217, 1)
-                                            : Colors.transparent,
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(
+                        Observer(
+                          builder: (context) => SizedBox(
+                            width: 655,
+                            child: Column(
+                              children: [
+                                Observer(
+                                  builder: (context) => InkWell(
+                                    onTap: getImage,
+                                    //if (Platform.isWindows) {}
+                                    hoverColor:
+                                        const Color.fromRGBO(217, 217, 217, 20),
+                                    child: SizedBox(
+                                      height: 594,
+                                      width: 655,
+                                      child: Stack(
+                                        fit: StackFit.expand,
+                                        children: [
+                                          Card(
+                                            margin: EdgeInsets.zero,
                                             color:
-                                                novaNoticiaStore.image2Error !=
+                                                novaNoticiaStore.image2.isEmpty
+                                                    ? const Color.fromRGBO(
+                                                        217, 217, 217, 1)
+                                                    : Colors.transparent,
+                                            shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                color: novaNoticiaStore
+                                                            .image2Error !=
                                                         null
                                                     ? Colors.red.shade700
                                                     : const Color.fromRGBO(
@@ -206,125 +209,185 @@ class NovaNoticiaScreen extends StatelessWidget {
                                                         217,
                                                         1,
                                                       ),
-                                            width: 1,
-                                          ),
-                                        ),
-                                        elevation: 0,
-                                        child: novaNoticiaStore
-                                                .image1.isNotEmpty
-                                            ? Image.memory(
-                                                novaNoticiaStore.image1.first,
-                                                fit: BoxFit.contain,
-                                              )
-                                            : Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  const Text(
-                                                    'Adicionar',
-                                                    style: TextStyle(
-                                                      fontSize: 40,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      color: Color.fromRGBO(
-                                                          57, 51, 51, 1),
-                                                      //fontFamily: "SF Pro Text",
-                                                    ),
-                                                  ),
-                                                  SvgPicture.asset(
-                                                      'icons/add.svg'),
-                                                  const Text(
-                                                    'imagem',
-                                                    style: TextStyle(
-                                                      fontSize: 40,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      color: Color.fromRGBO(
-                                                          57, 51, 51, 1),
-                                                      //fontFamily: "SF Pro Text",
-                                                    ),
-                                                  ),
-                                                ],
+                                                width: 1,
                                               ),
+                                            ),
+                                            elevation: 0,
+                                            child: novaNoticiaStore
+                                                    .image1.isNotEmpty
+                                                ? Image.memory(
+                                                    novaNoticiaStore
+                                                        .image1.first,
+                                                    fit: BoxFit.contain,
+                                                  )
+                                                : Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      const Text(
+                                                        'Adicionar',
+                                                        style: TextStyle(
+                                                          fontSize: 40,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: Color.fromRGBO(
+                                                              57, 51, 51, 1),
+                                                          //fontFamily: "SF Pro Text",
+                                                        ),
+                                                      ),
+                                                      SvgPicture.asset(
+                                                          'icons/add.svg'),
+                                                      const Text(
+                                                        'imagem',
+                                                        style: TextStyle(
+                                                          fontSize: 40,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: Color.fromRGBO(
+                                                              57, 51, 51, 1),
+                                                          //fontFamily: "SF Pro Text",
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                          ),
+                                          novaNoticiaStore.image1.isNotEmpty
+                                              ? Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(22),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: RemoveButton(
+                                                      message: 'Remover imagem',
+                                                      onTap: novaNoticiaStore
+                                                          .image1.clear,
+                                                    ),
+                                                  ),
+                                                )
+                                              : Container(),
+                                        ],
                                       ),
-                                      novaNoticiaStore.image1.isNotEmpty
-                                          ? Padding(
-                                              padding: const EdgeInsets.all(22),
-                                              child: Align(
-                                                alignment: Alignment.topLeft,
-                                                child: RemoveButton(
-                                                  message: 'Remover imagem',
-                                                  onTap: novaNoticiaStore
-                                                      .image1.clear,
+                                    ),
+                                  ),
+                                ),
+                                if (novaNoticiaStore.image2Error != null)
+                                  Container(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(14, 7, 0, 0),
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      novaNoticiaStore.image2Error!,
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        color: Colors.red.shade700,
+                                      ),
+                                    ),
+                                  ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                SizedBox(
+                                  width: 655,
+                                  child: Observer(
+                                    builder: (context) => TextFormField(
+                                      style: const TextStyle(fontSize: 22),
+                                      maxLines: 1,
+                                      onChanged:
+                                          novaNoticiaStore.setTituloImage2,
+                                      enabled: !novaNoticiaStore.loading,
+                                      decoration: InputDecoration(
+                                        errorText:
+                                            novaNoticiaStore.tituloImage2Error,
+                                        filled: true,
+                                        fillColor: const Color.fromRGBO(
+                                            217, 217, 217, 1),
+                                        border: novaNoticiaStore
+                                                    .tituloImage2Error ==
+                                                null
+                                            ? OutlineInputBorder(
+                                                borderSide: BorderSide.none,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              )
+                                            : OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  width: 1,
+                                                  color: Colors.redAccent,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            width: 1,
+                                            color: Colors.redAccent,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        hintText: "Leganda da imagem/Subtitulo",
+                                        hintStyle: TextStyle(
+                                          fontSize: 22,
+                                          color: Color.fromRGBO(52, 61, 67, 1),
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      textInputAction: TextInputAction.next,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 41,
+                                ),
+                                SizedBox(
+                                  width: 655,
+                                  child: Observer(
+                                    builder: (context) => TextFormField(
+                                      style: TextStyle(fontSize: 20),
+                                      maxLines: 16,
+                                      onChanged:
+                                          novaNoticiaStore.setConteudoNoticia,
+                                      enabled: !novaNoticiaStore.loading,
+                                      decoration: InputDecoration(
+                                        errorText: novaNoticiaStore
+                                            .conteudoNoticiaError,
+                                        filled: true,
+                                        fillColor: const Color.fromRGBO(
+                                            217, 217, 217, 1),
+                                        border: novaNoticiaStore
+                                                    .conteudoNoticiaError ==
+                                                null
+                                            ? OutlineInputBorder(
+                                                borderSide: BorderSide.none,
+                                              )
+                                            : OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  width: 1,
+                                                  color: Colors.redAccent,
                                                 ),
                                               ),
-                                            )
-                                          : Container(),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            SizedBox(
-                              width: 655,
-                              child: Observer(
-                                builder: (context) => TextFormField(
-                                  style: TextStyle(fontSize: 22),
-                                  maxLines: 1,
-                                  //onChanged: loginStore.setEmail,
-                                  //enabled: !loginStore.loading,
-                                  decoration: InputDecoration(
-                                    //errorText: loginStore.emailError,
-                                    filled: true,
-                                    fillColor: Color.fromRGBO(217, 217, 217, 1),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                      borderSide: BorderSide.none,
-                                    ),
-                                    hintText: "Leganda da imagem/Subtitulo",
-                                    hintStyle: TextStyle(
-                                      fontSize: 22,
-                                      color: Color.fromRGBO(52, 61, 67, 1),
-                                      fontWeight: FontWeight.w600,
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            width: 1,
+                                            color: Colors.redAccent,
+                                          ),
+                                        ),
+                                        hintText: "Conteúdo da noticia",
+                                        hintStyle: TextStyle(
+                                          fontSize: 20,
+                                          color: Color.fromRGBO(52, 61, 67, 1),
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      textInputAction: TextInputAction.next,
                                     ),
                                   ),
-                                  textInputAction: TextInputAction.next,
-                                ),
-                              ),
+                                )
+                              ],
                             ),
-                            SizedBox(
-                              height: 41,
-                            ),
-                            SizedBox(
-                              width: 655,
-                              child: Observer(
-                                builder: (context) => TextFormField(
-                                  style: TextStyle(fontSize: 20),
-                                  maxLines: 16,
-                                  //onChanged: loginStore.setEmail,
-                                  //enabled: !loginStore.loading,
-                                  decoration: InputDecoration(
-                                    //errorText: loginStore.emailError,
-                                    filled: true,
-                                    fillColor: Color.fromRGBO(217, 217, 217, 1),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                    ),
-                                    hintText: "Conteúdo da noticia",
-                                    hintStyle: TextStyle(
-                                      fontSize: 20,
-                                      color: Color.fromRGBO(52, 61, 67, 1),
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  textInputAction: TextInputAction.next,
-                                ),
-                              ),
-                            )
-                          ],
+                          ),
                         ),
                         const SizedBox(
                           width: 30,
@@ -337,18 +400,36 @@ class NovaNoticiaScreen extends StatelessWidget {
                                 builder: (context) => TextFormField(
                                   style: TextStyle(fontSize: 33),
                                   maxLines: 1,
-                                  //onChanged: loginStore.setEmail,
-                                  //enabled: !loginStore.loading,
+                                  onChanged: novaNoticiaStore.setTitulo,
+                                  enabled: !novaNoticiaStore.loading,
                                   textAlign: TextAlign.center,
                                   decoration: InputDecoration(
-                                    //errorText: loginStore.emailError,
+                                    errorText: novaNoticiaStore.tituloError,
                                     filled: true,
-                                    fillColor: Color.fromRGBO(217, 217, 217, 1),
-                                    border: OutlineInputBorder(
+                                    fillColor:
+                                        const Color.fromRGBO(217, 217, 217, 1),
+                                    border: novaNoticiaStore.tituloError == null
+                                        ? OutlineInputBorder(
+                                            borderSide: BorderSide.none,
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          )
+                                        : OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              width: 1,
+                                              color: Colors.redAccent,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        width: 1,
+                                        color: Colors.redAccent,
+                                      ),
                                       borderRadius: BorderRadius.circular(8),
-                                      borderSide: BorderSide.none,
                                     ),
-                                    hintText: "Titulo",
+                                    hintText: "Título",
                                     hintStyle: TextStyle(
                                       fontSize: 33,
                                       color: Color.fromRGBO(52, 61, 67, 1),
@@ -368,17 +449,34 @@ class NovaNoticiaScreen extends StatelessWidget {
                                 builder: (context) => TextFormField(
                                   style: TextStyle(fontSize: 33),
                                   maxLines: 25,
-                                  //onChanged: loginStore.setEmail,
-                                  //enabled: !loginStore.loading,
+                                  onChanged:
+                                      novaNoticiaStore.setConteudoNoticia2,
+                                  enabled: !novaNoticiaStore.loading,
                                   decoration: InputDecoration(
-                                    //errorText: loginStore.emailError,
+                                    errorText:
+                                        novaNoticiaStore.conteudoNoticia2Error,
                                     filled: true,
-                                    fillColor: Color.fromRGBO(217, 217, 217, 1),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                      borderSide: BorderSide.none,
+                                    fillColor:
+                                        const Color.fromRGBO(217, 217, 217, 1),
+                                    border: novaNoticiaStore
+                                                .conteudoNoticia2Error ==
+                                            null
+                                        ? OutlineInputBorder(
+                                            borderSide: BorderSide.none,
+                                          )
+                                        : OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              width: 1,
+                                              color: Colors.redAccent,
+                                            ),
+                                          ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        width: 1,
+                                        color: Colors.redAccent,
+                                      ),
                                     ),
-                                    hintText: "Conteúdo da noticia:",
+                                    hintText: "Conteúdo da noticia",
                                     hintStyle: TextStyle(
                                       fontSize: 33,
                                       color: Color.fromRGBO(52, 61, 67, 1),

@@ -36,8 +36,80 @@ abstract class _NovaNoticiaStore with Store {
     }
   }
 
+  @observable
+  String? tituloImage2 = '';
+
+  @action
+  void setTituloImage2(String? value) => tituloImage2 = value;
+
   @computed
-  bool get formValid => true;
+  bool get tituloImage2Valid => tituloImage2!.length >= 6;
+  String? get tituloImage2Error {
+    if (!showErrors || tituloImage2Valid) {
+      return null;
+    } else if (tituloImage2!.isEmpty) {
+      return 'Campo obrigatório';
+    } else {
+      return 'Título muito curto';
+    }
+  }
+
+  @observable
+  String? conteudoNoticia = '';
+
+  @action
+  void setConteudoNoticia(String? value) => conteudoNoticia = value;
+
+  @computed
+  bool get conteudoNoticiaValid => conteudoNoticia!.length >= 6;
+  String? get conteudoNoticiaError {
+    if (!showErrors || conteudoNoticiaValid) {
+      return null;
+    } else if (conteudoNoticia!.isEmpty) {
+      return 'Campo obrigatório';
+    } else {
+      return 'Conteúdo muito curto';
+    }
+  }
+
+  @observable
+  String? titulo = '';
+
+  @action
+  void setTitulo(String? value) => titulo = value;
+
+  @computed
+  bool get tituloValid => titulo!.length >= 6;
+  String? get tituloError {
+    if (!showErrors || tituloValid) {
+      return null;
+    } else if (titulo!.isEmpty) {
+      return 'Campo obrigatório';
+    } else {
+      return 'Título muito curto';
+    }
+  }
+
+  @observable
+  String? conteudoNoticia2 = '';
+
+  @action
+  void setConteudoNoticia2(String? value) => conteudoNoticia2 = value;
+
+  @computed
+  bool get conteudoNoticia2Valid => conteudoNoticia2!.length >= 6;
+  String? get conteudoNoticia2Error {
+    if (!showErrors || conteudoNoticia2Valid) {
+      return null;
+    } else if (conteudoNoticia2!.isEmpty) {
+      return 'Campo obrigatório';
+    } else {
+      return 'Conteúdo muito curto';
+    }
+  }
+
+  @computed
+  bool get formValid => image1Valid;
 
   @computed
   dynamic get publicarPressed => (formValid && !loading) ? _publicar : null;
@@ -49,7 +121,7 @@ abstract class _NovaNoticiaStore with Store {
   void setLoading(bool value) => loading = value;
 
   @observable
-  bool showErrors = true;
+  bool showErrors = false;
 
   @action
   void invalidSendPressed() => showErrors = true;
