@@ -29,7 +29,7 @@ abstract class _NovaNoticiaStore with Store {
   bool get image2Valid => image2.isNotEmpty;
 
   String? get image2Error {
-    if (!showErrors || image1Valid) {
+    if (!showErrors || formularioOpcionalValid || image2Valid) {
       return null;
     } else {
       return 'Insira imagen';
@@ -45,7 +45,7 @@ abstract class _NovaNoticiaStore with Store {
   @computed
   bool get tituloImage2Valid => tituloImage2!.length >= 6;
   String? get tituloImage2Error {
-    if (!showErrors || tituloImage2Valid) {
+    if (!showErrors || formularioOpcionalValid || tituloImage2Valid) {
       return null;
     } else if (tituloImage2!.isEmpty) {
       return 'Campo obrigatório';
@@ -64,7 +64,9 @@ abstract class _NovaNoticiaStore with Store {
   @computed
   bool get conteudoNoticiaOpcionalValid => conteudoNoticiaOpcional!.length >= 6;
   String? get conteudoNoticiaOpcionalError {
-    if (!showErrors || conteudoNoticiaOpcionalValid) {
+    if (!showErrors ||
+        formularioOpcionalValid ||
+        conteudoNoticiaOpcionalValid) {
       return null;
     } else if (conteudoNoticiaOpcional!.isEmpty) {
       return 'Campo obrigatório';

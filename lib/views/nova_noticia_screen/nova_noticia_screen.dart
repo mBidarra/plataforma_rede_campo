@@ -72,7 +72,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           InkWell(
-                            onTap: getImage,
+                            onTap: getImage1,
                             hoverColor: const Color.fromRGBO(217, 217, 217, 20),
                             child: SizedBox(
                               height: 590,
@@ -180,7 +180,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                               children: [
                                 Observer(
                                   builder: (context) => InkWell(
-                                    onTap: getImage,
+                                    onTap: getImage2,
                                     //if (Platform.isWindows) {}
                                     hoverColor:
                                         const Color.fromRGBO(217, 217, 217, 20),
@@ -214,10 +214,10 @@ class NovaNoticiaScreen extends StatelessWidget {
                                             ),
                                             elevation: 0,
                                             child: novaNoticiaStore
-                                                    .image1.isNotEmpty
+                                                    .image2.isNotEmpty
                                                 ? Image.memory(
                                                     novaNoticiaStore
-                                                        .image1.first,
+                                                        .image2.first,
                                                     fit: BoxFit.contain,
                                                   )
                                                 : Column(
@@ -252,7 +252,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                                                     ],
                                                   ),
                                           ),
-                                          novaNoticiaStore.image1.isNotEmpty
+                                          novaNoticiaStore.image2.isNotEmpty
                                               ? Padding(
                                                   padding:
                                                       const EdgeInsets.all(22),
@@ -262,7 +262,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                                                     child: RemoveButton(
                                                       message: 'Remover imagem',
                                                       onTap: novaNoticiaStore
-                                                          .image1.clear,
+                                                          .image2.clear,
                                                     ),
                                                   ),
                                                 )
@@ -555,11 +555,19 @@ class NovaNoticiaScreen extends StatelessWidget {
     );
   }
 
-  Future<void> getImage() async {
+  Future<void> getImage1() async {
     final image = await ImagePickerWeb.getImageAsBytes();
     if (image != null) {
       novaNoticiaStore.image1.clear();
       novaNoticiaStore.image1.add(image);
+    }
+  }
+
+  Future<void> getImage2() async {
+    final image = await ImagePickerWeb.getImageAsBytes();
+    if (image != null) {
+      novaNoticiaStore.image2.clear();
+      novaNoticiaStore.image2.add(image);
     }
   }
 }
