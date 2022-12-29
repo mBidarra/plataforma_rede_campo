@@ -347,17 +347,17 @@ class NovaNoticiaScreen extends StatelessWidget {
                                     builder: (context) => TextFormField(
                                       style: TextStyle(fontSize: 20),
                                       maxLines: 16,
-                                      onChanged:
-                                          novaNoticiaStore.setConteudoNoticia,
+                                      onChanged: novaNoticiaStore
+                                          .setConteudoNoticiaOpcional,
                                       enabled: !novaNoticiaStore.loading,
                                       decoration: InputDecoration(
                                         errorText: novaNoticiaStore
-                                            .conteudoNoticiaError,
+                                            .conteudoNoticiaOpcionalError,
                                         filled: true,
                                         fillColor: const Color.fromRGBO(
                                             217, 217, 217, 1),
                                         border: novaNoticiaStore
-                                                    .conteudoNoticiaError ==
+                                                    .conteudoNoticiaOpcionalError ==
                                                 null
                                             ? OutlineInputBorder(
                                                 borderSide: BorderSide.none,
@@ -450,26 +450,26 @@ class NovaNoticiaScreen extends StatelessWidget {
                                   style: TextStyle(fontSize: 33),
                                   maxLines: 25,
                                   onChanged:
-                                      novaNoticiaStore.setConteudoNoticia2,
+                                      novaNoticiaStore.setConteudoNoticia,
                                   enabled: !novaNoticiaStore.loading,
                                   decoration: InputDecoration(
                                     errorText:
-                                        novaNoticiaStore.conteudoNoticia2Error,
+                                        novaNoticiaStore.conteudoNoticiaError,
                                     filled: true,
                                     fillColor:
                                         const Color.fromRGBO(217, 217, 217, 1),
-                                    border: novaNoticiaStore
-                                                .conteudoNoticia2Error ==
-                                            null
-                                        ? OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                          )
-                                        : OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              width: 1,
-                                              color: Colors.redAccent,
-                                            ),
-                                          ),
+                                    border:
+                                        novaNoticiaStore.conteudoNoticiaError ==
+                                                null
+                                            ? OutlineInputBorder(
+                                                borderSide: BorderSide.none,
+                                              )
+                                            : OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  width: 1,
+                                                  color: Colors.redAccent,
+                                                ),
+                                              ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         width: 1,

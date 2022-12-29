@@ -55,17 +55,18 @@ abstract class _NovaNoticiaStore with Store {
   }
 
   @observable
-  String? conteudoNoticia = '';
+  String? conteudoNoticiaOpcional = '';
 
   @action
-  void setConteudoNoticia(String? value) => conteudoNoticia = value;
+  void setConteudoNoticiaOpcional(String? value) =>
+      conteudoNoticiaOpcional = value;
 
   @computed
-  bool get conteudoNoticiaValid => conteudoNoticia!.length >= 6;
-  String? get conteudoNoticiaError {
-    if (!showErrors || conteudoNoticiaValid) {
+  bool get conteudoNoticiaOpcionalValid => conteudoNoticiaOpcional!.length >= 6;
+  String? get conteudoNoticiaOpcionalError {
+    if (!showErrors || conteudoNoticiaOpcionalValid) {
       return null;
-    } else if (conteudoNoticia!.isEmpty) {
+    } else if (conteudoNoticiaOpcional!.isEmpty) {
       return 'Campo obrigatório';
     } else {
       return 'Conteúdo muito curto';
@@ -91,17 +92,17 @@ abstract class _NovaNoticiaStore with Store {
   }
 
   @observable
-  String? conteudoNoticia2 = '';
+  String? conteudoNoticia = '';
 
   @action
-  void setConteudoNoticia2(String? value) => conteudoNoticia2 = value;
+  void setConteudoNoticia(String? value) => conteudoNoticia = value;
 
   @computed
-  bool get conteudoNoticia2Valid => conteudoNoticia2!.length >= 6;
-  String? get conteudoNoticia2Error {
-    if (!showErrors || conteudoNoticia2Valid) {
+  bool get conteudoNoticiaValid => conteudoNoticia!.length >= 6;
+  String? get conteudoNoticiaError {
+    if (!showErrors || conteudoNoticiaValid) {
       return null;
-    } else if (conteudoNoticia2!.isEmpty) {
+    } else if (conteudoNoticia!.isEmpty) {
       return 'Campo obrigatório';
     } else {
       return 'Conteúdo muito curto';
@@ -109,7 +110,18 @@ abstract class _NovaNoticiaStore with Store {
   }
 
   @computed
-  bool get formValid => image1Valid;
+  bool get formularioOpcionalValid =>
+      (image2.isEmpty &&
+          tituloImage2!.isEmpty &&
+          conteudoNoticiaOpcional!.isEmpty) ||
+      (image2Valid && tituloImage2Valid && conteudoNoticiaOpcionalValid);
+
+  @computed
+  bool get formValid =>
+      image1Valid &&
+      tituloValid &&
+      conteudoNoticiaValid &&
+      formularioOpcionalValid;
 
   @computed
   dynamic get publicarPressed => (formValid && !loading) ? _publicar : null;
