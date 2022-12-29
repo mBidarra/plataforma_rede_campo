@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker_web/image_picker_web.dart';
+import 'package:plataforma_rede_campo/components/error_box.dart';
 import 'package:plataforma_rede_campo/components/home_button.dart';
 import 'package:plataforma_rede_campo/stores/nova_noticia_store.dart';
 
@@ -492,8 +493,16 @@ class NovaNoticiaScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 47,
+                  Observer(
+                    builder: (context) => Container(
+                      margin: novaNoticiaStore.error != null
+                          ? const EdgeInsets.only(top: 47, bottom: 40)
+                          : EdgeInsets.only(top: 47),
+                      width: 1340,
+                      child: ErrorBox(
+                        message: novaNoticiaStore.error,
+                      ),
+                    ),
                   ),
                   SizedBox(
                     width: 1340,

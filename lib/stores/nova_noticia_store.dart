@@ -140,12 +140,22 @@ abstract class _NovaNoticiaStore with Store {
   @action
   void invalidSendPressed() => showErrors = true;
 
+  @observable
+  String? error;
+
+  @action
+  void setError(String? value) => error = value;
+
   @action
   Future<void> _publicar() async {
     setLoading(true);
 
+    setError('asdasd');
+
     await Future.delayed(Duration(seconds: 4));
 
     setLoading(false);
+
+    setError(null);
   }
 }
