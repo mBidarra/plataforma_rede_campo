@@ -67,66 +67,101 @@ class NovaNoticiaScreen extends StatelessWidget {
                     ),
                   ),
                   Observer(
-                    builder: (context) => InkWell(
-                      onTap: getImage,
-                      //if (Platform.isWindows) {}
-                      hoverColor: const Color.fromRGBO(217, 217, 217, 20),
-                      child: SizedBox(
-                        height: 590,
-                        width: 1340,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Card(
-                              color: const Color.fromRGBO(217, 217, 217, 1),
-                              elevation: 0,
-                              child: novaNoticiaStore.images.isNotEmpty
-                                  ? Image.memory(
-                                      novaNoticiaStore.images.first,
-                                      fit: BoxFit.contain,
-                                    )
-                                  : Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Text(
-                                          'Adicionar',
-                                          style: TextStyle(
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.w500,
-                                            color:
-                                                Color.fromRGBO(57, 51, 51, 1),
-                                            //fontFamily: "SF Pro Text",
-                                          ),
-                                        ),
-                                        SvgPicture.asset('icons/add.svg'),
-                                        const Text(
-                                          'imagem',
-                                          style: TextStyle(
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.w500,
-                                            color:
-                                                Color.fromRGBO(57, 51, 51, 1),
-                                            //fontFamily: "SF Pro Text",
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                            ),
-                            novaNoticiaStore.images.isNotEmpty
-                                ? Padding(
-                                    padding: const EdgeInsets.all(22),
-                                    child: Align(
-                                      alignment: Alignment.topLeft,
-                                      child: RemoveButton(
-                                        message: 'Remover imagem',
-                                        onTap: novaNoticiaStore.images.clear,
+                    builder: (context) => SizedBox(
+                      width: 1340,
+                      child: Column(
+                        children: [
+                          InkWell(
+                            onTap: getImage,
+                            //if (Platform.isWindows) {}
+                            hoverColor: const Color.fromRGBO(217, 217, 217, 20),
+                            child: SizedBox(
+                              height: 590,
+                              width: 1340,
+                              child: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  Card(
+                                    color: novaNoticiaStore.image1.isEmpty
+                                        ? const Color.fromRGBO(217, 217, 217, 1)
+                                        : Colors.transparent,
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        color:
+                                            novaNoticiaStore.image1Error != null
+                                                ? Colors.red.shade700
+                                                : const Color.fromRGBO(
+                                                    217,
+                                                    217,
+                                                    217,
+                                                    1,
+                                                  ),
+                                        width: 1,
                                       ),
                                     ),
-                                  )
-                                : Container(),
-                          ],
-                        ),
+                                    elevation: 0,
+                                    child: novaNoticiaStore.image1.isNotEmpty
+                                        ? Image.memory(
+                                            novaNoticiaStore.image1.first,
+                                            fit: BoxFit.contain,
+                                          )
+                                        : Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                'Adicionar',
+                                                style: TextStyle(
+                                                  fontSize: 40,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color.fromRGBO(
+                                                      57, 51, 51, 1),
+                                                  //fontFamily: "SF Pro Text",
+                                                ),
+                                              ),
+                                              SvgPicture.asset('icons/add.svg'),
+                                              const Text(
+                                                'imagem',
+                                                style: TextStyle(
+                                                  fontSize: 40,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color.fromRGBO(
+                                                      57, 51, 51, 1),
+                                                  //fontFamily: "SF Pro Text",
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                  ),
+                                  novaNoticiaStore.image1.isNotEmpty
+                                      ? Padding(
+                                          padding: const EdgeInsets.all(22),
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: RemoveButton(
+                                              message: 'Remover imagem',
+                                              onTap:
+                                                  novaNoticiaStore.image1.clear,
+                                            ),
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
+                              ),
+                            ),
+                          ),
+                          if (novaNoticiaStore.image1Error != null)
+                            Container(
+                              padding: const EdgeInsets.fromLTRB(25, 7, 0, 0),
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                novaNoticiaStore.image1Error!,
+                                style: TextStyle(
+                                  color: Colors.red.shade700,
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                     ),
                   ),
@@ -155,13 +190,30 @@ class NovaNoticiaScreen extends StatelessWidget {
                                     children: [
                                       Card(
                                         margin: EdgeInsets.zero,
-                                        color: const Color.fromRGBO(
-                                            217, 217, 217, 1),
+                                        color: novaNoticiaStore.image2.isEmpty
+                                            ? const Color.fromRGBO(
+                                                217, 217, 217, 1)
+                                            : Colors.transparent,
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                            color:
+                                                novaNoticiaStore.image2Error !=
+                                                        null
+                                                    ? Colors.red.shade700
+                                                    : const Color.fromRGBO(
+                                                        217,
+                                                        217,
+                                                        217,
+                                                        1,
+                                                      ),
+                                            width: 1,
+                                          ),
+                                        ),
                                         elevation: 0,
                                         child: novaNoticiaStore
-                                                .images.isNotEmpty
+                                                .image1.isNotEmpty
                                             ? Image.memory(
-                                                novaNoticiaStore.images.first,
+                                                novaNoticiaStore.image1.first,
                                                 fit: BoxFit.contain,
                                               )
                                             : Column(
@@ -195,7 +247,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                                                 ],
                                               ),
                                       ),
-                                      novaNoticiaStore.images.isNotEmpty
+                                      novaNoticiaStore.image1.isNotEmpty
                                           ? Padding(
                                               padding: const EdgeInsets.all(22),
                                               child: Align(
@@ -203,7 +255,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                                                 child: RemoveButton(
                                                   message: 'Remover imagem',
                                                   onTap: novaNoticiaStore
-                                                      .images.clear,
+                                                      .image1.clear,
                                                 ),
                                               ),
                                             )
@@ -259,7 +311,6 @@ class NovaNoticiaScreen extends StatelessWidget {
                                     filled: true,
                                     fillColor: Color.fromRGBO(217, 217, 217, 1),
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8),
                                       borderSide: BorderSide.none,
                                     ),
                                     hintText: "Conteúdo da noticia",
@@ -409,8 +460,8 @@ class NovaNoticiaScreen extends StatelessWidget {
   Future<void> getImage() async {
     final image = await ImagePickerWeb.getImageAsBytes();
     if (image != null) {
-      novaNoticiaStore.images.clear();
-      novaNoticiaStore.images.add(image);
+      novaNoticiaStore.image1.clear();
+      novaNoticiaStore.image1.add(image);
     }
   }
 }

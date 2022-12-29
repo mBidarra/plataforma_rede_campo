@@ -94,7 +94,7 @@ class NovoProjetoScreen extends StatelessWidget {
                                                     217,
                                                     1,
                                                   ),
-                                        width: 1, //<-- SEE HERE
+                                        width: 1,
                                       ),
                                     ),
                                     elevation: 0,

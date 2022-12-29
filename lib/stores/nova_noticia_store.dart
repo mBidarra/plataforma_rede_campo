@@ -10,7 +10,31 @@ part 'nova_noticia_store.g.dart';
 class NovaNoticiaStore = _NovaNoticiaStore with _$NovaNoticiaStore;
 
 abstract class _NovaNoticiaStore with Store {
-  ObservableList images = ObservableList();
+  ObservableList image1 = ObservableList();
+
+  @computed
+  bool get image1Valid => image1.isNotEmpty;
+
+  String? get image1Error {
+    if (!showErrors || image1Valid) {
+      return null;
+    } else {
+      return 'Insira imagen';
+    }
+  }
+
+  ObservableList image2 = ObservableList();
+
+  @computed
+  bool get image2Valid => image2.isNotEmpty;
+
+  String? get image2Error {
+    if (!showErrors || image1Valid) {
+      return null;
+    } else {
+      return 'Insira imagen';
+    }
+  }
 
   @computed
   bool get formValid => true;
@@ -25,7 +49,7 @@ abstract class _NovaNoticiaStore with Store {
   void setLoading(bool value) => loading = value;
 
   @observable
-  bool showErrors = false;
+  bool showErrors = true;
 
   @action
   void invalidSendPressed() => showErrors = true;
