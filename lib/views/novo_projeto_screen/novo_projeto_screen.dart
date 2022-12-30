@@ -5,6 +5,7 @@ import 'package:image_picker_web/image_picker_web.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
 import 'package:plataforma_rede_campo/components/remove_button.dart';
 import 'package:plataforma_rede_campo/stores/novo_projeto_store.dart';
+import '../../components/error_box.dart';
 import '../../components/home_button.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
 
@@ -85,15 +86,14 @@ class NovoProjetoScreen extends StatelessWidget {
                                         : Colors.transparent,
                                     shape: RoundedRectangleBorder(
                                       side: BorderSide(
-                                        color:
-                                            novoProjetoStore.imageError != null
-                                                ? Colors.red.shade700
-                                                : const Color.fromRGBO(
-                                                    217,
-                                                    217,
-                                                    217,
-                                                    1,
-                                                  ),
+                                        color: novoProjetoStore.imageError != null
+                                            ? Colors.red.shade700
+                                            : const Color.fromRGBO(
+                                                217,
+                                                217,
+                                                217,
+                                                1,
+                                              ),
                                         width: 1,
                                       ),
                                     ),
@@ -104,16 +104,14 @@ class NovoProjetoScreen extends StatelessWidget {
                                             fit: BoxFit.contain,
                                           )
                                         : Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               const Text(
                                                 'Adicionar',
                                                 style: TextStyle(
                                                   fontSize: 40,
                                                   fontWeight: FontWeight.w500,
-                                                  color: Color.fromRGBO(
-                                                      57, 51, 51, 1),
+                                                  color: Color.fromRGBO(57, 51, 51, 1),
                                                   //fontFamily: "SF Pro Text",
                                                 ),
                                               ),
@@ -123,8 +121,7 @@ class NovoProjetoScreen extends StatelessWidget {
                                                 style: TextStyle(
                                                   fontSize: 40,
                                                   fontWeight: FontWeight.w500,
-                                                  color: Color.fromRGBO(
-                                                      57, 51, 51, 1),
+                                                  color: Color.fromRGBO(57, 51, 51, 1),
                                                   //fontFamily: "SF Pro Text",
                                                 ),
                                               ),
@@ -138,8 +135,7 @@ class NovoProjetoScreen extends StatelessWidget {
                                             alignment: Alignment.topLeft,
                                             child: RemoveButton(
                                               message: 'Remover imagem',
-                                              onTap:
-                                                  novoProjetoStore.image.clear,
+                                              onTap: novoProjetoStore.image.clear,
                                             ),
                                           ),
                                         )
@@ -302,8 +298,7 @@ class NovoProjetoScreen extends StatelessWidget {
                                   decoration: InputDecoration(
                                     //errorText: loginStore.emailError,
                                     filled: true,
-                                    fillColor:
-                                        const Color.fromRGBO(217, 217, 217, 1),
+                                    fillColor: const Color.fromRGBO(217, 217, 217, 1),
                                     border: InputBorder.none,
                                   ),
                                   textInputAction: TextInputAction.next,
@@ -379,8 +374,7 @@ class NovoProjetoScreen extends StatelessWidget {
                                   decoration: InputDecoration(
                                     //errorText: loginStore.emailError,
                                     filled: true,
-                                    fillColor:
-                                        const Color.fromRGBO(217, 217, 217, 1),
+                                    fillColor: const Color.fromRGBO(217, 217, 217, 1),
                                     border: InputBorder.none,
                                   ),
                                   textInputAction: TextInputAction.next,
@@ -402,8 +396,19 @@ class NovoProjetoScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(
+                  /*const SizedBox(
                     height: 118,
+                  ),*/
+                  Observer(
+                    builder: (context) => Container(
+                      margin: novoProjetoStore.error != null
+                          ? const EdgeInsets.only(top: 118, bottom: 40)
+                          : EdgeInsets.only(top: 118),
+                      width: 1530,
+                      child: ErrorBox(
+                        message: novoProjetoStore.error,
+                      ),
+                    ),
                   ),
                   SizedBox(
                     width: 1530,
@@ -419,8 +424,7 @@ class NovoProjetoScreen extends StatelessWidget {
                               child: ElevatedButton(
                                 onPressed: novoProjetoStore.publicarPressed,
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Color.fromRGBO(72, 125, 59, 1),
+                                  backgroundColor: Color.fromRGBO(72, 125, 59, 1),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8),
                                   ),

@@ -87,15 +87,14 @@ class NovaNoticiaScreen extends StatelessWidget {
                                         : Colors.transparent,
                                     shape: RoundedRectangleBorder(
                                       side: BorderSide(
-                                        color:
-                                            novaNoticiaStore.image1Error != null
-                                                ? Colors.red.shade700
-                                                : const Color.fromRGBO(
-                                                    217,
-                                                    217,
-                                                    217,
-                                                    1,
-                                                  ),
+                                        color: novaNoticiaStore.image1Error != null
+                                            ? Colors.red.shade700
+                                            : const Color.fromRGBO(
+                                                217,
+                                                217,
+                                                217,
+                                                1,
+                                              ),
                                         width: 1,
                                       ),
                                     ),
@@ -106,16 +105,14 @@ class NovaNoticiaScreen extends StatelessWidget {
                                             fit: BoxFit.contain,
                                           )
                                         : Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               const Text(
                                                 'Adicionar',
                                                 style: TextStyle(
                                                   fontSize: 40,
                                                   fontWeight: FontWeight.w500,
-                                                  color: Color.fromRGBO(
-                                                      57, 51, 51, 1),
+                                                  color: Color.fromRGBO(57, 51, 51, 1),
                                                   //fontFamily: "SF Pro Text",
                                                 ),
                                               ),
@@ -125,8 +122,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                                                 style: TextStyle(
                                                   fontSize: 40,
                                                   fontWeight: FontWeight.w500,
-                                                  color: Color.fromRGBO(
-                                                      57, 51, 51, 1),
+                                                  color: Color.fromRGBO(57, 51, 51, 1),
                                                   //fontFamily: "SF Pro Text",
                                                 ),
                                               ),
@@ -140,8 +136,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                                             alignment: Alignment.topLeft,
                                             child: RemoveButton(
                                               message: 'Remover imagem',
-                                              onTap:
-                                                  novaNoticiaStore.image1.clear,
+                                              onTap: novaNoticiaStore.image1.clear,
                                             ),
                                           ),
                                         )
@@ -183,8 +178,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                                   builder: (context) => InkWell(
                                     onTap: getImage2,
                                     //if (Platform.isWindows) {}
-                                    hoverColor:
-                                        const Color.fromRGBO(217, 217, 217, 20),
+                                    hoverColor: const Color.fromRGBO(217, 217, 217, 20),
                                     child: SizedBox(
                                       height: 594,
                                       width: 655,
@@ -193,16 +187,12 @@ class NovaNoticiaScreen extends StatelessWidget {
                                         children: [
                                           Card(
                                             margin: EdgeInsets.zero,
-                                            color:
-                                                novaNoticiaStore.image2.isEmpty
-                                                    ? const Color.fromRGBO(
-                                                        217, 217, 217, 1)
-                                                    : Colors.transparent,
+                                            color: novaNoticiaStore.image2.isEmpty
+                                                ? const Color.fromRGBO(217, 217, 217, 1)
+                                                : Colors.transparent,
                                             shape: RoundedRectangleBorder(
                                               side: BorderSide(
-                                                color: novaNoticiaStore
-                                                            .image2Error !=
-                                                        null
+                                                color: novaNoticiaStore.image2Error != null
                                                     ? Colors.red.shade700
                                                     : const Color.fromRGBO(
                                                         217,
@@ -214,39 +204,30 @@ class NovaNoticiaScreen extends StatelessWidget {
                                               ),
                                             ),
                                             elevation: 0,
-                                            child: novaNoticiaStore
-                                                    .image2.isNotEmpty
+                                            child: novaNoticiaStore.image2.isNotEmpty
                                                 ? Image.memory(
-                                                    novaNoticiaStore
-                                                        .image2.first,
+                                                    novaNoticiaStore.image2.first,
                                                     fit: BoxFit.contain,
                                                   )
                                                 : Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
                                                     children: [
                                                       const Text(
                                                         'Adicionar',
                                                         style: TextStyle(
                                                           fontSize: 40,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: Color.fromRGBO(
-                                                              57, 51, 51, 1),
+                                                          fontWeight: FontWeight.w500,
+                                                          color: Color.fromRGBO(57, 51, 51, 1),
                                                           //fontFamily: "SF Pro Text",
                                                         ),
                                                       ),
-                                                      SvgPicture.asset(
-                                                          'icons/add.svg'),
+                                                      SvgPicture.asset('icons/add.svg'),
                                                       const Text(
                                                         'imagem',
                                                         style: TextStyle(
                                                           fontSize: 40,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: Color.fromRGBO(
-                                                              57, 51, 51, 1),
+                                                          fontWeight: FontWeight.w500,
+                                                          color: Color.fromRGBO(57, 51, 51, 1),
                                                           //fontFamily: "SF Pro Text",
                                                         ),
                                                       ),
@@ -255,15 +236,12 @@ class NovaNoticiaScreen extends StatelessWidget {
                                           ),
                                           novaNoticiaStore.image2.isNotEmpty
                                               ? Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(22),
+                                                  padding: const EdgeInsets.all(22),
                                                   child: Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
+                                                    alignment: Alignment.topLeft,
                                                     child: RemoveButton(
                                                       message: 'Remover imagem',
-                                                      onTap: novaNoticiaStore
-                                                          .image2.clear,
+                                                      onTap: novaNoticiaStore.image2.clear,
                                                     ),
                                                   ),
                                                 )
@@ -275,8 +253,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                                 ),
                                 if (novaNoticiaStore.image2Error != null)
                                   Container(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(14, 7, 0, 0),
+                                    padding: const EdgeInsets.fromLTRB(14, 7, 0, 0),
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       novaNoticiaStore.image2Error!,
@@ -295,38 +272,30 @@ class NovaNoticiaScreen extends StatelessWidget {
                                     builder: (context) => TextFormField(
                                       style: const TextStyle(fontSize: 22),
                                       maxLines: 1,
-                                      onChanged:
-                                          novaNoticiaStore.setTituloImage2,
+                                      onChanged: novaNoticiaStore.setTituloImage2,
                                       enabled: !novaNoticiaStore.loading,
                                       decoration: InputDecoration(
-                                        errorText:
-                                            novaNoticiaStore.tituloImage2Error,
+                                        errorText: novaNoticiaStore.tituloImage2Error,
                                         filled: true,
-                                        fillColor: const Color.fromRGBO(
-                                            217, 217, 217, 1),
-                                        border: novaNoticiaStore
-                                                    .tituloImage2Error ==
-                                                null
+                                        fillColor: const Color.fromRGBO(217, 217, 217, 1),
+                                        border: novaNoticiaStore.tituloImage2Error == null
                                             ? OutlineInputBorder(
                                                 borderSide: BorderSide.none,
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
+                                                borderRadius: BorderRadius.circular(8),
                                               )
                                             : OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   width: 1,
                                                   color: Colors.redAccent,
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
+                                                borderRadius: BorderRadius.circular(8),
                                               ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             width: 1,
                                             color: Colors.redAccent,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(8),
+                                          borderRadius: BorderRadius.circular(8),
                                         ),
                                         hintText: "Leganda da imagem/Subtitulo",
                                         hintStyle: TextStyle(
@@ -348,18 +317,13 @@ class NovaNoticiaScreen extends StatelessWidget {
                                     builder: (context) => TextFormField(
                                       style: TextStyle(fontSize: 20),
                                       maxLines: 16,
-                                      onChanged: novaNoticiaStore
-                                          .setConteudoNoticiaOpcional,
+                                      onChanged: novaNoticiaStore.setConteudoNoticiaOpcional,
                                       enabled: !novaNoticiaStore.loading,
                                       decoration: InputDecoration(
-                                        errorText: novaNoticiaStore
-                                            .conteudoNoticiaOpcionalError,
+                                        errorText: novaNoticiaStore.conteudoNoticiaOpcionalError,
                                         filled: true,
-                                        fillColor: const Color.fromRGBO(
-                                            217, 217, 217, 1),
-                                        border: novaNoticiaStore
-                                                    .conteudoNoticiaOpcionalError ==
-                                                null
+                                        fillColor: const Color.fromRGBO(217, 217, 217, 1),
+                                        border: novaNoticiaStore.conteudoNoticiaOpcionalError == null
                                             ? OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                               )
@@ -407,21 +371,18 @@ class NovaNoticiaScreen extends StatelessWidget {
                                   decoration: InputDecoration(
                                     errorText: novaNoticiaStore.tituloError,
                                     filled: true,
-                                    fillColor:
-                                        const Color.fromRGBO(217, 217, 217, 1),
+                                    fillColor: const Color.fromRGBO(217, 217, 217, 1),
                                     border: novaNoticiaStore.tituloError == null
                                         ? OutlineInputBorder(
                                             borderSide: BorderSide.none,
-                                            borderRadius:
-                                                BorderRadius.circular(8),
+                                            borderRadius: BorderRadius.circular(8),
                                           )
                                         : OutlineInputBorder(
                                             borderSide: BorderSide(
                                               width: 1,
                                               color: Colors.redAccent,
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
+                                            borderRadius: BorderRadius.circular(8),
                                           ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -450,27 +411,22 @@ class NovaNoticiaScreen extends StatelessWidget {
                                 builder: (context) => TextFormField(
                                   style: TextStyle(fontSize: 33),
                                   maxLines: 25,
-                                  onChanged:
-                                      novaNoticiaStore.setConteudoNoticia,
+                                  onChanged: novaNoticiaStore.setConteudoNoticia,
                                   enabled: !novaNoticiaStore.loading,
                                   decoration: InputDecoration(
-                                    errorText:
-                                        novaNoticiaStore.conteudoNoticiaError,
+                                    errorText: novaNoticiaStore.conteudoNoticiaError,
                                     filled: true,
-                                    fillColor:
-                                        const Color.fromRGBO(217, 217, 217, 1),
-                                    border:
-                                        novaNoticiaStore.conteudoNoticiaError ==
-                                                null
-                                            ? OutlineInputBorder(
-                                                borderSide: BorderSide.none,
-                                              )
-                                            : OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  width: 1,
-                                                  color: Colors.redAccent,
-                                                ),
-                                              ),
+                                    fillColor: const Color.fromRGBO(217, 217, 217, 1),
+                                    border: novaNoticiaStore.conteudoNoticiaError == null
+                                        ? OutlineInputBorder(
+                                            borderSide: BorderSide.none,
+                                          )
+                                        : OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              width: 1,
+                                              color: Colors.redAccent,
+                                            ),
+                                          ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         width: 1,
@@ -518,8 +474,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                               child: ElevatedButton(
                                 onPressed: novaNoticiaStore.publicarPressed,
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Color.fromRGBO(72, 125, 59, 1),
+                                  backgroundColor: Color.fromRGBO(72, 125, 59, 1),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8),
                                   ),
