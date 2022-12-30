@@ -60,8 +60,11 @@ abstract class _NovoProjetoStore with Store {
     }
   }
 
+/*  @computed
+  bool get formValid => imageValid && tituloValid && descricaoValid;*/
+
   @computed
-  bool get formValid => imageValid && tituloValid && descricaoValid;
+  bool get formValid => true;
 
   @computed
   dynamic get publicarPressed => (formValid && !loading) ? _publicar : null;
@@ -92,7 +95,12 @@ abstract class _NovoProjetoStore with Store {
 
     final img = image.first;
 
-    final parseFile = ParseFile(img, name: path.basename(img));
+    print("*******************OI");
+    final parseFile = ParseFile(img, name: path.basename(img.path));
+    print("*******************OI");
+    print(parseFile.file);
+    print(parseFile.name);
+    print(parseFile.url);
 
     final response = await parseFile.save();
 
