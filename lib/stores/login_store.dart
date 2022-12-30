@@ -99,8 +99,12 @@ abstract class _LoginStore with Store {
   Future<void> _login() async {
     setLoading(true);
 
-    await Future.delayed(const Duration(seconds: 4));
+    setError('asdasd');
+
+    await Future.delayed(Duration(seconds: 4));
 
     setLoading(false);
+
+    setError(null);
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:plataforma_rede_campo/stores/login_store.dart';
 import 'package:plataforma_rede_campo/views/login_screen/components/navigation_button.dart';
+import '../../components/error_box.dart';
 import 'components/bar_button.dart';
 import 'components/title_text_form.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -53,24 +54,20 @@ class LoginScreen extends StatelessWidget {
                               children: [
                                 BarButton(
                                   label: 'Pesquisador',
-                                  color: loginStore.typeLogin ==
-                                          TypeLogin.PESQUISADOR
+                                  color: loginStore.typeLogin == TypeLogin.PESQUISADOR
                                       ? const Color.fromRGBO(120, 230, 33, 1)
                                       : const Color.fromRGBO(217, 217, 217, 1),
                                   onTap: () {
-                                    loginStore.setTypeLogin(
-                                        TypeLogin.PESQUISADOR.index);
+                                    loginStore.setTypeLogin(TypeLogin.PESQUISADOR.index);
                                   },
                                 ),
                                 BarButton(
                                   label: 'Administrador',
-                                  color: loginStore.typeLogin ==
-                                          TypeLogin.ADMINISTRADOR
+                                  color: loginStore.typeLogin == TypeLogin.ADMINISTRADOR
                                       ? const Color.fromRGBO(120, 230, 33, 1)
                                       : const Color.fromRGBO(217, 217, 217, 1),
                                   onTap: () {
-                                    loginStore.setTypeLogin(
-                                        TypeLogin.ADMINISTRADOR.index);
+                                    loginStore.setTypeLogin(TypeLogin.ADMINISTRADOR.index);
                                   },
                                 ),
                               ],
@@ -134,17 +131,14 @@ class LoginScreen extends StatelessWidget {
                                 Observer(
                                   builder: (context) => Theme(
                                     data: Theme.of(context).copyWith(
-                                      unselectedWidgetColor:
-                                          const Color.fromRGBO(
-                                              217, 217, 217, 1),
+                                      unselectedWidgetColor: const Color.fromRGBO(217, 217, 217, 1),
                                     ),
                                     child: Checkbox(
                                       value: loginStore.manterConectado,
                                       onChanged: (x) {
                                         loginStore.setManterConectado();
                                       },
-                                      hoverColor: const Color.fromRGBO(
-                                          217, 217, 217, 1),
+                                      hoverColor: const Color.fromRGBO(217, 217, 217, 1),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(3),
                                       ),
@@ -176,8 +170,15 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 50,
+                        Observer(
+                          builder: (context) => Container(
+                            margin: loginStore.error != null
+                                ? const EdgeInsets.only(top: 50, bottom: 50)
+                                : EdgeInsets.only(top: 50),
+                            child: ErrorBox(
+                              message: loginStore.error,
+                            ),
+                          ),
                         ),
                         Center(
                           child: Observer(
@@ -189,16 +190,14 @@ class LoginScreen extends StatelessWidget {
                                 child: ElevatedButton(
                                   onPressed: loginStore.loginPressed,
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        Color.fromRGBO(237, 179, 29, 1),
+                                    backgroundColor: Color.fromRGBO(237, 179, 29, 1),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                   ),
                                   child: loginStore.loading
                                       ? CircularProgressIndicator(
-                                          color:
-                                              Color.fromRGBO(246, 245, 244, 1),
+                                          color: Color.fromRGBO(246, 245, 244, 1),
                                         )
                                       : Text(
                                           "LOGIN",
@@ -206,8 +205,7 @@ class LoginScreen extends StatelessWidget {
                                             fontFamily: 'SF Pro Display',
                                             fontSize: 25,
                                             fontWeight: FontWeight.w800,
-                                            color: Color.fromRGBO(
-                                                255, 255, 255, 1),
+                                            color: Color.fromRGBO(255, 255, 255, 1),
                                           ),
                                         ),
                                 ),
