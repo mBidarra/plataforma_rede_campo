@@ -1,4 +1,6 @@
 import 'package:mobx/mobx.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:path/path.dart' as path;
 
 /*Comando queprecisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -87,6 +89,16 @@ abstract class _NovoProjetoStore with Store {
     setLoading(true);
 
     setError('asdasd');
+
+    final img = image.first;
+
+    final parseFile = ParseFile(img, name: path.basename(img));
+
+    final response = await parseFile.save();
+
+    if (!response.success) {
+      print(response.error);
+    }
 
     await Future.delayed(Duration(seconds: 4));
 

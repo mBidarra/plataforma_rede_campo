@@ -8,6 +8,7 @@ import 'package:plataforma_rede_campo/components/home_button.dart';
 import 'package:plataforma_rede_campo/stores/cadastro_store.dart';
 import 'package:plataforma_rede_campo/views/cadastro_screen/components/title_text_form_cadastro.dart';
 import 'package:plataforma_rede_campo/views/login_screen/login_screen.dart';
+import '../../components/error_box.dart';
 import '../../components/sign_out_button.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
 
@@ -64,8 +65,7 @@ class CadastroScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-                top: 4, left: 549, right: 549, bottom: 67),
+            padding: const EdgeInsets.only(top: 4, left: 549, right: 549, bottom: 67),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -179,8 +179,15 @@ class CadastroScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 68,
+                Observer(
+                  builder: (context) => Container(
+                    margin: cadastroStore.error != null
+                        ? const EdgeInsets.only(top: 50, bottom: 50)
+                        : EdgeInsets.only(top: 68),
+                    child: ErrorBox(
+                      message: cadastroStore.error,
+                    ),
+                  ),
                 ),
                 Observer(
                   builder: (context) => SizedBox(

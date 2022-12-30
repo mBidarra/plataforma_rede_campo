@@ -90,8 +90,7 @@ abstract class _CadastroStore with Store {
   }
 
   @computed
-  bool get isFormValid =>
-      nomeValid && emailValid && idadeValid && telefoneValid;
+  bool get isFormValid => nomeValid && emailValid && idadeValid && telefoneValid;
 
   @computed
   dynamic get cadastrarPressed => (isFormValid && !loading) ? _cadastrar : null;
@@ -105,14 +104,24 @@ abstract class _CadastroStore with Store {
   @observable
   bool loading = false;
 
+  @observable
+  String? error;
+
+  @action
+  void setError(String? value) => error = value;
+
   @action
   void setLoading(bool value) => loading = value;
 
   Future<void> _cadastrar() async {
     setLoading(true);
 
-    await Future.delayed(const Duration(seconds: 4));
+    setError('asdasd');
+
+    await Future.delayed(Duration(seconds: 4));
 
     setLoading(false);
+
+    setError(null);
   }
 }
