@@ -4,16 +4,38 @@ import 'package:plataforma_rede_campo/repositories/parse_errors.dart';
 import 'package:plataforma_rede_campo/repositories/table_keys.dart';
 
 class ProjectRepository {
-  Future<List<Project>> getAllNews() async {
+  Future<List<Project>> getAllProject() async {
     return Future.error('error');
   }
 
-  Future<void> saveNews(Project project) async {
-    final projectObject = ParseObject(keyProjectTable);
+  Future<void> saveProject(Project project) async {
+    try {
+      //obtemos o usuario atual logado
+      final parseUser = await ParseUser.currentUser() as ParseUser;
 
-    //verifica se esta sendo editado uma news
-    if (project.id != null) {
-      projectObject.objectId = project.id;
+      final projectObject = ParseObject(keyProjectTable);
+
+      //verifica se esta sendo editado uma news
+      if (project.id != null) {
+        projectObject.objectId = project.id;
+      }
+
+      //definir as permissões deste objeto(tabela)
+      final parseAcl = ParseACL(owner: parseUser);
+      parseAcl.setPublicReadAccess(allowed: true);
+      parseAcl.setPublicWriteAccess(allowed: true);
+      projectObject.setACL(parseAcl);
+
+      projectObject.set<String>(keyProjectTitle, project.title);
+      projectObject.set<String>(keyProjectDescription, project.description);
+      projectObject.set<ParseUser>(keyProjectOwner, parseUser);
+
+      final response = await projectObject.save();
+      if (!response.success) {
+        return Future.error(ParseErrors.getDescription(response.error!.code));
+      }
+    } catch (e) {
+      return Future.error('Falha ao salvar Project: ${e.toString()}');
     }
   }
 

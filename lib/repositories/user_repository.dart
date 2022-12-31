@@ -21,6 +21,23 @@ class UserRepository {
     }
   }
 
+  Future<User> loginWithEmail(String email, String password) async {
+    final parseUser = ParseUser(email, password, null);
+
+    final response = await parseUser.login();
+
+    if (response.success) {
+      return mapParseToUser(response.result);
+    } else {
+      return Future.error(ParseErrors.getDescription(response.error!.code));
+    }
+  }
+
+  Future<void> logout() async {
+    final ParseUser currentUser = await ParseUser.currentUser();
+    await currentUser.logout();
+  }
+
   //funcao para converter um ParseUser (retornado do ParseServer) em um objeto da classe User
   User mapParseToUser(ParseUser parseUser) {
     return User(
@@ -38,8 +55,7 @@ class UserRepository {
     final ParseUser user = ParseUser(email.toLowerCase(), '', email);
     final ParseResponse parseResponse = await user.requestPasswordReset();
     if (!parseResponse.success) {
-      return Future.error(
-          ParseErrors.getDescription(parseResponse.error!.code));
+      return Future.error(ParseErrors.getDescription(parseResponse.error!.code));
     }
   }
 }
