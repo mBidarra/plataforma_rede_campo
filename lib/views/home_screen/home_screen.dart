@@ -29,10 +29,11 @@ class HomeScreen extends StatelessWidget {
                   child: Text(
                     "Rede Campo",
                     style: TextStyle(
-                        fontFamily: 'Chillax',
-                        color: Color.fromRGBO(41, 208, 78, 1),
-                        fontSize: 100,
-                        fontWeight: FontWeight.w700),
+                      fontFamily: 'Chillax',
+                      color: Color.fromRGBO(41, 208, 78, 1),
+                      fontSize: 100,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
                 Align(
