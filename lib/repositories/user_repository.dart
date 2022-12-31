@@ -32,4 +32,14 @@ class UserRepository {
       createdAt: parseUser.get(keyUserCreatedAt),
     );
   }
+
+  //Método para enviar um e-mail de redefinição de senha para o endereço de e-mail do usuário
+  Future<void> recoverPassword(String email) async {
+    final ParseUser user = ParseUser(email.toLowerCase(), '', email);
+    final ParseResponse parseResponse = await user.requestPasswordReset();
+    if (!parseResponse.success) {
+      return Future.error(
+          ParseErrors.getDescription(parseResponse.error!.code));
+    }
+  }
 }
