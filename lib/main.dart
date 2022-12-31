@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-import 'package:plataforma_rede_campo/views/cadastro_screen/cadastro_screen.dart';
-import 'package:plataforma_rede_campo/views/home_screen/home_screen.dart';
-import 'package:plataforma_rede_campo/views/home_screen_pesquisador/home_screen_pesquisador.dart';
-import 'package:plataforma_rede_campo/views/login_screen/login_screen.dart';
-import 'package:plataforma_rede_campo/views/nova_noticia_screen/nova_noticia_screen.dart';
 import 'package:plataforma_rede_campo/views/novo_projeto_screen/novo_projeto_screen.dart';
 
 void setupLocators() {}
@@ -37,6 +32,16 @@ Future<void> inicializeParse() async {
   final response = await categoria.save();
 
   print(response.success);*/
+
+  /*final User user = User(
+    name: 'sasdd',
+    email: 'lucasevandro12@hotmail.com',
+    password: '123456',
+    phone: '45988224000',
+    type: UserType.ADMINISTRADOR,
+  );
+
+  final User user2 = await UserRepository().signUp(user);*/
 }
 
 class MyApp extends StatelessWidget {
