@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:plataforma_rede_campo/repositories/user_repository.dart';
 import 'package:plataforma_rede_campo/views/novo_projeto_screen/novo_projeto_screen.dart';
 
 void setupLocators() {}
