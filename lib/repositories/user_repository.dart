@@ -33,6 +33,23 @@ class UserRepository {
     }
   }
 
+  Future<User?> currentUser() async {
+    //Obtém o usuário atual logado no servidor
+    final parseUser = await ParseUser.currentUser();
+    if (parseUser != null) {
+      //verifica se a sesao do usuario ja nao esta expirada
+      final response = await ParseUser.getCurrentUserFromServer(parseUser.sessionToken);
+      if (response!.success) {
+        //se a sesao for valida, retorna um objeto com os dados do usuario(que estao no servidor)
+        return mapParseToUser(response.result);
+      } else {
+        //se a sesao do usuario nao for mais valida, faz o logout deste usuario removendo da memoria
+        await parseUser.logout();
+      }
+    }
+    return null;
+  }
+
   Future<void> logout() async {
     final ParseUser currentUser = await ParseUser.currentUser();
     await currentUser.logout();

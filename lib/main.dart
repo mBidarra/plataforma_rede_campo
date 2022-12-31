@@ -1,14 +1,13 @@
+import 'package:ansicolor/ansicolor.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-import 'package:plataforma_rede_campo/models/project.dart';
-import 'package:plataforma_rede_campo/repositories/project_repository.dart';
-import 'package:plataforma_rede_campo/repositories/user_repository.dart';
+import 'package:plataforma_rede_campo/stores/user_manager_store.dart';
 import 'package:plataforma_rede_campo/views/novo_projeto_screen/novo_projeto_screen.dart';
 
-import 'models/user.dart';
-
-void setupLocators() {}
+void setupLocators() {
+  GetIt.I.registerSingleton(UserManagerStore());
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
