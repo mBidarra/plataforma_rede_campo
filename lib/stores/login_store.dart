@@ -1,5 +1,12 @@
+import 'package:ansicolor/ansicolor.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:plataforma_rede_campo/helpers/extensions.dart';
+import 'package:plataforma_rede_campo/repositories/user_repository.dart';
+import 'package:plataforma_rede_campo/stores/user_manager_store.dart';
+
+import '../models/user.dart';
 
 /*Comando queprecisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -7,6 +14,8 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 */
 
 part 'login_store.g.dart';
+
+AnsiPen greenPen = AnsiPen()..green();
 
 enum TypeLogin { PESQUISADOR, ADMINISTRADOR }
 
@@ -134,27 +143,37 @@ abstract class _LoginStore with Store {
   Future<void> _login() async {
     setLoading(true);
 
-    setError('asdasd');
+    setError(null);
 
-    await Future.delayed(Duration(seconds: 4));
+    try {
+      //tenta fazer o login se for sucesso o user vai conter todos os dados do usuario
+      final User? user = await UserRepository().loginWithEmail(email!, password!);
+      //faz o usuario ficar disponivel para ser acessado de qualquer local do app
+      GetIt.I<UserManagerStore>().setUser(user);
+      if (kDebugMode) {
+        print(greenPen("Usuario Logado: $user"));
+      }
+    } catch (e) {
+      setError(e.toString());
+    }
 
     setLoading(false);
-
-    setError(null);
   }
 
   Future<void> _recoverPassword() async {
     setLoading(true);
 
-    setError('asdasd');
+    setError(null);
 
-    await Future.delayed(Duration(seconds: 4));
-
-    setRecoverPasswordSuccess(true);
-    setRecoverPasswordSuccess(false);
+    try {
+      await UserRepository().recoverPassword(email!);
+      setError(null);
+      setRecoverPasswordSuccess(true);
+      setRecoverPasswordSuccess(false);
+    } catch (e) {
+      setError(e.toString());
+    }
 
     setLoading(false);
-
-    setError(null);
   }
 }
