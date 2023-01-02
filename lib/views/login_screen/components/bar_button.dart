@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class BarButton extends StatelessWidget {
-  BarButton(
-      {Key? key, required this.label, required this.onTap, required this.color})
-      : super(key: key);
+  BarButton({Key? key, required this.label, required this.onTap, required this.color}) : super(key: key);
 
   final String label;
   final Color color;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

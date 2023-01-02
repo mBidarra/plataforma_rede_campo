@@ -37,6 +37,22 @@ abstract class _LoginStore with Store {
   }
 
   @observable
+  String? email2 = '';
+
+  @action
+  void setEmail2(String? value) => email2 = value;
+
+  @computed
+  bool get email2Valid => email2 != null && email == email2;
+  String? get email2Error {
+    if (!exibirErros || email2Valid) {
+      return null;
+    } else {
+      return "E-mails não coincidem";
+    }
+  }
+
+  @observable
   String? password = '';
 
   @action
@@ -85,6 +101,12 @@ abstract class _LoginStore with Store {
   @action
   void setError(String? value) => error = value;
 
+  @observable
+  bool esqueceuSenha = false;
+
+  @action
+  void setEsqueceuSenha() => this.esqueceuSenha = !esqueceuSenha;
+
   //para quando clicar no botao sem os dados estarem validos exibir os erros
   @action
   void invalidSendPressed() => exibirErros = true;
@@ -93,10 +115,24 @@ abstract class _LoginStore with Store {
   bool get isFormValid => (emailValid && passwordValid);
 
   @computed
-  //se os dados de login e senha sao validos e nao esta carregando ativa o botao e quando clicado chama a funcao _login
   dynamic get loginPressed => (isFormValid && !loading) ? _login : null;
 
+  @computed
+  dynamic get recoverPasswordPressed => (emailValid && email2Valid && !loading) ? _recoverPassword : null;
+
   Future<void> _login() async {
+    setLoading(true);
+
+    setError('asdasd');
+
+    await Future.delayed(Duration(seconds: 4));
+
+    setLoading(false);
+
+    setError(null);
+  }
+
+  Future<void> _recoverPassword() async {
     setLoading(true);
 
     setError('asdasd');
