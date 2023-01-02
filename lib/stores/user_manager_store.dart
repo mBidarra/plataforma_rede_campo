@@ -30,6 +30,9 @@ abstract class _UserManagerStore with Store {
   @computed
   bool get isLoggedIn => user != null;
 
+  @computed
+  bool get isLoggedAdm => isLoggedIn && user?.type == UserType.ADMINISTRADOR;
+
   @observable
   bool loading = false;
 

@@ -152,6 +152,7 @@ abstract class _LoginStore with Store {
       GetIt.I<UserManagerStore>().setUser(user);
       if (kDebugMode) {
         print(greenPen("Usuario Logado: $user"));
+        print(greenPen("ADM: ${GetIt.I<UserManagerStore>().isLoggedAdm}"));
       }
     } catch (e) {
       setError(e.toString());
