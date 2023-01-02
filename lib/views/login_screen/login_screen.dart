@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mobx/mobx.dart';
+import 'package:plataforma_rede_campo/components/alert_dialog_publicado_sucesso.dart';
 import 'package:plataforma_rede_campo/components/rounded_left_button.dart';
 import 'package:plataforma_rede_campo/stores/login_store.dart';
 import 'package:plataforma_rede_campo/views/login_screen/components/navigation_button.dart';
@@ -11,10 +13,36 @@ import 'components/bar_button.dart';
 import 'components/title_text_form.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   LoginStore loginStore = LoginStore();
+  late ReactionDisposer disposer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    disposer = reaction((_) => loginStore.recoverPasswordSuccess, (s) {
+      if (s != null) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialogPublicadoSucesso(),
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    disposer();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
