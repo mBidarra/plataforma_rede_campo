@@ -1,12 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobx/mobx.dart';
-import 'package:plataforma_rede_campo/components/alert_dialog_publicado_sucesso.dart';
 import 'package:plataforma_rede_campo/components/rounded_left_button.dart';
 import 'package:plataforma_rede_campo/stores/login_store.dart';
+import 'package:plataforma_rede_campo/views/login_screen/components/alert_dialog_email_send.dart';
 import 'package:plataforma_rede_campo/views/login_screen/components/navigation_button.dart';
 import '../../components/error_box.dart';
 import 'components/bar_button.dart';
@@ -29,10 +26,12 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
 
     disposer = reaction((_) => loginStore.recoverPasswordSuccess, (s) {
-      if (s != null) {
+      if (s == true) {
         showDialog(
           context: context,
-          builder: (context) => AlertDialogPublicadoSucesso(),
+          builder: (context) => AlertDialogEmailSend(),
+        ).then(
+          (value) => loginStore.setEsqueceuSenha(),
         );
       }
     });

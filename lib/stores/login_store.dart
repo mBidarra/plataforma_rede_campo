@@ -105,7 +105,13 @@ abstract class _LoginStore with Store {
   bool esqueceuSenha = false;
 
   @action
-  void setEsqueceuSenha() => {this.esqueceuSenha = !esqueceuSenha, setExibirErros(false)};
+  void setEsqueceuSenha() => {
+        this.esqueceuSenha = !esqueceuSenha,
+        setExibirErros(false),
+        setEmail(''),
+        setEmail2(''),
+        setPassword(''),
+      };
 
   @observable
   bool recoverPasswordSuccess = false;
@@ -145,6 +151,7 @@ abstract class _LoginStore with Store {
     await Future.delayed(Duration(seconds: 4));
 
     setRecoverPasswordSuccess(true);
+    setRecoverPasswordSuccess(false);
 
     setLoading(false);
 
