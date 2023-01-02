@@ -105,9 +105,14 @@ abstract class _LoginStore with Store {
   bool esqueceuSenha = false;
 
   @action
-  void setEsqueceuSenha() => this.esqueceuSenha = !esqueceuSenha;
+  void setEsqueceuSenha() => {this.esqueceuSenha = !esqueceuSenha, setExibirErros(false)};
 
-  //para quando clicar no botao sem os dados estarem validos exibir os erros
+  @observable
+  bool recoverPasswordSuccess = false;
+
+  @action
+  void setRecoverPasswordSuccess(bool value) => recoverPasswordSuccess = value;
+
   @action
   void invalidSendPressed() => exibirErros = true;
 
@@ -138,6 +143,8 @@ abstract class _LoginStore with Store {
     setError('asdasd');
 
     await Future.delayed(Duration(seconds: 4));
+
+    setRecoverPasswordSuccess(true);
 
     setLoading(false);
 
