@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
 import 'package:plataforma_rede_campo/components/navigation_bar/navigation_barra.dart';
 import 'package:plataforma_rede_campo/components/parceiros_panel/parceiros_panel.dart';
+import 'package:plataforma_rede_campo/stores/home_store.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
+
+  HomeStore homeStore = HomeStore();
 
   @override
   Widget build(BuildContext context) {

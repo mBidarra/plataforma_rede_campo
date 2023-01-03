@@ -5,6 +5,7 @@ import 'package:plataforma_rede_campo/models/field.dart';
 import 'package:plataforma_rede_campo/models/news.dart';
 import 'package:plataforma_rede_campo/repositories/news_repository.dart';
 import 'package:plataforma_rede_campo/stores/user_manager_store.dart';
+import 'package:plataforma_rede_campo/views/home_screen/home_screen.dart';
 import 'package:plataforma_rede_campo/views/login_screen/login_screen.dart';
 import 'package:plataforma_rede_campo/views/novo_projeto_screen/novo_projeto_screen.dart';
 
@@ -74,7 +75,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Plataforma Rede Campo",
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }
