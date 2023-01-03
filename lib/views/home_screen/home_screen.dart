@@ -113,7 +113,113 @@ class HomeScreen extends StatelessWidget {
           ),
           Container(
             height: 1128,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
+              color: Color.fromRGBO(217, 217, 217, 1),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'Ultimas notícias',
+                  style: TextStyle(
+                    fontSize: 60,
+                    fontWeight: FontWeight.w600,
+                    color: Color.fromRGBO(28, 38, 50, 1),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          width: 721,
+                          height: 383,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 91,
+                    ),
+                  ],
+                ),
+                Text(
+                  'Assine nossa newsletter',
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.w400,
+                    color: Color.fromRGBO(134, 205, 47, 1),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 15,
+                    bottom: 85,
+                  ),
+                  child: SizedBox(
+                    width: 510,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            maxLines: 1,
+                            style: TextStyle(fontSize: 15),
+                            decoration: InputDecoration(
+                              isDense: true,
+                              filled: true,
+                              fillColor: Color.fromRGBO(52, 61, 67, 1),
+                              hintText: 'Digite seu email :)',
+                              hintStyle: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromRGBO(255, 255, 255, 0.77),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                borderSide: BorderSide(
+                                  color: Colors.white,
+                                  width: 1.0,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                borderSide: BorderSide(
+                                  color: Colors.white,
+                                  width: 1.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromRGBO(93, 163, 113, 1),
+                            fixedSize: Size(86, 40),
+                            padding: EdgeInsets.zero,
+                            textStyle: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          onPressed: () {},
+                          child: Text('Inscreva-se'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 1128,
+            decoration: const BoxDecoration(
               color: Color.fromRGBO(52, 61, 67, 1),
             ),
             child: Column(
