@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    vertical: 10,
+                    vertical: 50,
                   ),
                   child: Text(
                     "Nossos Projetos",
@@ -118,100 +118,133 @@ class HomeScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Text(
-                  'Ultimas notícias',
-                  style: TextStyle(
-                    fontSize: 60,
-                    fontWeight: FontWeight.w600,
-                    color: Color.fromRGBO(28, 38, 50, 1),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 50,
+                    bottom: 59,
+                  ),
+                  child: Text(
+                    'Ultimas notícias',
+                    style: TextStyle(
+                      fontSize: 60,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromRGBO(28, 38, 50, 1),
+                    ),
                   ),
                 ),
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        Container(
-                          width: 721,
-                          height: 383,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
+                SizedBox(
+                  height: 713,
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            height: 383,
+                            width: 721,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 91,
+                      ),
+                      Container(
+                        height: 667,
+                        width: 713,
+                        decoration: const BoxDecoration(
+                          color: Color.fromRGBO(165, 159, 159, 0.26),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(19),
                           ),
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 91,
-                    ),
-                  ],
-                ),
-                Text(
-                  'Assine nossa newsletter',
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromRGBO(134, 205, 47, 1),
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          //itemCount: homeStore.newsList.length,
+                          itemCount: 10,
+                          itemBuilder: (context, index) => Container(
+                            height: 186,
+                            margin: EdgeInsets.symmetric(horizontal: 21, vertical: 18),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Color.fromRGBO(52, 61, 67, 1),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
-                    top: 15,
-                    bottom: 85,
-                  ),
-                  child: SizedBox(
-                    width: 510,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextFormField(
-                            maxLines: 1,
-                            style: TextStyle(fontSize: 15),
-                            decoration: InputDecoration(
-                              isDense: true,
-                              filled: true,
-                              fillColor: Color.fromRGBO(52, 61, 67, 1),
-                              hintText: 'Digite seu email :)',
-                              hintStyle: TextStyle(
-                                fontSize: 15,
-                                color: Color.fromRGBO(255, 255, 255, 0.77),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(4),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 1.0,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(4),
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                  width: 1.0,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3,
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(93, 163, 113, 1),
-                            fixedSize: Size(86, 40),
-                            padding: EdgeInsets.zero,
-                            textStyle: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: Text('Inscreva-se'),
-                        )
-                      ],
+                  padding: const EdgeInsets.only(top: 76, bottom: 15),
+                  child: Text(
+                    'Assine nossa newsletter',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.w400,
+                      color: Color.fromRGBO(134, 205, 47, 1),
                     ),
+                  ),
+                ),
+                SizedBox(
+                  width: 510,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          maxLines: 1,
+                          style: TextStyle(fontSize: 15),
+                          decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: Color.fromRGBO(52, 61, 67, 1),
+                            hintText: 'Digite seu email :)',
+                            hintStyle: TextStyle(
+                              fontSize: 15,
+                              color: Color.fromRGBO(255, 255, 255, 0.77),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                                width: 1.0,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                                width: 1.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 3,
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(93, 163, 113, 1),
+                          fixedSize: Size(86, 40),
+                          padding: EdgeInsets.zero,
+                          textStyle: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Text('Inscreva-se'),
+                      )
+                    ],
                   ),
                 ),
               ],
@@ -231,7 +264,7 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: const [
                       SizedBox(
-                        height: 56,
+                        height: 50,
                       ),
                       Text(
                         'Quem somos?',

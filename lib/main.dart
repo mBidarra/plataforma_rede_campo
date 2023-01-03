@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
@@ -73,6 +75,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scrollBehavior: MaterialScrollBehavior().copyWith(
+        dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown},
+      ),
       title: "Plataforma Rede Campo",
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
