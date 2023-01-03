@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:plataforma_rede_campo/models/field.dart';
+import 'package:plataforma_rede_campo/models/news.dart';
+import 'package:plataforma_rede_campo/repositories/news_repository.dart';
 import 'package:plataforma_rede_campo/stores/user_manager_store.dart';
 import 'package:plataforma_rede_campo/views/login_screen/login_screen.dart';
 import 'package:plataforma_rede_campo/views/novo_projeto_screen/novo_projeto_screen.dart';
@@ -54,6 +57,13 @@ Future<void> inicializeParse() async {
   project.description = 'descrição';
 
   ProjectRepository().saveProject(project);*/
+
+  /* Field field = Field(id: 'SP3wDbxSav', areaCnpq: 'areaCnpq', description: 'description');
+  News news = News(title: 'Noticia1', description: 'Teste', field: field);
+
+  await NewsRepository().saveNews(news);*/
+
+  var allNews = NewsRepository().getAllNews();
 }
 
 class MyApp extends StatelessWidget {
