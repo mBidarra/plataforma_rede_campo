@@ -59,12 +59,12 @@ Future<void> inicializeParse() async {
 
   ProjectRepository().saveProject(project);*/
 
-  Field field = Field(id: 'SP3wDbxSav', areaCnpq: 'areaCnpq', description: 'description');
+  /*Field field = Field(id: 'SP3wDbxSav', areaCnpq: 'areaCnpq', description: 'description');
   News news = News(title: 'Noticia2', description: 'Teste2', field: field);
 
   await NewsRepository().saveNews(news);
 
-  var allNews = NewsRepository().getAllNews();
+  var allNews = NewsRepository().getAllNews();*/
 }
 
 class MyApp extends StatelessWidget {
