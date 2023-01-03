@@ -20,7 +20,7 @@ class NovaNoticiaScreen extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(239, 231, 231, 1),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: ListView(
         children: [
           Container(
@@ -38,11 +38,8 @@ class NovaNoticiaScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(
                     "Rede Campo",
-                    style: TextStyle(
-                        fontFamily: 'Chillax',
-                        color: Color.fromRGBO(41, 208, 78, 1),
-                        fontSize: 100,
-                        fontWeight: FontWeight.w700),
+                    style:
+                        TextStyle(fontFamily: 'Chillax', color: Color.fromRGBO(41, 208, 78, 1), fontSize: 100, fontWeight: FontWeight.w700),
                   ),
                 ),
                 Align(
@@ -82,9 +79,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                                 fit: StackFit.expand,
                                 children: [
                                   Card(
-                                    color: novaNoticiaStore.image1.isEmpty
-                                        ? const Color.fromRGBO(217, 217, 217, 1)
-                                        : Colors.transparent,
+                                    color: novaNoticiaStore.image1.isEmpty ? const Color.fromRGBO(217, 217, 217, 1) : Colors.transparent,
                                     shape: RoundedRectangleBorder(
                                       side: BorderSide(
                                         color: novaNoticiaStore.image1Error != null
@@ -451,9 +446,7 @@ class NovaNoticiaScreen extends StatelessWidget {
                   ),
                   Observer(
                     builder: (context) => Container(
-                      margin: novaNoticiaStore.error != null
-                          ? const EdgeInsets.only(top: 47, bottom: 40)
-                          : EdgeInsets.only(top: 47),
+                      margin: novaNoticiaStore.error != null ? const EdgeInsets.only(top: 47, bottom: 40) : EdgeInsets.only(top: 47),
                       width: 1340,
                       child: ErrorBox(
                         message: novaNoticiaStore.error,

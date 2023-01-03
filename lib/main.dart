@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:plataforma_rede_campo/stores/user_manager_store.dart';
 import 'package:plataforma_rede_campo/views/login_screen/login_screen.dart';
+import 'package:plataforma_rede_campo/views/novo_projeto_screen/novo_projeto_screen.dart';
 
 void setupLocators() {
   GetIt.I.registerSingleton(UserManagerStore());

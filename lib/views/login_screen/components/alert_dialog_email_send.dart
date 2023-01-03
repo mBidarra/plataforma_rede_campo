@@ -22,10 +22,10 @@ class AlertDialogEmailSend extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "Link de recuperação enviado para o e-mail informado. Verifique sua caixa de spam!",
+            "Link de recuperação enviado para o e-mail informado.\nVerifique sua caixa de spam",
             style: TextStyle(
               color: Color.fromRGBO(38, 89, 188, 1),
-              fontSize: 20,
+              fontSize: 30,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -43,7 +43,7 @@ class AlertDialogEmailSend extends StatelessWidget {
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromRGBO(76, 140, 45, 1),
+                backgroundColor: Color.fromRGBO(43, 41, 117, 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18),
                 ),

@@ -21,7 +21,7 @@ class NovoProjetoScreen extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(239, 231, 231, 1),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: ListView(
         children: [
           Container(
@@ -39,11 +39,8 @@ class NovoProjetoScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(
                     "Rede Campo",
-                    style: TextStyle(
-                        fontFamily: 'Chillax',
-                        color: Color.fromRGBO(41, 208, 78, 1),
-                        fontSize: 100,
-                        fontWeight: FontWeight.w700),
+                    style:
+                        TextStyle(fontFamily: 'Chillax', color: Color.fromRGBO(41, 208, 78, 1), fontSize: 100, fontWeight: FontWeight.w700),
                   ),
                 ),
                 Align(
@@ -83,9 +80,7 @@ class NovoProjetoScreen extends StatelessWidget {
                                 fit: StackFit.expand,
                                 children: [
                                   Card(
-                                    color: novoProjetoStore.image.isEmpty
-                                        ? const Color.fromRGBO(217, 217, 217, 1)
-                                        : Colors.transparent,
+                                    color: novoProjetoStore.image.isEmpty ? const Color.fromRGBO(217, 217, 217, 1) : Colors.transparent,
                                     shape: RoundedRectangleBorder(
                                       side: BorderSide(
                                         color: novoProjetoStore.imageError != null
@@ -403,9 +398,7 @@ class NovoProjetoScreen extends StatelessWidget {
                   ),*/
                   Observer(
                     builder: (context) => Container(
-                      margin: novoProjetoStore.error != null
-                          ? const EdgeInsets.only(top: 118, bottom: 40)
-                          : EdgeInsets.only(top: 118),
+                      margin: novoProjetoStore.error != null ? const EdgeInsets.only(top: 118, bottom: 40) : EdgeInsets.only(top: 118),
                       width: 1530,
                       child: ErrorBox(
                         message: novoProjetoStore.error,
