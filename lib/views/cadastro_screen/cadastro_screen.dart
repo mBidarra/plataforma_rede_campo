@@ -7,15 +7,14 @@ import 'package:mobx/mobx.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
 import 'package:plataforma_rede_campo/components/home_button.dart';
 import 'package:plataforma_rede_campo/stores/cadastro_store.dart';
+import 'package:plataforma_rede_campo/views/cadastro_screen/components/alert_dialod_sign_up_success.dart';
 import 'package:plataforma_rede_campo/views/cadastro_screen/components/title_text_form_cadastro.dart';
-import 'package:plataforma_rede_campo/views/login_screen/login_screen.dart';
 import '../../components/error_box.dart';
 import '../../components/sign_out_button.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
-import '../login_screen/components/alert_dialog_email_send.dart';
 
 class CadastroScreen extends StatefulWidget {
-  CadastroScreen({Key? key}) : super(key: key);
+  const CadastroScreen({Key? key}) : super(key: key);
 
   @override
   State<CadastroScreen> createState() => _CadastroScreenState();
@@ -25,17 +24,37 @@ class _CadastroScreenState extends State<CadastroScreen> {
   CadastroStore cadastroStore = CadastroStore();
   late ReactionDisposer disposer;
 
+  late TextEditingController nameController;
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+  late TextEditingController idadeController;
+  late TextEditingController phoneController;
+
+  void resetControllers() {
+    nameController.clear();
+    emailController.clear();
+    passwordController.clear();
+    idadeController.clear();
+    phoneController.clear();
+  }
+
   @override
   void initState() {
     super.initState();
 
-    disposer = reaction((_) => cadastroStore.singUpSuccess, (s) {
+    nameController = TextEditingController(text: cadastroStore.name);
+    emailController = TextEditingController(text: cadastroStore.email);
+    passwordController = TextEditingController(text: cadastroStore.password);
+    idadeController = TextEditingController(text: cadastroStore.idadeText);
+    phoneController = TextEditingController(text: cadastroStore.phone);
+
+    disposer = reaction((_) => cadastroStore.signUpSuccess, (s) {
       if (s == true) {
         showDialog(
           context: context,
-          builder: (context) => AlertDialogEmailSend(),
+          builder: (context) => AlertDialogSignUpSuccess(),
         ).then(
-          (value) => cadastroStore.setSingUpSuccessSuccess(false),
+          (value) => cadastroStore.setSignUpSuccess(false),
         );
       }
     });
@@ -106,7 +125,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 ),
                 Observer(
                   builder: (context) => TextFormField(
-                    initialValue: cadastroStore.name,
+                    controller: nameController,
+                    //initialValue: cadastroStore.name,
                     onChanged: cadastroStore.setName,
                     enabled: !cadastroStore.loading,
                     style: const TextStyle(fontSize: 25),
@@ -132,7 +152,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 ),
                 Observer(
                   builder: (context) => TextFormField(
-                    initialValue: cadastroStore.email,
+                    controller: emailController,
+                    //initialValue: cadastroStore.email,
                     onChanged: cadastroStore.setEmail,
                     enabled: !cadastroStore.loading,
                     style: const TextStyle(fontSize: 25),
@@ -158,7 +179,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 ),
                 Observer(
                   builder: (context) => TextFormField(
-                    initialValue: cadastroStore.password,
+                    controller: passwordController,
+                    //initialValue: cadastroStore.password,
                     onChanged: cadastroStore.setPassword,
                     enabled: !cadastroStore.loading,
                     style: const TextStyle(fontSize: 25),
@@ -184,7 +206,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 ),
                 Observer(
                   builder: (context) => TextFormField(
-                    initialValue: cadastroStore.idadeText,
+                    controller: idadeController,
+                    //initialValue: cadastroStore.idadeText,
                     onChanged: cadastroStore.setIdadeText,
                     enabled: !cadastroStore.loading,
                     keyboardType: TextInputType.number,
@@ -214,7 +237,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 ),
                 Observer(
                   builder: (context) => TextFormField(
-                    initialValue: cadastroStore.phone,
+                    controller: phoneController,
+                    //initialValue: cadastroStore.phone,
                     onChanged: cadastroStore.setPhone,
                     enabled: !cadastroStore.loading,
                     textInputAction: TextInputAction.done,
@@ -293,7 +317,19 @@ class _CadastroScreenState extends State<CadastroScreen> {
                           color: Color.fromRGBO(246, 245, 244, 1),
                         ),
                       ),
-                      onPressed: !cadastroStore.loading ? () {} : null,
+                      onPressed: !cadastroStore.loading
+                          ? () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialogSignUpSuccess(),
+                              ).then(
+                                (value) {
+                                  cadastroStore.resetPage();
+                                  resetControllers();
+                                },
+                              );
+                            }
+                          : null,
                       child: Text("Excluir conta"),
                     ),
                   ),

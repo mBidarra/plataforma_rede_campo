@@ -137,10 +137,22 @@ abstract class _CadastroStore with Store {
   void setError(String? value) => error = value;
 
   @observable
-  bool singUpSuccess = false;
+  bool signUpSuccess = false;
 
   @action
-  void setSingUpSuccessSuccess(bool value) => singUpSuccess = value;
+  void setSignUpSuccess(bool value) => signUpSuccess = value;
+
+  @action
+  void resetPage() {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setIdadeText('');
+    setPhone('');
+    setError(null);
+    setSignUpSuccess(false);
+    exibirErros = false;
+  }
 
   Future<void> _signUp() async {
     setLoading(true);
@@ -156,7 +168,7 @@ abstract class _CadastroStore with Store {
       if (kDebugMode) {
         print(greenPen('Usuario Cadastrado'));
       }
-      setSingUpSuccessSuccess(true);
+      setSignUpSuccess(true);
     } catch (e) {
       setError(e.toString());
     }

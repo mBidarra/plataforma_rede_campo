@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class AlertDialogEmailSend extends StatelessWidget {
-  const AlertDialogEmailSend({Key? key}) : super(key: key);
+import '../../home_screen/home_screen.dart';
+
+class AlertDialogSignUpSuccess extends StatelessWidget {
+  const AlertDialogSignUpSuccess({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class AlertDialogEmailSend extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "Link de recuperação enviado para o e-mail informado.\nVerifique sua caixa de spam",
+            "Publicado com sucesso!",
             style: TextStyle(
               color: Color.fromRGBO(38, 89, 188, 1),
               fontSize: 30,
@@ -36,22 +38,52 @@ class AlertDialogEmailSend extends StatelessWidget {
             height: screenSize.height * 0.04,
           ),
           SizedBox(
-            width: 290,
+            height: 62,
+            width: 400,
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromRGBO(43, 41, 117, 1),
+                  backgroundColor: Color.fromRGBO(76, 140, 45, 1),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
+                  )),
+              child: const Text(
+                'Cadastrar novo usuário',
+                style: TextStyle(
+                  color: Color.fromRGBO(239, 239, 239, 1),
+                  fontSize: 30,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: screenSize.height * 0.025,
+          ),
+          SizedBox(
+            height: 62,
+            width: 300,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                    (route) => false);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromRGBO(43, 41, 117, 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18),
                 ),
               ),
-              child: Text(
-                'Continuar',
+              child: const Text(
+                'Home',
                 style: TextStyle(
                   color: Color.fromRGBO(239, 239, 239, 1),
-                  fontSize: 40,
+                  fontSize: 30,
                   fontWeight: FontWeight.w500,
                 ),
               ),
