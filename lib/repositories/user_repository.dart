@@ -13,6 +13,7 @@ class UserRepository {
     parseUser.set(keyUserType, user.type.index);
 
     final response = await parseUser.signUp();
+    //final response = await parseUser.save();
 
     if (response.success) {
       return mapParseToUser(response.result);

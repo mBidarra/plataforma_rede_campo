@@ -1,5 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:plataforma_rede_campo/helpers/extensions.dart';
+import 'package:plataforma_rede_campo/models/user.dart';
 
 /*Comando queprecisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -12,19 +13,19 @@ class CadastroStore = _CadastroStore with _$CadastroStore;
 
 abstract class _CadastroStore with Store {
   @observable
-  String? nome = '';
+  String? name = '';
 
   @action
-  void setNome(String? value) => nome = value;
+  void setName(String? value) => name = value;
 
   @computed
-  bool get nomeValid => nome != null && nome!.length >= 5;
-  String? get nomeError {
-    if (!exibirErros || nomeValid) {
+  bool get nameValid => name != null && name!.length >= 5;
+  String? get nameError {
+    if (!exibirErros || nameValid) {
       return null;
-    } else if (nome!.isEmpty) {
+    } else if (name!.isEmpty) {
       return 'Campo obrigatório';
-    } else if (nome!.length < 5) {
+    } else if (name!.length < 5) {
       return "Nome muito curto";
     } else {
       return ('Nome invalido');
@@ -88,18 +89,18 @@ abstract class _CadastroStore with Store {
   }
 
   @observable
-  String? telefone = '';
+  String? phone = '';
 
   @action
-  void setTelefone(String? value) => telefone = value;
+  void setPhone(String? value) => phone = value;
 
   @computed
-  bool get telefoneValid => telefone != null && telefone!.length >= 14;
+  bool get phoneValid => phone != null && phone!.length >= 14;
 
-  String? get telefoneError {
-    if (!exibirErros || telefoneValid) {
+  String? get phoneError {
+    if (!exibirErros || phoneValid) {
       return null;
-    } else if (telefone!.isEmpty) {
+    } else if (phone!.isEmpty) {
       return 'Campo obrigatório';
     } else {
       return 'Telefone inválido';
@@ -107,10 +108,10 @@ abstract class _CadastroStore with Store {
   }
 
   @computed
-  bool get isFormValid => nomeValid && emailValid && passwordValid && idadeValid && telefoneValid;
+  bool get isFormValid => nameValid && emailValid && passwordValid && idadeValid && phoneValid;
 
   @computed
-  dynamic get cadastrarPressed => (isFormValid && !loading) ? _cadastrar : null;
+  dynamic get cadastrarPressed => (isFormValid && !loading) ? _signUp : null;
 
   @observable
   bool exibirErros = false;
@@ -130,7 +131,20 @@ abstract class _CadastroStore with Store {
   @action
   void setLoading(bool value) => loading = value;
 
-  Future<void> _cadastrar() async {
+  Future<void> _signUp() async {
+    setLoading(true);
+    setError(null);
+
+    final user = User(name: name!, email: email!, phone: phone!, type: UserType.PESQUISADOR);
+
+    try {} catch (e) {
+      setError(e.toString());
+    }
+
+    setLoading(false);
+  }
+
+  Future<void> _delete() async {
     setLoading(true);
 
     await Future.delayed(Duration(seconds: 4));

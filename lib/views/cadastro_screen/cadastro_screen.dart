@@ -76,12 +76,12 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 Observer(
                   builder: (context) => TextFormField(
-                    initialValue: cadastroStore.nome,
-                    onChanged: cadastroStore.setNome,
+                    initialValue: cadastroStore.name,
+                    onChanged: cadastroStore.setName,
                     enabled: !cadastroStore.loading,
                     style: const TextStyle(fontSize: 25),
                     decoration: InputDecoration(
-                      errorText: cadastroStore.nomeError,
+                      errorText: cadastroStore.nameError,
                       isDense: true,
                       filled: true,
                       fillColor: const Color.fromRGBO(193, 193, 193, 1),
@@ -184,8 +184,8 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 Observer(
                   builder: (context) => TextFormField(
-                    initialValue: cadastroStore.telefone,
-                    onChanged: cadastroStore.setTelefone,
+                    initialValue: cadastroStore.phone,
+                    onChanged: cadastroStore.setPhone,
                     enabled: !cadastroStore.loading,
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.number,
@@ -195,7 +195,7 @@ class CadastroScreen extends StatelessWidget {
                     ],
                     style: const TextStyle(fontSize: 25),
                     decoration: InputDecoration(
-                      errorText: cadastroStore.telefoneError,
+                      errorText: cadastroStore.phoneError,
                       isDense: true,
                       filled: true,
                       fillColor: const Color.fromRGBO(193, 193, 193, 1),
