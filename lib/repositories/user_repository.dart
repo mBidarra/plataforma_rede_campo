@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:plataforma_rede_campo/repositories/parse_errors.dart';
 import 'package:plataforma_rede_campo/repositories/table_keys.dart';
@@ -24,32 +23,17 @@ class UserRepository {
   }
 
   Future<void> signUpPesquisador(User user) async {
-    /*final parseUser = ParseUser(user.email, user.password, user.email);
+    //cadastra um usuario via Cloud Code.
 
-    parseUser.set<String>(keyUserName, user.name);
-    parseUser.set<String>(keyUserPhone, user.phone);
-    parseUser.set(keyUserType, user.type.index);
-
-    final response = await parseUser.save();*/
     final ParseCloudFunction function = ParseCloudFunction('createNewUser');
 
     final Map<String, dynamic> params = user.toJson();
-
-    if (kDebugMode) {
-      print(params);
-    }
 
     final response = await function.executeObjectFunction<ParseObject>(parameters: params);
 
     if (!response.success) {
       return Future.error(ParseErrors.getDescription(response.error!.code));
     }
-
-    /*  Map<String, dynamic> toJson() => {
-        "id": id,
-        "sigla": initials,
-        "nome": name,
-      };*/
   }
 
   Future<User> loginWithEmail(String email, String password) async {

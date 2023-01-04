@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mobx/mobx.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
 import 'package:plataforma_rede_campo/components/home_button.dart';
 import 'package:plataforma_rede_campo/stores/cadastro_store.dart';
@@ -11,11 +12,40 @@ import 'package:plataforma_rede_campo/views/login_screen/login_screen.dart';
 import '../../components/error_box.dart';
 import '../../components/sign_out_button.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
+import '../login_screen/components/alert_dialog_email_send.dart';
 
-class CadastroScreen extends StatelessWidget {
+class CadastroScreen extends StatefulWidget {
   CadastroScreen({Key? key}) : super(key: key);
 
+  @override
+  State<CadastroScreen> createState() => _CadastroScreenState();
+}
+
+class _CadastroScreenState extends State<CadastroScreen> {
   CadastroStore cadastroStore = CadastroStore();
+  late ReactionDisposer disposer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    disposer = reaction((_) => cadastroStore.singUpSuccess, (s) {
+      if (s == true) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialogEmailSend(),
+        ).then(
+          (value) => cadastroStore.setSingUpSuccessSuccess(false),
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    disposer();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
