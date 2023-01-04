@@ -1,6 +1,9 @@
+import 'package:ansicolor/ansicolor.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 import 'package:plataforma_rede_campo/helpers/extensions.dart';
 import 'package:plataforma_rede_campo/models/user.dart';
+import 'package:plataforma_rede_campo/repositories/user_repository.dart';
 
 /*Comando queprecisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -8,6 +11,8 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 */
 
 part 'cadastro_store.g.dart';
+
+AnsiPen greenPen = AnsiPen()..green();
 
 class CadastroStore = _CadastroStore with _$CadastroStore;
 
@@ -135,9 +140,17 @@ abstract class _CadastroStore with Store {
     setLoading(true);
     setError(null);
 
-    final user = User(name: name!, email: email!, phone: phone!, type: UserType.PESQUISADOR);
+    final user = User(name: name!, email: email!, password: password, phone: phone!, type: UserType.PESQUISADOR);
 
-    try {} catch (e) {
+    try {
+      if (kDebugMode) {
+        print(user);
+      }
+      await UserRepository().signUpPesquisador(user);
+      if (kDebugMode) {
+        print(greenPen('Usuario Cadastrado'));
+      }
+    } catch (e) {
       setError(e.toString());
     }
 

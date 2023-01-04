@@ -6,6 +6,7 @@ import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:plataforma_rede_campo/models/field.dart';
 import 'package:plataforma_rede_campo/models/news.dart';
 import 'package:plataforma_rede_campo/repositories/news_repository.dart';
+import 'package:plataforma_rede_campo/repositories/user_repository.dart';
 import 'package:plataforma_rede_campo/stores/user_manager_store.dart';
 import 'package:plataforma_rede_campo/views/cadastro_screen/cadastro_screen.dart';
 import 'package:plataforma_rede_campo/views/home_screen/home_screen.dart';
@@ -54,8 +55,9 @@ Future<void> inicializeParse() async {
 
   final User user2 = await UserRepository().signUp(user);*/
 
-  /*await UserRepository().loginWithEmail('lucasevandro11@hotmail.com', '123456');
+  //await UserRepository().loginWithEmail('lucasevandro11@hotmail.com', '123456');
 
+  /*
   Project project = Project();
   project.title = 'titulo';
   project.description = 'descrição';

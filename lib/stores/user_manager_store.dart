@@ -48,6 +48,7 @@ abstract class _UserManagerStore with Store {
     if (kDebugMode) {
       print(greenPen("Usuario Mantido Logado: $user"));
     }
+
     setUser(user);
 
     setLoading(false);
