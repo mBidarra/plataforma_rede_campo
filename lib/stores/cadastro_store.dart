@@ -49,6 +49,23 @@ abstract class _CadastroStore with Store {
   }
 
   @observable
+  String? password = '';
+
+  @action
+  void setPassword(String value) => password = value;
+
+  @computed
+  bool get passwordValid => password != null && password!.length >= 6;
+
+  String? get passwordError {
+    if (!exibirErros || passwordValid) {
+      return null;
+    } else {
+      return 'Senha deve ter 6 digitos';
+    }
+  }
+
+  @observable
   String? idadeText = '';
 
   @action
@@ -90,7 +107,7 @@ abstract class _CadastroStore with Store {
   }
 
   @computed
-  bool get isFormValid => nomeValid && emailValid && idadeValid && telefoneValid;
+  bool get isFormValid => nomeValid && emailValid && passwordValid && idadeValid && telefoneValid;
 
   @computed
   dynamic get cadastrarPressed => (isFormValid && !loading) ? _cadastrar : null;
@@ -115,8 +132,6 @@ abstract class _CadastroStore with Store {
 
   Future<void> _cadastrar() async {
     setLoading(true);
-
-    setError('asdasd');
 
     await Future.delayed(Duration(seconds: 4));
 

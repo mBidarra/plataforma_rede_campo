@@ -40,11 +40,8 @@ class CadastroScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(
                     "Rede Campo",
-                    style: TextStyle(
-                        fontFamily: 'Chillax',
-                        color: Color.fromRGBO(41, 208, 78, 1),
-                        fontSize: 100,
-                        fontWeight: FontWeight.w700),
+                    style:
+                        TextStyle(fontFamily: 'Chillax', color: Color.fromRGBO(41, 208, 78, 1), fontSize: 100, fontWeight: FontWeight.w700),
                   ),
                 ),
                 Align(
@@ -85,6 +82,7 @@ class CadastroScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 25),
                     decoration: InputDecoration(
                       errorText: cadastroStore.nomeError,
+                      isDense: true,
                       filled: true,
                       fillColor: const Color.fromRGBO(193, 193, 193, 1),
                       border: OutlineInputBorder(
@@ -110,6 +108,33 @@ class CadastroScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 25),
                     decoration: InputDecoration(
                       errorText: cadastroStore.emailError,
+                      isDense: true,
+                      filled: true,
+                      fillColor: const Color.fromRGBO(193, 193, 193, 1),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    textInputAction: TextInputAction.next,
+                  ),
+                ),
+                SizedBox(
+                  height: 33,
+                ),
+                const TitleTextFormCadastro(title: "Senha:"),
+                const SizedBox(
+                  height: 15,
+                ),
+                Observer(
+                  builder: (context) => TextFormField(
+                    initialValue: cadastroStore.password,
+                    onChanged: cadastroStore.setPassword,
+                    enabled: !cadastroStore.loading,
+                    style: const TextStyle(fontSize: 25),
+                    decoration: InputDecoration(
+                      errorText: cadastroStore.passwordError,
+                      isDense: true,
                       filled: true,
                       fillColor: const Color.fromRGBO(193, 193, 193, 1),
                       border: OutlineInputBorder(
@@ -139,6 +164,7 @@ class CadastroScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 25),
                     decoration: InputDecoration(
                       errorText: cadastroStore.idadeError,
+                      isDense: true,
                       filled: true,
                       fillColor: const Color.fromRGBO(193, 193, 193, 1),
                       border: OutlineInputBorder(
@@ -161,7 +187,7 @@ class CadastroScreen extends StatelessWidget {
                     initialValue: cadastroStore.telefone,
                     onChanged: cadastroStore.setTelefone,
                     enabled: !cadastroStore.loading,
-                    textInputAction: TextInputAction.next,
+                    textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.number,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
@@ -170,6 +196,7 @@ class CadastroScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 25),
                     decoration: InputDecoration(
                       errorText: cadastroStore.telefoneError,
+                      isDense: true,
                       filled: true,
                       fillColor: const Color.fromRGBO(193, 193, 193, 1),
                       border: OutlineInputBorder(
@@ -181,9 +208,7 @@ class CadastroScreen extends StatelessWidget {
                 ),
                 Observer(
                   builder: (context) => Container(
-                    margin: cadastroStore.error != null
-                        ? const EdgeInsets.only(top: 50, bottom: 50)
-                        : EdgeInsets.only(top: 68),
+                    margin: cadastroStore.error != null ? const EdgeInsets.only(top: 50, bottom: 50) : EdgeInsets.only(top: 68),
                     child: ErrorBox(
                       message: cadastroStore.error,
                     ),
