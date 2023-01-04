@@ -30,7 +30,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
   late TextEditingController idadeController;
   late TextEditingController phoneController;
 
-  void resetControllers() {
+  void resetForm() {
+    cadastroStore.resetPage();
     nameController.clear();
     emailController.clear();
     passwordController.clear();
@@ -324,8 +325,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                                 builder: (context) => AlertDialogSignUpSuccess(),
                               ).then(
                                 (value) {
-                                  cadastroStore.resetPage();
-                                  resetControllers();
+                                  resetForm();
                                 },
                               );
                             }
