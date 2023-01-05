@@ -48,6 +48,7 @@ dependencies:
   image_picker_web: ^3.0.0+1
   path: ^1.8.1
   ansicolor: ^2.0.1
+  cached_network_image: ^3.2.1
 
 
 dev_dependencies:
@@ -98,6 +99,11 @@ flutter:
         - asset: assets/fonts/Chillax.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
+    - family: TimesNewRoman
+      fonts:
+        - asset: assets/fonts/TimesNewRoman.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
     - family: SF Pro Display
       fonts:
         - asset: assets/fonts/SFProDisplay.ttf
