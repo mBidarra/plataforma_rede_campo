@@ -102,11 +102,28 @@ class NewsScreen extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text(news.title),
+                            Text(
+                              news.title,
+                              maxLines: 1,
+                              style: TextStyle(
+                                color: Color.fromRGBO(52, 61, 67, 1),
+                                fontSize: 33,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 27,
+                            ),
                             Container(
                               width: 655,
                               child: Text(
                                 news.description,
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(
+                                  color: Color.fromRGBO(52, 61, 67, 1),
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ],
