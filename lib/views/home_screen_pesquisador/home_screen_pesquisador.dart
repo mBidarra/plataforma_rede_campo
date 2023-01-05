@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
 import 'package:plataforma_rede_campo/components/sign_out_button.dart';
 import 'package:plataforma_rede_campo/views/cadastro_screen/cadastro_screen.dart';
+import 'package:plataforma_rede_campo/views/create_news_screen/create_news_screen.dart';
 import 'package:plataforma_rede_campo/views/home_screen_pesquisador/components/bottom_button.dart';
-import 'package:plataforma_rede_campo/views/nova_noticia_screen/nova_noticia_screen.dart';
 import 'package:plataforma_rede_campo/views/novo_projeto_screen/novo_projeto_screen.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
 import 'components/top_button.dart';
@@ -35,11 +35,8 @@ class HomeScreenPesquisador extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(
                     "Rede Campo",
-                    style: TextStyle(
-                        fontFamily: 'Chillax',
-                        color: Color.fromRGBO(41, 208, 78, 1),
-                        fontSize: 100,
-                        fontWeight: FontWeight.w700),
+                    style:
+                        TextStyle(fontFamily: 'Chillax', color: Color.fromRGBO(41, 208, 78, 1), fontSize: 100, fontWeight: FontWeight.w700),
                   ),
                 ),
                 Align(
@@ -59,10 +56,7 @@ class HomeScreenPesquisador extends StatelessWidget {
                   const Text(
                     "Bem-vindo pesquisador.",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 56,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: "Chillax"),
+                    style: TextStyle(fontSize: 56, fontWeight: FontWeight.w600, fontFamily: "Chillax"),
                   ),
                   const SizedBox(
                     height: 48,
@@ -100,7 +94,7 @@ class HomeScreenPesquisador extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => NovaNoticiaScreen(),
+                              builder: (context) => CreateNewsScreen(),
                             ),
                           );
                         },

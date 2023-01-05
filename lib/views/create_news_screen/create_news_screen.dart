@@ -5,13 +5,12 @@ import 'package:image_picker_web/image_picker_web.dart';
 import 'package:plataforma_rede_campo/components/error_box.dart';
 import 'package:plataforma_rede_campo/components/home_button.dart';
 import 'package:plataforma_rede_campo/stores/nova_noticia_store.dart';
-
 import '../../components/bottom panel/botton panel.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
 import '../../components/remove_button.dart';
 
-class NovaNoticiaScreen extends StatelessWidget {
-  NovaNoticiaScreen({Key? key}) : super(key: key);
+class CreateNewsScreen extends StatelessWidget {
+  CreateNewsScreen({Key? key}) : super(key: key);
 
   NovaNoticiaStore novaNoticiaStore = NovaNoticiaStore();
 

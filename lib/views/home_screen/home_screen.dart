@@ -4,7 +4,7 @@ import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.d
 import 'package:plataforma_rede_campo/components/navigation_bar/navigation_barra.dart';
 import 'package:plataforma_rede_campo/components/parceiros_panel/parceiros_panel.dart';
 import 'package:plataforma_rede_campo/stores/home_store.dart';
-import 'package:plataforma_rede_campo/views/home_screen/components/nomear_tile.dart';
+import 'package:plataforma_rede_campo/views/home_screen/components/news_tile.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -170,15 +170,15 @@ class HomeScreen extends StatelessWidget {
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
                             itemCount: homeStore.newsList.length,
-                            itemBuilder: (context, index) => NomearTile(news: homeStore.newsList[index]),
+                            itemBuilder: (context, index) => NewsTile(news: homeStore.newsList[index]),
                           ),
                         ),
                       )
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 76, bottom: 15),
+                const Padding(
+                  padding: EdgeInsets.only(top: 76, bottom: 15),
                   child: Text(
                     'Assine nossa newsletter',
                     style: TextStyle(
@@ -195,13 +195,16 @@ class HomeScreen extends StatelessWidget {
                       Expanded(
                         child: TextFormField(
                           maxLines: 1,
-                          style: TextStyle(fontSize: 15),
+                          style: const TextStyle(
+                            fontSize: 15,
+                            color: Color.fromRGBO(255, 255, 255, 0.77),
+                          ),
                           decoration: InputDecoration(
                             isDense: true,
                             filled: true,
-                            fillColor: Color.fromRGBO(52, 61, 67, 1),
+                            fillColor: const Color.fromRGBO(52, 61, 67, 1),
                             hintText: 'Digite seu email :)',
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                               fontSize: 15,
                               color: Color.fromRGBO(255, 255, 255, 0.77),
                             ),
@@ -210,7 +213,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(4),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.white,
                                 width: 1.0,
                               ),
