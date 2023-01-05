@@ -44,6 +44,9 @@ class UserRepository {
     if (response.success) {
       return mapParseToUser(response.result);
     } else {
+      if (response.error!.code == 141) {
+        return Future.error(response.error!.message);
+      }
       return Future.error(ParseErrors.getDescription(response.error!.code));
     }
   }
