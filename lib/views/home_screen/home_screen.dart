@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
 import 'package:plataforma_rede_campo/components/navigation_bar/navigation_barra.dart';
 import 'package:plataforma_rede_campo/components/parceiros_panel/parceiros_panel.dart';
 import 'package:plataforma_rede_campo/stores/home_store.dart';
+import 'package:plataforma_rede_campo/views/home_screen/components/nomear_tile.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -153,27 +155,22 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         width: 91,
                       ),
-                      Container(
-                        height: 667,
-                        width: 713,
-                        decoration: const BoxDecoration(
-                          color: Color.fromRGBO(165, 159, 159, 0.26),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(19),
-                          ),
-                        ),
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          //itemCount: homeStore.newsList.length,
-                          itemCount: 10,
-                          itemBuilder: (context, index) => Container(
-                            height: 186,
-                            margin: EdgeInsets.symmetric(horizontal: 21, vertical: 18),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Color.fromRGBO(52, 61, 67, 1),
+                      Observer(
+                        builder: (context) => Container(
+                          height: 667,
+                          width: 713,
+                          decoration: const BoxDecoration(
+                            color: Color.fromRGBO(165, 159, 159, 0.26),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(19),
                             ),
+                          ),
+                          child: ListView.builder(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemCount: homeStore.newsList.length,
+                            itemBuilder: (context, index) => NomearTile(news: homeStore.newsList[index]),
                           ),
                         ),
                       )
