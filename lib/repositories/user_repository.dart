@@ -36,6 +36,23 @@ class UserRepository {
     }
   }
 
+  Future<void> enableOrDisableUser({required User user, required bool disable}) async {
+    //Ativa ou desativa um usuário
+
+    final ParseCloudFunction function = ParseCloudFunction('enableOrDisableUser');
+
+    final Map<String, dynamic> params = {
+      "objectId": '${user.id}',
+      "isDisabled": disable,
+    };
+
+    final response = await function.execute(parameters: params);
+
+    if (!response.success) {
+      return Future.error(ParseErrors.getDescription(response.error!.code));
+    }
+  }
+
   Future<User> loginWithEmail(String email, String password) async {
     final parseUser = ParseUser(email, password, null);
 

@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:plataforma_rede_campo/models/field.dart';
 import 'package:plataforma_rede_campo/models/news.dart';
+import 'package:plataforma_rede_campo/models/user.dart';
 import 'package:plataforma_rede_campo/repositories/news_repository.dart';
 import 'package:plataforma_rede_campo/repositories/user_repository.dart';
 import 'package:plataforma_rede_campo/stores/user_manager_store.dart';
@@ -70,6 +71,11 @@ Future<void> inicializeParse() async {
   await NewsRepository().saveNews(news);
 
   var allNews = NewsRepository().getAllNews();*/
+
+  /*
+  final user = User(id: 'O0x4Ydhmaz', name: 'name', email: 'email', phone: 'phone', type: UserType.PESQUISADOR);
+  UserRepository().enableOrDisableUser(user: user, disable: true);
+  */
 }
 
 class MyApp extends StatelessWidget {
