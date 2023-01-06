@@ -11,7 +11,8 @@ class News {
     this.content,
     this.optionalContent,
     this.field,
-    this.image,
+    this.image1,
+    this.image2,
     this.createdAt,
     this.updatedAt,
   });
@@ -23,13 +24,16 @@ class News {
   String? optionalContent;
   Field? field;
   //Autor autor;
-  dynamic image;
+  List? image1 = [];
+  List? image2 = [];
   DateTime? createdAt;
   DateTime? updatedAt;
 
   News.fromParse(ParseObject parseObject) {
     id = parseObject.objectId;
     title = parseObject.get<String>(keyNewsTitle)!;
+    image1 = parseObject.get<List>(keyNewsImage1)!.map((e) => e.url).toList();
+    image1 = parseObject.get<List>(keyNewsImage2)!.map((e) => e.url).toList();
     titleImage2 = parseObject.get<String>(keyNewsTitleImage2);
     content = parseObject.get<String>(keyNewsContent)!;
     optionalContent = parseObject.get<String>(keyNewsOptionalContent);

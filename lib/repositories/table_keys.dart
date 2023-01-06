@@ -18,7 +18,8 @@ const keyNewsContent = 'content';
 const keyNewsOptionalContent = 'optionalContent';
 const keyNewsField = 'field'; //campo
 const String keyNewsOwner = 'owner'; //autor
-const keyNewsImage = 'image';
+const keyNewsImage1 = 'image1';
+const keyNewsImage2 = 'image2';
 const keyNewsCreatedAt = 'createdAt';
 const keyNewsUpdatedAt = 'updatedAt';
 

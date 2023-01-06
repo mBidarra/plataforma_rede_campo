@@ -1,7 +1,16 @@
+import 'dart:io';
+
+import 'package:ansicolor/ansicolor.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:plataforma_rede_campo/repositories/parse_errors.dart';
 import 'package:plataforma_rede_campo/repositories/table_keys.dart';
+import 'package:plataforma_rede_campo/repositories/user_repository.dart';
 import '../models/news.dart';
+import 'package:path/path.dart' as path;
+
+AnsiPen greenPen = AnsiPen()..green();
 
 class NewsRepository {
   Future<List<News>> getAllNews() async {
@@ -33,6 +42,16 @@ class NewsRepository {
 
   Future<void> saveNews(News news) async {
     try {
+      //await UserRepository().loginWithEmail('lucasevandro11@hotmail.com', '123456');
+
+      final parseUser = await ParseUser.currentUser() as ParseUser;
+
+      final parseImages = await saveImages(news.image1!);
+
+      if (kDebugMode) {
+        print(greenPen(parseImages));
+      }
+
       //cria um objeto (registro da tabela News')
       final newsObject = ParseObject(keyNewsTable);
 
@@ -42,17 +61,20 @@ class NewsRepository {
       }
 
       //definir as permissões deste objeto(tabela)
-      /*final parseAcl = ParseACL(owner: parseUser);
-    parseAcl.setPublicReadAccess(allowed: true);
-    parseAcl.setPublicWriteAccess(allowed: true);
-    newsObject.setACL(parseAcl);*/
+      final parseAcl = ParseACL(owner: parseUser);
+      parseAcl.setPublicReadAccess(allowed: true);
+      parseAcl.setPublicWriteAccess(allowed: true);
+      newsObject.setACL(parseAcl);
 
       //criando relacao entre o objeto News (tabela News) e o objeto Field (tabela Field)
-      newsObject.set<ParseObject>(keyNewsField, ParseObject(keyFieldTable)..set(keyFieldId, news.field!.id));
+      //newsObject.set<ParseObject>(keyNewsField, ParseObject(keyFieldTable)..set(keyFieldId, news.field!.id));
 
       //demais campos
       newsObject.set<String>(keyNewsTitle, news.title!);
+      newsObject.set<List<ParseWebFile>>(keyNewsImage1, parseImages);
+      newsObject.set<String?>(keyNewsTitleImage2, news.titleImage2);
       newsObject.set<String>(keyNewsContent, news.content!);
+      newsObject.set<String?>(keyNewsOptionalContent, news.optionalContent);
 
       final response = await newsObject.save();
 
@@ -61,6 +83,35 @@ class NewsRepository {
       }
     } catch (e) {
       return Future.error('Falha ao salvar News: ${e.toString()}');
+    }
+  }
+
+  Future<List<ParseWebFile>> saveImages(List images) async {
+    final parseImages = <ParseWebFile>[];
+
+    try {
+      for (final image in images) {
+        if (image is FilePickerResult) {
+          if (kDebugMode) {
+            print(greenPen('Imagem sem upload'));
+          }
+          final parseFile = ParseWebFile(image.files.first.bytes, name: image.files.first.name);
+          final response = await parseFile.save();
+          if (!response.success) {
+            return Future.error(ParseErrors.getDescription(response.error!.code));
+          }
+          parseImages.add(parseFile);
+        } else {
+          /*final parseFile = ParseFile(null);
+          parseFile.name = path.basename(image);
+          parseFile.url = image;
+          parseImages.add(parseFile);*/
+        }
+      }
+
+      return parseImages;
+    } catch (e) {
+      return Future.error('Falha ao salvar imagens ${e.toString()}');
     }
   }
 

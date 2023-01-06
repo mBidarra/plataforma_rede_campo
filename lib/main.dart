@@ -57,7 +57,7 @@ Future<void> inicializeParse() async {
 
   final User user2 = await UserRepository().signUp(user);*/
 
-  //await UserRepository().loginWithEmail('lucasevandro11@hotmail.com', '123456');
+  await UserRepository().loginWithEmail('lucasevandro11@hotmail.com', '123456');
 
   /*
   Project project = Project();

@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:plataforma_rede_campo/repositories/news_repository.dart';
 import '../models/news.dart';
 
 /*Comando queprecisa executar no terminal:
@@ -22,6 +23,7 @@ abstract class _NovaNoticiaStore with Store {
   final News news;
 
   ObservableList image1 = ObservableList();
+  ObservableList image2 = ObservableList();
 
   @computed
   bool get image1Valid => image1.isNotEmpty;
@@ -33,8 +35,6 @@ abstract class _NovaNoticiaStore with Store {
       return 'Insira imagen';
     }
   }
-
-  ObservableList image2 = ObservableList();
 
   @computed
   bool get image2Valid => image2.isNotEmpty;
@@ -123,7 +123,8 @@ abstract class _NovaNoticiaStore with Store {
   bool get formularioOpcionalValid => (image2.isEmpty && titleImage2!.isEmpty) || (image2Valid && titleImage2Valid);
 
   @computed
-  bool get formValid => image1Valid && titleValid && ContentValid && optionalContentValid && formularioOpcionalValid;
+  //bool get formValid => image1Valid && titleValid && ContentValid && optionalContentValid && formularioOpcionalValid;
+  bool get formValid => true;
 
   @computed
   dynamic get publicarPressed => (formValid && !loading) ? _publicar : null;
@@ -151,7 +152,18 @@ abstract class _NovaNoticiaStore with Store {
     setLoading(true);
     setError(null);
 
-    await Future.delayed(Duration(seconds: 4));
+    News news = News();
+    news.title = title;
+    news.image1 = image1;
+    news.content = content;
+    news.titleImage2 = titleImage2;
+    news.optionalContent = optionalContent;
+
+    try {
+      NewsRepository().saveNews(news);
+    } catch (e) {
+      setError(e.toString());
+    }
 
     setLoading(false);
 

@@ -9,6 +9,7 @@ import '../../components/bottom panel/botton panel.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
 import '../../components/remove_button.dart';
 import '../../models/news.dart';
+import 'package:file_picker/file_picker.dart';
 
 class CreateNewsScreen extends StatefulWidget {
   CreateNewsScreen({Key? key, this.news}) : super(key: key);
@@ -109,7 +110,7 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
                                     elevation: 0,
                                     child: novaNoticiaStore.image1.isNotEmpty
                                         ? Image.memory(
-                                            novaNoticiaStore.image1.first,
+                                            novaNoticiaStore.image1.first.files.first.bytes,
                                             fit: BoxFit.contain,
                                           )
                                         : Column(
@@ -526,7 +527,7 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
   }
 
   Future<void> getImage1() async {
-    final image = await ImagePickerWeb.getImageAsBytes();
+    FilePickerResult? image = await FilePicker.platform.pickFiles(type: FileType.image);
     if (image != null) {
       novaNoticiaStore.image1.clear();
       novaNoticiaStore.image1.add(image);
