@@ -48,11 +48,11 @@ class NewsRepository {
     newsObject.setACL(parseAcl);*/
 
       //criando relacao entre o objeto News (tabela News) e o objeto Field (tabela Field)
-      newsObject.set<ParseObject>(keyNewsField, ParseObject(keyFieldTable)..set(keyFieldId, news.field.id));
+      newsObject.set<ParseObject>(keyNewsField, ParseObject(keyFieldTable)..set(keyFieldId, news.field!.id));
 
       //demais campos
-      newsObject.set<String>(keyNewsTitle, news.title);
-      newsObject.set<String>(keyNewsDescription, news.description);
+      newsObject.set<String>(keyNewsTitle, news.title!);
+      newsObject.set<String>(keyNewsContent, news.content!);
 
       final response = await newsObject.save();
 

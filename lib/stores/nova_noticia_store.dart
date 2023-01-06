@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import '../models/news.dart';
 
 /*Comando queprecisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -10,6 +11,16 @@ part 'nova_noticia_store.g.dart';
 class NovaNoticiaStore = _NovaNoticiaStore with _$NovaNoticiaStore;
 
 abstract class _NovaNoticiaStore with Store {
+  //construtor
+  _NovaNoticiaStore(this.news) {
+    title = news.title ?? '';
+    titleImage2 = news.titleImage2 ?? '';
+    content = news.content ?? '';
+    optionalContent = news.optionalContent ?? '';
+  }
+
+  final News news;
+
   ObservableList image1 = ObservableList();
 
   @computed
@@ -37,17 +48,17 @@ abstract class _NovaNoticiaStore with Store {
   }
 
   @observable
-  String? tituloImage2 = '';
+  String? titleImage2 = '';
 
   @action
-  void setTituloImage2(String? value) => tituloImage2 = value;
+  void setTitleImage2(String? value) => titleImage2 = value;
 
   @computed
-  bool get tituloImage2Valid => tituloImage2!.length >= 6;
-  String? get tituloImage2Error {
-    if (!showErrors || formularioOpcionalValid || tituloImage2Valid) {
+  bool get titleImage2Valid => titleImage2!.length >= 6;
+  String? get titleImage2Error {
+    if (!showErrors || formularioOpcionalValid || titleImage2Valid) {
       return null;
-    } else if (tituloImage2!.isEmpty) {
+    } else if (titleImage2!.isEmpty) {
       return 'Campo obrigatório';
     } else {
       return 'Título muito curto';
@@ -55,18 +66,17 @@ abstract class _NovaNoticiaStore with Store {
   }
 
   @observable
-  String? conteudoNoticiaOpcional = '';
+  String? optionalContent = '';
 
   @action
-  void setConteudoNoticiaOpcional(String? value) => conteudoNoticiaOpcional = value;
+  void setOptionalContent(String? value) => optionalContent = value;
 
   @computed
-  bool get conteudoNoticiaOpcionalValid =>
-      conteudoNoticiaOpcional == null || conteudoNoticiaOpcional!.isEmpty || conteudoNoticiaOpcional!.length >= 6;
-  String? get conteudoNoticiaOpcionalError {
-    if (!showErrors || conteudoNoticiaOpcionalValid) {
+  bool get optionalContentValid => optionalContent == null || optionalContent!.isEmpty || optionalContent!.length >= 6;
+  String? get optionalContentError {
+    if (!showErrors || optionalContentValid) {
       return null;
-    } else if (conteudoNoticiaOpcional!.isEmpty) {
+    } else if (optionalContent!.isEmpty) {
       return 'Campo obrigatório';
     } else {
       return 'Conteúdo muito curto';
@@ -74,17 +84,17 @@ abstract class _NovaNoticiaStore with Store {
   }
 
   @observable
-  String? titulo = '';
+  String? title = '';
 
   @action
-  void setTitulo(String? value) => titulo = value;
+  void setTitle(String? value) => title = value;
 
   @computed
-  bool get tituloValid => titulo!.length >= 6;
-  String? get tituloError {
-    if (!showErrors || tituloValid) {
+  bool get titleValid => title!.length >= 6;
+  String? get titleError {
+    if (!showErrors || titleValid) {
       return null;
-    } else if (titulo!.isEmpty) {
+    } else if (title!.isEmpty) {
       return 'Campo obrigatório';
     } else {
       return 'Título muito curto';
@@ -92,17 +102,17 @@ abstract class _NovaNoticiaStore with Store {
   }
 
   @observable
-  String? conteudoNoticia = '';
+  String? content = '';
 
   @action
-  void setConteudoNoticia(String? value) => conteudoNoticia = value;
+  void setContent(String? value) => content = value;
 
   @computed
-  bool get conteudoNoticiaValid => conteudoNoticia!.length >= 6;
-  String? get conteudoNoticiaError {
-    if (!showErrors || conteudoNoticiaValid) {
+  bool get ContentValid => content!.length >= 6;
+  String? get ContentError {
+    if (!showErrors || ContentValid) {
       return null;
-    } else if (conteudoNoticia!.isEmpty) {
+    } else if (content!.isEmpty) {
       return 'Campo obrigatório';
     } else {
       return 'Conteúdo muito curto';
@@ -110,10 +120,10 @@ abstract class _NovaNoticiaStore with Store {
   }
 
   @computed
-  bool get formularioOpcionalValid => (image2.isEmpty && tituloImage2!.isEmpty) || (image2Valid && tituloImage2Valid);
+  bool get formularioOpcionalValid => (image2.isEmpty && titleImage2!.isEmpty) || (image2Valid && titleImage2Valid);
 
   @computed
-  bool get formValid => image1Valid && tituloValid && conteudoNoticiaValid && conteudoNoticiaOpcionalValid && formularioOpcionalValid;
+  bool get formValid => image1Valid && titleValid && ContentValid && optionalContentValid && formularioOpcionalValid;
 
   @computed
   dynamic get publicarPressed => (formValid && !loading) ? _publicar : null;
@@ -139,8 +149,7 @@ abstract class _NovaNoticiaStore with Store {
   @action
   Future<void> _publicar() async {
     setLoading(true);
-
-    setError('asdasd');
+    setError(null);
 
     await Future.delayed(Duration(seconds: 4));
 

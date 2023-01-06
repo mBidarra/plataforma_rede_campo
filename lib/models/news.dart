@@ -6,22 +6,22 @@ import '../repositories/table_keys.dart';
 class News {
   News({
     this.id,
-    required this.title,
+    this.title,
     this.titleImage2,
-    required this.description,
-    this.optionalDescription,
-    required this.field,
+    this.content,
+    this.optionalContent,
+    this.field,
     this.image,
     this.createdAt,
     this.updatedAt,
   });
 
   String? id;
-  late String title;
+  String? title;
   String? titleImage2;
-  late String description;
-  String? optionalDescription;
-  late Field field;
+  String? content;
+  String? optionalContent;
+  Field? field;
   //Autor autor;
   dynamic image;
   DateTime? createdAt;
@@ -31,8 +31,8 @@ class News {
     id = parseObject.objectId;
     title = parseObject.get<String>(keyNewsTitle)!;
     titleImage2 = parseObject.get<String>(keyNewsTitleImage2);
-    description = parseObject.get<String>(keyNewsDescription)!;
-    optionalDescription = parseObject.get<String>(keyNewsOptionalDescription);
+    content = parseObject.get<String>(keyNewsContent)!;
+    optionalContent = parseObject.get<String>(keyNewsOptionalContent);
     field = Field.fromParse(parseObject.get<ParseObject>(keyNewsField)!);
     createdAt = parseObject.createdAt;
     updatedAt = parseObject.updatedAt;

@@ -56,7 +56,7 @@ class NewsTile extends StatelessWidget {
               height: 5,
             ),
             Text(
-              "${news.description}",
+              "${news.content}",
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(

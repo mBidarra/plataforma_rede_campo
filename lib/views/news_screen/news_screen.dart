@@ -58,7 +58,7 @@ class NewsScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          news.title,
+                          news.title!,
                           style: TextStyle(
                             fontSize: 56,
                             fontWeight: FontWeight.w700,
@@ -115,9 +115,9 @@ class NewsScreen extends StatelessWidget {
                                         const SizedBox(
                                           height: 15,
                                         ),
-                                        (news.optionalDescription != null && news.optionalDescription!.isNotEmpty)
+                                        (news.optionalContent != null && news.optionalContent!.isNotEmpty)
                                             ? Text(
-                                                news.optionalDescription!,
+                                                news.optionalContent!,
                                                 textAlign: TextAlign.justify,
                                                 style: const TextStyle(
                                                   color: Color.fromRGBO(52, 61, 67, 1),
@@ -137,7 +137,7 @@ class NewsScreen extends StatelessWidget {
                                     child: Column(
                                       children: [
                                         Text(
-                                          news.title,
+                                          news.title!,
                                           maxLines: 1,
                                           style: const TextStyle(
                                             color: Color.fromRGBO(52, 61, 67, 1),
@@ -149,7 +149,7 @@ class NewsScreen extends StatelessWidget {
                                           height: 27,
                                         ),
                                         Text(
-                                          news.description,
+                                          news.content!,
                                           textAlign: TextAlign.justify,
                                           style: const TextStyle(
                                             color: Color.fromRGBO(52, 61, 67, 1),
@@ -165,7 +165,7 @@ class NewsScreen extends StatelessWidget {
                             : Column(
                                 children: [
                                   Text(
-                                    news.title,
+                                    news.title!,
                                     style: const TextStyle(
                                       fontSize: 33,
                                       fontWeight: FontWeight.w600,
@@ -176,16 +176,16 @@ class NewsScreen extends StatelessWidget {
                                     height: 45,
                                   ),
                                   Text(
-                                    news.description,
+                                    news.content!,
                                     style: const TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.w500,
                                       color: Color.fromRGBO(52, 61, 67, 1),
                                     ),
                                   ),
-                                  (news.optionalDescription != null && news.optionalDescription!.isNotEmpty)
+                                  (news.optionalContent != null && news.optionalContent!.isNotEmpty)
                                       ? Text(
-                                          news.optionalDescription!,
+                                          news.optionalContent!,
                                           style: const TextStyle(
                                             fontSize: 22,
                                             fontWeight: FontWeight.w500,

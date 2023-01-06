@@ -8,11 +8,25 @@ import 'package:plataforma_rede_campo/stores/nova_noticia_store.dart';
 import '../../components/bottom panel/botton panel.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
 import '../../components/remove_button.dart';
+import '../../models/news.dart';
 
-class CreateNewsScreen extends StatelessWidget {
-  CreateNewsScreen({Key? key}) : super(key: key);
+class CreateNewsScreen extends StatefulWidget {
+  CreateNewsScreen({Key? key, this.news}) : super(key: key);
 
-  NovaNoticiaStore novaNoticiaStore = NovaNoticiaStore();
+  final News? news;
+
+  @override
+  State<CreateNewsScreen> createState() => _CreateNewsScreenState(news);
+}
+
+class _CreateNewsScreenState extends State<CreateNewsScreen> {
+  _CreateNewsScreenState(News? news)
+      : editando = news != null,
+        novaNoticiaStore = NovaNoticiaStore(news ?? News());
+
+  bool editando;
+
+  NovaNoticiaStore novaNoticiaStore;
 
   @override
   Widget build(BuildContext context) {
@@ -266,13 +280,13 @@ class CreateNewsScreen extends StatelessWidget {
                                     builder: (context) => TextFormField(
                                       style: const TextStyle(fontSize: 22),
                                       maxLines: 1,
-                                      onChanged: novaNoticiaStore.setTituloImage2,
+                                      onChanged: novaNoticiaStore.setTitleImage2,
                                       enabled: !novaNoticiaStore.loading,
                                       decoration: InputDecoration(
-                                        errorText: novaNoticiaStore.tituloImage2Error,
+                                        errorText: novaNoticiaStore.titleImage2Error,
                                         filled: true,
                                         fillColor: const Color.fromRGBO(217, 217, 217, 1),
-                                        border: novaNoticiaStore.tituloImage2Error == null
+                                        border: novaNoticiaStore.titleImage2Error == null
                                             ? OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius: BorderRadius.circular(8),
@@ -311,13 +325,13 @@ class CreateNewsScreen extends StatelessWidget {
                                     builder: (context) => TextFormField(
                                       style: TextStyle(fontSize: 20),
                                       maxLines: 16,
-                                      onChanged: novaNoticiaStore.setConteudoNoticiaOpcional,
+                                      onChanged: novaNoticiaStore.setOptionalContent,
                                       enabled: !novaNoticiaStore.loading,
                                       decoration: InputDecoration(
-                                        errorText: novaNoticiaStore.conteudoNoticiaOpcionalError,
+                                        errorText: novaNoticiaStore.optionalContentError,
                                         filled: true,
                                         fillColor: const Color.fromRGBO(217, 217, 217, 1),
-                                        border: novaNoticiaStore.conteudoNoticiaOpcionalError == null
+                                        border: novaNoticiaStore.optionalContentError == null
                                             ? OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                               )
@@ -359,14 +373,14 @@ class CreateNewsScreen extends StatelessWidget {
                                 builder: (context) => TextFormField(
                                   style: TextStyle(fontSize: 33),
                                   maxLines: 1,
-                                  onChanged: novaNoticiaStore.setTitulo,
+                                  onChanged: novaNoticiaStore.setTitle,
                                   enabled: !novaNoticiaStore.loading,
                                   textAlign: TextAlign.center,
                                   decoration: InputDecoration(
-                                    errorText: novaNoticiaStore.tituloError,
+                                    errorText: novaNoticiaStore.titleError,
                                     filled: true,
                                     fillColor: const Color.fromRGBO(217, 217, 217, 1),
-                                    border: novaNoticiaStore.tituloError == null
+                                    border: novaNoticiaStore.titleError == null
                                         ? OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                             borderRadius: BorderRadius.circular(8),
@@ -405,13 +419,13 @@ class CreateNewsScreen extends StatelessWidget {
                                 builder: (context) => TextFormField(
                                   style: TextStyle(fontSize: 33),
                                   maxLines: 25,
-                                  onChanged: novaNoticiaStore.setConteudoNoticia,
+                                  onChanged: novaNoticiaStore.setContent,
                                   enabled: !novaNoticiaStore.loading,
                                   decoration: InputDecoration(
-                                    errorText: novaNoticiaStore.conteudoNoticiaError,
+                                    errorText: novaNoticiaStore.ContentError,
                                     filled: true,
                                     fillColor: const Color.fromRGBO(217, 217, 217, 1),
-                                    border: novaNoticiaStore.conteudoNoticiaError == null
+                                    border: novaNoticiaStore.ContentError == null
                                         ? OutlineInputBorder(
                                             borderSide: BorderSide.none,
                                           )
