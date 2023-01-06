@@ -115,15 +115,17 @@ class NewsScreen extends StatelessWidget {
                                         const SizedBox(
                                           height: 15,
                                         ),
-                                        Text(
-                                          news.optionalDescription ?? '',
-                                          textAlign: TextAlign.justify,
-                                          style: const TextStyle(
-                                            color: Color.fromRGBO(52, 61, 67, 1),
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
+                                        (news.optionalDescription != null && news.optionalDescription!.isNotEmpty)
+                                            ? Text(
+                                                news.optionalDescription!,
+                                                textAlign: TextAlign.justify,
+                                                style: const TextStyle(
+                                                  color: Color.fromRGBO(52, 61, 67, 1),
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              )
+                                            : Container(),
                                       ],
                                     ),
                                   ),
@@ -201,7 +203,7 @@ class NewsScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(
+                  padding: EdgeInsets.only(
                     top: 88,
                     left: 73,
                   ),
