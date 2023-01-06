@@ -15,7 +15,7 @@ class RoundedLeftButton2 extends StatelessWidget {
       customBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(90),
       ),
-      child: SvgPicture.asset('icons/button_left2.svg'),
+      child: SvgPicture.asset('icons/button_left.svg'),
     );
   }
 }

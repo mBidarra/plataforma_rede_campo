@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
-class RoundedLeftButton extends StatelessWidget {
-  const RoundedLeftButton({Key? key, required this.onTap}) : super(key: key);
+class RoundedRightButton2 extends StatelessWidget {
+  const RoundedRightButton2({Key? key, required this.onTap}) : super(key: key);
 
   final VoidCallback onTap;
 
@@ -15,7 +15,7 @@ class RoundedLeftButton extends StatelessWidget {
       customBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(90),
       ),
-      child: SvgPicture.asset('icons/button_left2.svg'),
+      child: SvgPicture.asset('icons/button_right2.svg'),
     );
   }
 }

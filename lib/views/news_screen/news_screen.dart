@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:plataforma_rede_campo/components/rounded_right_button.dart';
 import '../../components/bottom panel/botton panel.dart';
 import '../../components/home_button.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
+import '../../components/rounded_right_button2.dart';
 import '../../models/news.dart';
 
 class NewsScreen extends StatelessWidget {
@@ -215,7 +215,7 @@ class NewsScreen extends StatelessWidget {
                     top: 88,
                     right: 73,
                   ),
-                  child: RoundedRightButton(
+                  child: RoundedRightButton2(
                     onTap: () {},
                   ),
                 ),
