@@ -65,7 +65,7 @@ class NewsScreen extends StatelessWidget {
                             fontFamily: 'TimesNewRoman',
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 64,
                         ),
                         Container(
@@ -78,87 +78,121 @@ class NewsScreen extends StatelessWidget {
                             fit: BoxFit.contain,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 655,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                        (news.titleImage2 != null && news.titleImage2!.isNotEmpty)
+                            ? Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    height: 594,
-                                    color: Colors.blue,
-                                    child: CachedNetworkImage(
-                                      //imageUrl: news.images.isEmpty ? 'https://static.thenounproject.com/png/194055-200.png' : images.images.first,
-                                      imageUrl: 'https://static.thenounproject.com/png/194055-200.png',
-                                      fit: BoxFit.contain,
+                                  SizedBox(
+                                    width: 655,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                                      children: [
+                                        Container(
+                                          height: 594,
+                                          color: Colors.blue,
+                                          child: CachedNetworkImage(
+                                            //imageUrl: news.images.isEmpty ? 'https://static.thenounproject.com/png/194055-200.png' : images.images.first,
+                                            imageUrl: 'https://static.thenounproject.com/png/194055-200.png',
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 15,
+                                        ),
+                                        Text(
+                                          news.titleImage2 ?? '',
+                                          maxLines: 1,
+                                          textAlign: TextAlign.left,
+                                          style: const TextStyle(
+                                            color: Color.fromRGBO(52, 61, 67, 1),
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 15,
+                                        ),
+                                        Text(
+                                          news.optionalDescription ?? '',
+                                          textAlign: TextAlign.justify,
+                                          style: const TextStyle(
+                                            color: Color.fromRGBO(52, 61, 67, 1),
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 15,
+                                    width: 50,
                                   ),
-                                  Text(
-                                    news.titleImage2 ?? '',
-                                    maxLines: 1,
-                                    textAlign: TextAlign.left,
-                                    style: const TextStyle(
-                                      color: Color.fromRGBO(52, 61, 67, 1),
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    news.optionalDescription ?? '',
-                                    textAlign: TextAlign.justify,
-                                    style: const TextStyle(
-                                      color: Color.fromRGBO(52, 61, 67, 1),
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w500,
+                                  SizedBox(
+                                    width: 655,
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          news.title,
+                                          maxLines: 1,
+                                          style: const TextStyle(
+                                            color: Color.fromRGBO(52, 61, 67, 1),
+                                            fontSize: 33,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 27,
+                                        ),
+                                        Text(
+                                          news.description,
+                                          textAlign: TextAlign.justify,
+                                          style: const TextStyle(
+                                            color: Color.fromRGBO(52, 61, 67, 1),
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 50,
-                            ),
-                            SizedBox(
-                              width: 655,
-                              child: Column(
+                              )
+                            : Column(
                                 children: [
                                   Text(
                                     news.title,
-                                    maxLines: 1,
                                     style: const TextStyle(
-                                      color: Color.fromRGBO(52, 61, 67, 1),
                                       fontSize: 33,
                                       fontWeight: FontWeight.w600,
+                                      color: Color.fromRGBO(52, 61, 67, 1),
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 27,
+                                    height: 45,
                                   ),
                                   Text(
                                     news.description,
-                                    textAlign: TextAlign.justify,
                                     style: const TextStyle(
-                                      color: Color.fromRGBO(52, 61, 67, 1),
                                       fontSize: 22,
                                       fontWeight: FontWeight.w500,
+                                      color: Color.fromRGBO(52, 61, 67, 1),
                                     ),
                                   ),
+                                  (news.optionalDescription != null && news.optionalDescription!.isNotEmpty)
+                                      ? Text(
+                                          news.optionalDescription!,
+                                          style: const TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color.fromRGBO(52, 61, 67, 1),
+                                          ),
+                                        )
+                                      : Container(),
                                 ],
                               ),
-                            ),
-                          ],
-                        )
                       ],
                     ),
                   ),

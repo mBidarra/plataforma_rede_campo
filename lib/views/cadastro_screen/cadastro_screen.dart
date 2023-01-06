@@ -330,7 +330,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                               );
                             }
                           : null,
-                      child: Text("Excluir conta"),
+                      child: Text("Desativar conta"),
                     ),
                   ),
                 )
