@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:plataforma_rede_campo/components/rounded_right_button.dart';
 import '../../components/bottom panel/botton panel.dart';
+import '../../components/home_button.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
 import '../../models/news.dart';
 
@@ -43,97 +45,148 @@ class NewsScreen extends StatelessWidget {
               ],
             ),
           ),
-          UnconstrainedBox(
-            child: SizedBox(
-              width: 1360,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 100,
-                ),
-                child: Column(
-                  children: [
-                    Text(
-                      news.title,
-                      style: TextStyle(
-                        fontSize: 56,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'TimesNewRoman',
-                      ),
+          Stack(
+            fit: StackFit.passthrough,
+            children: [
+              UnconstrainedBox(
+                child: SizedBox(
+                  width: 1360,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 100,
                     ),
-                    SizedBox(
-                      height: 64,
-                    ),
-                    Container(
-                      height: 594,
-                      width: double.infinity,
-                      color: Colors.blue,
-                      child: CachedNetworkImage(
-                        //imageUrl: news.images.isEmpty ? 'https://static.thenounproject.com/png/194055-200.png' : images.images.first,
-                        imageUrl: 'https://static.thenounproject.com/png/194055-200.png',
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Column(
                       children: [
-                        Column(
+                        Text(
+                          news.title,
+                          style: TextStyle(
+                            fontSize: 56,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: 'TimesNewRoman',
+                          ),
+                        ),
+                        SizedBox(
+                          height: 64,
+                        ),
+                        Container(
+                          height: 594,
+                          width: double.infinity,
+                          color: Colors.blue,
+                          child: CachedNetworkImage(
+                            //imageUrl: news.images.isEmpty ? 'https://static.thenounproject.com/png/194055-200.png' : images.images.first,
+                            imageUrl: 'https://static.thenounproject.com/png/194055-200.png',
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              height: 594,
+                            SizedBox(
                               width: 655,
-                              child: CachedNetworkImage(
-                                //imageUrl: news.images.isEmpty ? 'https://static.thenounproject.com/png/194055-200.png' : images.images.first,
-                                imageUrl: 'https://static.thenounproject.com/png/194055-200.png',
-                                fit: BoxFit.contain,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Container(
+                                    height: 594,
+                                    color: Colors.blue,
+                                    child: CachedNetworkImage(
+                                      //imageUrl: news.images.isEmpty ? 'https://static.thenounproject.com/png/194055-200.png' : images.images.first,
+                                      imageUrl: 'https://static.thenounproject.com/png/194055-200.png',
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                    news.titleImage2 ?? '',
+                                    maxLines: 1,
+                                    textAlign: TextAlign.left,
+                                    style: const TextStyle(
+                                      color: Color.fromRGBO(52, 61, 67, 1),
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                    news.optionalDescription ?? '',
+                                    textAlign: TextAlign.justify,
+                                    style: const TextStyle(
+                                      color: Color.fromRGBO(52, 61, 67, 1),
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
                               ),
+                            ),
+                            const SizedBox(
+                              width: 50,
                             ),
                             SizedBox(
-                              height: 8,
-                            ),
-                            Text(news.title),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 30,
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              news.title,
-                              maxLines: 1,
-                              style: TextStyle(
-                                color: Color.fromRGBO(52, 61, 67, 1),
-                                fontSize: 33,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 27,
-                            ),
-                            Container(
                               width: 655,
-                              child: Text(
-                                news.description,
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  color: Color.fromRGBO(52, 61, 67, 1),
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    news.title,
+                                    maxLines: 1,
+                                    style: const TextStyle(
+                                      color: Color.fromRGBO(52, 61, 67, 1),
+                                      fontSize: 33,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 27,
+                                  ),
+                                  Text(
+                                    news.description,
+                                    textAlign: TextAlign.justify,
+                                    style: const TextStyle(
+                                      color: Color.fromRGBO(52, 61, 67, 1),
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
-                        ),
+                        )
                       ],
-                    )
-                  ],
+                    ),
+                  ),
                 ),
               ),
-            ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 88,
+                    left: 73,
+                  ),
+                  child: HomeButton(),
+                ),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 88,
+                    right: 73,
+                  ),
+                  child: RoundedRightButton(
+                    onTap: () {},
+                  ),
+                ),
+              ),
+            ],
           ),
           const BottonPanel(),
         ],
