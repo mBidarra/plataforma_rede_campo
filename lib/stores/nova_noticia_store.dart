@@ -58,15 +58,13 @@ abstract class _NovaNoticiaStore with Store {
   String? conteudoNoticiaOpcional = '';
 
   @action
-  void setConteudoNoticiaOpcional(String? value) =>
-      conteudoNoticiaOpcional = value;
+  void setConteudoNoticiaOpcional(String? value) => conteudoNoticiaOpcional = value;
 
   @computed
-  bool get conteudoNoticiaOpcionalValid => conteudoNoticiaOpcional!.length >= 6;
+  bool get conteudoNoticiaOpcionalValid =>
+      conteudoNoticiaOpcional == null || conteudoNoticiaOpcional!.isEmpty || conteudoNoticiaOpcional!.length >= 6;
   String? get conteudoNoticiaOpcionalError {
-    if (!showErrors ||
-        formularioOpcionalValid ||
-        conteudoNoticiaOpcionalValid) {
+    if (!showErrors || conteudoNoticiaOpcionalValid) {
       return null;
     } else if (conteudoNoticiaOpcional!.isEmpty) {
       return 'Campo obrigatório';
@@ -112,18 +110,10 @@ abstract class _NovaNoticiaStore with Store {
   }
 
   @computed
-  bool get formularioOpcionalValid =>
-      (image2.isEmpty &&
-          tituloImage2!.isEmpty &&
-          conteudoNoticiaOpcional!.isEmpty) ||
-      (image2Valid && tituloImage2Valid && conteudoNoticiaOpcionalValid);
+  bool get formularioOpcionalValid => (image2.isEmpty && tituloImage2!.isEmpty) || (image2Valid && tituloImage2Valid);
 
   @computed
-  bool get formValid =>
-      image1Valid &&
-      tituloValid &&
-      conteudoNoticiaValid &&
-      formularioOpcionalValid;
+  bool get formValid => image1Valid && tituloValid && conteudoNoticiaValid && conteudoNoticiaOpcionalValid && formularioOpcionalValid;
 
   @computed
   dynamic get publicarPressed => (formValid && !loading) ? _publicar : null;
