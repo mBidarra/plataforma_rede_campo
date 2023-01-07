@@ -89,7 +89,7 @@ class NewsRepository {
         if (kDebugMode) {
           print(greenPen('Imagem sem upload'));
         }
-        final parseFile = ParseWebFile(image.files.first.bytes, name: 'image.jpg');
+        final parseFile = ParseWebFile(image.files.first.bytes, name: 'image${DateTime.now().millisecondsSinceEpoch.toString()}.jpg');
         final response = await parseFile.save();
         parseImage = parseFile;
         if (!response.success) {
