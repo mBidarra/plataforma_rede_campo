@@ -33,10 +33,10 @@ class News {
     id = parseObject.objectId;
     title = parseObject.get<String>(keyNewsTitle)!;
     image1 = parseObject.get<List>(keyNewsImage1)!.map((e) => e.url).toList();
-    image1 = parseObject.get<List>(keyNewsImage2)!.map((e) => e.url).toList();
-    titleImage2 = parseObject.get<String>(keyNewsTitleImage2);
+    //image2 = parseObject.get<List>(keyNewsImage2)!.map((e) => e.url).toList();
+    titleImage2 = parseObject.get<String?>(keyNewsTitleImage2);
     content = parseObject.get<String>(keyNewsContent)!;
-    optionalContent = parseObject.get<String>(keyNewsOptionalContent);
+    optionalContent = parseObject.get<String?>(keyNewsOptionalContent);
     field = Field.fromParse(parseObject.get<ParseObject>(keyNewsField)!);
     createdAt = parseObject.createdAt;
     updatedAt = parseObject.updatedAt;

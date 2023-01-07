@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:plataforma_rede_campo/repositories/parse_errors.dart';
 import 'package:plataforma_rede_campo/repositories/table_keys.dart';
-import 'package:plataforma_rede_campo/repositories/user_repository.dart';
 import '../models/news.dart';
 import 'package:path/path.dart' as path;
 
@@ -102,10 +101,10 @@ class NewsRepository {
           }
           parseImages.add(parseFile);
         } else {
-          /*final parseFile = ParseFile(null);
-          parseFile.name = path.basename(image);
+          final parseFile = ParseWebFile(null, name: path.basename(image), url: image);
+          //parseFile.name = path.basename(image);
           parseFile.url = image;
-          parseImages.add(parseFile);*/
+          parseImages.add(parseFile);
         }
       }
 

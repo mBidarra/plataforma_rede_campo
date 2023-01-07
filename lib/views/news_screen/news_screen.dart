@@ -71,10 +71,9 @@ class NewsScreen extends StatelessWidget {
                         Container(
                           height: 594,
                           width: double.infinity,
-                          color: Colors.blue,
+                          color: const Color.fromRGBO(217, 217, 217, 1),
                           child: CachedNetworkImage(
-                            //imageUrl: news.images.isEmpty ? 'https://static.thenounproject.com/png/194055-200.png' : images.images.first,
-                            imageUrl: 'https://static.thenounproject.com/png/194055-200.png',
+                            imageUrl: news.image1!.isEmpty ? 'https://static.thenounproject.com/png/194055-200.png' : news.image1!.first,
                             fit: BoxFit.contain,
                           ),
                         ),
