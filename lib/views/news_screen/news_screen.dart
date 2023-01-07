@@ -73,7 +73,7 @@ class NewsScreen extends StatelessWidget {
                           width: double.infinity,
                           color: const Color.fromRGBO(217, 217, 217, 1),
                           child: CachedNetworkImage(
-                            imageUrl: news.image1!.isEmpty ? 'https://static.thenounproject.com/png/194055-200.png' : news.image1!.first,
+                            imageUrl: news.image1 == null ? 'https://static.thenounproject.com/png/194055-200.png' : news.image1.url!,
                             fit: BoxFit.contain,
                           ),
                         ),
@@ -94,7 +94,7 @@ class NewsScreen extends StatelessWidget {
                                           color: const Color.fromRGBO(217, 217, 217, 1),
                                           child: CachedNetworkImage(
                                             //imageUrl: news.images.isEmpty ? 'https://static.thenounproject.com/png/194055-200.png' : images.images.first,
-                                            imageUrl: news.image1!.isEmpty
+                                            imageUrl: news.image2 == null
                                                 ? 'https://static.thenounproject.com/png/194055-200.png'
                                                 : news.image2.url,
                                             fit: BoxFit.contain,

@@ -92,7 +92,7 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
                                 fit: StackFit.expand,
                                 children: [
                                   Card(
-                                    color: novaNoticiaStore.image1.isEmpty ? const Color.fromRGBO(217, 217, 217, 1) : Colors.transparent,
+                                    color: novaNoticiaStore.image1 == null ? const Color.fromRGBO(217, 217, 217, 1) : Colors.transparent,
                                     shape: RoundedRectangleBorder(
                                       side: BorderSide(
                                         color: novaNoticiaStore.image1Error != null
@@ -107,9 +107,9 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
                                       ),
                                     ),
                                     elevation: 0,
-                                    child: novaNoticiaStore.image1.isNotEmpty
+                                    child: novaNoticiaStore.image1 != null
                                         ? Image.memory(
-                                            novaNoticiaStore.image1.first.files.first.bytes,
+                                            novaNoticiaStore.image1.files.first.bytes,
                                             fit: BoxFit.contain,
                                           )
                                         : Column(
@@ -137,14 +137,16 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
                                             ],
                                           ),
                                   ),
-                                  novaNoticiaStore.image1.isNotEmpty
+                                  novaNoticiaStore.image1 != null
                                       ? Padding(
                                           padding: const EdgeInsets.all(22),
                                           child: Align(
                                             alignment: Alignment.topLeft,
                                             child: RemoveButton(
                                               message: 'Remover imagem',
-                                              onTap: novaNoticiaStore.image1.clear,
+                                              onTap: () {
+                                                novaNoticiaStore.setImage1(null);
+                                              },
                                             ),
                                           ),
                                         )
@@ -527,10 +529,10 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
   }
 
   Future<void> getImage1() async {
-    FilePickerResult? image = await FilePicker.platform.pickFiles(type: FileType.image);
+    final image = await FilePicker.platform.pickFiles(type: FileType.image);
     if (image != null) {
-      novaNoticiaStore.image1.clear();
-      novaNoticiaStore.image1.add(image);
+      novaNoticiaStore.setImage1(null);
+      novaNoticiaStore.setImage1(image);
     }
   }
 

@@ -43,13 +43,9 @@ class NewsRepository {
     try {
       final parseUser = await ParseUser.currentUser() as ParseUser;
 
-      final parseImages = await saveImages(news.image1!);
+      final parseImage1 = await saveImage(news.image1!);
 
-      final parseImages2 = await saveImage2(news.image2!);
-
-      if (kDebugMode) {
-        print(greenPen(parseImages2));
-      }
+      final parseImage2 = await saveImage(news.image2!);
 
       //cria um objeto (registro da tabela News')
       final newsObject = ParseObject(keyNewsTable);
@@ -70,8 +66,8 @@ class NewsRepository {
 
       //demais campos
       newsObject.set<String>(keyNewsTitle, news.title!);
-      newsObject.set<List<ParseWebFile>>(keyNewsImage1, parseImages);
-      newsObject.set<ParseWebFile>(keyNewsImage2, parseImages2);
+      newsObject.set<ParseWebFile>(keyNewsImage1, parseImage1);
+      newsObject.set<ParseWebFile>(keyNewsImage2, parseImage2);
       newsObject.set<String?>(keyNewsTitleImage2, news.titleImage2);
       newsObject.set<String>(keyNewsContent, news.content!);
       newsObject.set<String?>(keyNewsOptionalContent, news.optionalContent);
@@ -86,7 +82,42 @@ class NewsRepository {
     }
   }
 
-  Future<List<ParseWebFile>> saveImages(List images) async {
+  Future<ParseWebFile> saveImage(dynamic image) async {
+    ParseWebFile parseImage;
+    try {
+      if (image is FilePickerResult) {
+        if (kDebugMode) {
+          print(greenPen('Imagem sem upload'));
+        }
+        final parseFile = ParseWebFile(image.files.first.bytes, name: 'image.jpg');
+        final response = await parseFile.save();
+        parseImage = parseFile;
+        if (!response.success) {
+          return Future.error(ParseErrors.getDescription(response.error!.code));
+        }
+      } else {
+        final parseFile = ParseWebFile(null, name: path.basename(image), url: image);
+        parseImage = parseFile;
+      }
+      return parseImage;
+    } catch (e) {
+      return Future.error('Falha ao salvar imagens ${e.toString()}');
+    }
+  }
+
+  Future<void> delete(News news) async {
+    final parseObject = ParseObject(keyNewsTable)..set(keyProjectId, news.id);
+
+    //parseObject.set(keyAdStatus, AdStatus.DELETED.index);
+
+    final response = await parseObject.save();
+    if (!response.success) {
+      return Future.error(ParseErrors.getDescription(response.error!.code));
+    }
+  }
+}
+
+/*Future<List<ParseWebFile>> saveImages(List images) async {
     final parseImages = <ParseWebFile>[];
 
     try {
@@ -112,41 +143,4 @@ class NewsRepository {
     } catch (e) {
       return Future.error('Falha ao salvar imagens ${e.toString()}');
     }
-  }
-
-  Future<ParseWebFile> saveImage2(dynamic image) async {
-    ParseWebFile parseImage;
-    try {
-      if (image is FilePickerResult) {
-        if (kDebugMode) {
-          print(greenPen('Imagem sem upload'));
-        }
-        final parseFile = ParseWebFile(image.files.first.bytes, name: 'image2.jpg');
-        final response = await parseFile.save();
-        parseImage = parseFile;
-        if (!response.success) {
-          return Future.error(ParseErrors.getDescription(response.error!.code));
-        }
-      } else {
-        final parseFile = ParseWebFile(null, name: path.basename(image), url: image);
-        //parseFile.name = path.basename(image);
-        parseFile.url = image;
-        parseImage = parseFile;
-      }
-      return parseImage;
-    } catch (e) {
-      return Future.error('Falha ao salvar imagens ${e.toString()}');
-    }
-  }
-
-  Future<void> delete(News news) async {
-    final parseObject = ParseObject(keyNewsTable)..set(keyProjectId, news.id);
-
-    //parseObject.set(keyAdStatus, AdStatus.DELETED.index);
-
-    final response = await parseObject.save();
-    if (!response.success) {
-      return Future.error(ParseErrors.getDescription(response.error!.code));
-    }
-  }
-}
+  }*/
