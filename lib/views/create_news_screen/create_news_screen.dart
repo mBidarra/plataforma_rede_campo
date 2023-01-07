@@ -186,7 +186,6 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
                                 Observer(
                                   builder: (context) => InkWell(
                                     onTap: getImage2,
-                                    //if (Platform.isWindows) {}
                                     hoverColor: const Color.fromRGBO(217, 217, 217, 20),
                                     child: SizedBox(
                                       height: 594,
@@ -196,7 +195,7 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
                                         children: [
                                           Card(
                                             margin: EdgeInsets.zero,
-                                            color: novaNoticiaStore.image2.isEmpty
+                                            color: novaNoticiaStore.image2 == null
                                                 ? const Color.fromRGBO(217, 217, 217, 1)
                                                 : Colors.transparent,
                                             shape: RoundedRectangleBorder(
@@ -213,9 +212,9 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
                                               ),
                                             ),
                                             elevation: 0,
-                                            child: novaNoticiaStore.image2.isNotEmpty
+                                            child: novaNoticiaStore.image2 != null
                                                 ? Image.memory(
-                                                    novaNoticiaStore.image2.first,
+                                                    novaNoticiaStore.image2.files.first.bytes,
                                                     fit: BoxFit.contain,
                                                   )
                                                 : Column(
@@ -243,14 +242,16 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
                                                     ],
                                                   ),
                                           ),
-                                          novaNoticiaStore.image2.isNotEmpty
+                                          novaNoticiaStore.image2 != null
                                               ? Padding(
                                                   padding: const EdgeInsets.all(22),
                                                   child: Align(
                                                     alignment: Alignment.topLeft,
                                                     child: RemoveButton(
                                                       message: 'Remover imagem',
-                                                      onTap: novaNoticiaStore.image2.clear,
+                                                      onTap: () {
+                                                        novaNoticiaStore.setImage2(null);
+                                                      },
                                                     ),
                                                   ),
                                                 )
@@ -535,10 +536,10 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
   }
 
   Future<void> getImage2() async {
-    final image = await ImagePickerWeb.getImageAsBytes();
+    final image = await FilePicker.platform.pickFiles(type: FileType.image);
     if (image != null) {
-      novaNoticiaStore.image2.clear();
-      novaNoticiaStore.image2.add(image);
+      novaNoticiaStore.setImage2(null);
+      novaNoticiaStore.setImage2(image);
     }
   }
 }

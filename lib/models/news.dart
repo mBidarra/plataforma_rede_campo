@@ -25,7 +25,7 @@ class News {
   Field? field;
   //Autor autor;
   List? image1 = [];
-  List? image2 = [];
+  dynamic image2;
   DateTime? createdAt;
   DateTime? updatedAt;
 
@@ -33,7 +33,7 @@ class News {
     id = parseObject.objectId;
     title = parseObject.get<String>(keyNewsTitle)!;
     image1 = parseObject.get<List>(keyNewsImage1)!.map((e) => e.url).toList();
-    //image2 = parseObject.get<List>(keyNewsImage2)!.map((e) => e.url).toList();
+    image2 = parseObject.get(keyNewsImage2)..url;
     titleImage2 = parseObject.get<String?>(keyNewsTitleImage2);
     content = parseObject.get<String>(keyNewsContent)!;
     optionalContent = parseObject.get<String?>(keyNewsOptionalContent);

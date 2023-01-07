@@ -41,14 +41,14 @@ class NewsRepository {
 
   Future<void> saveNews(News news) async {
     try {
-      //await UserRepository().loginWithEmail('lucasevandro11@hotmail.com', '123456');
-
       final parseUser = await ParseUser.currentUser() as ParseUser;
 
       final parseImages = await saveImages(news.image1!);
 
+      final parseImages2 = await saveImage2(news.image2!);
+
       if (kDebugMode) {
-        print(greenPen(parseImages));
+        print(greenPen(parseImages2));
       }
 
       //cria um objeto (registro da tabela News')
@@ -71,6 +71,7 @@ class NewsRepository {
       //demais campos
       newsObject.set<String>(keyNewsTitle, news.title!);
       newsObject.set<List<ParseWebFile>>(keyNewsImage1, parseImages);
+      newsObject.set<ParseWebFile>(keyNewsImage2, parseImages2);
       newsObject.set<String?>(keyNewsTitleImage2, news.titleImage2);
       newsObject.set<String>(keyNewsContent, news.content!);
       newsObject.set<String?>(keyNewsOptionalContent, news.optionalContent);
@@ -94,7 +95,7 @@ class NewsRepository {
           if (kDebugMode) {
             print(greenPen('Imagem sem upload'));
           }
-          final parseFile = ParseWebFile(image.files.first.bytes, name: image.files.first.name);
+          final parseFile = ParseWebFile(image.files.first.bytes, name: 'image1.jpg');
           final response = await parseFile.save();
           if (!response.success) {
             return Future.error(ParseErrors.getDescription(response.error!.code));
@@ -107,8 +108,32 @@ class NewsRepository {
           parseImages.add(parseFile);
         }
       }
-
       return parseImages;
+    } catch (e) {
+      return Future.error('Falha ao salvar imagens ${e.toString()}');
+    }
+  }
+
+  Future<ParseWebFile> saveImage2(dynamic image) async {
+    ParseWebFile parseImage;
+    try {
+      if (image is FilePickerResult) {
+        if (kDebugMode) {
+          print(greenPen('Imagem sem upload'));
+        }
+        final parseFile = ParseWebFile(image.files.first.bytes, name: 'image2.jpg');
+        final response = await parseFile.save();
+        parseImage = parseFile;
+        if (!response.success) {
+          return Future.error(ParseErrors.getDescription(response.error!.code));
+        }
+      } else {
+        final parseFile = ParseWebFile(null, name: path.basename(image), url: image);
+        //parseFile.name = path.basename(image);
+        parseFile.url = image;
+        parseImage = parseFile;
+      }
+      return parseImage;
     } catch (e) {
       return Future.error('Falha ao salvar imagens ${e.toString()}');
     }

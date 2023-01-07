@@ -23,7 +23,12 @@ abstract class _NovaNoticiaStore with Store {
   final News news;
 
   ObservableList image1 = ObservableList();
-  ObservableList image2 = ObservableList();
+
+  @observable
+  dynamic image2;
+
+  @action
+  void setImage2(dynamic value) => image2 = value;
 
   @computed
   bool get image1Valid => image1.isNotEmpty;
@@ -37,7 +42,7 @@ abstract class _NovaNoticiaStore with Store {
   }
 
   @computed
-  bool get image2Valid => image2.isNotEmpty;
+  bool get image2Valid => image2 != null;
 
   String? get image2Error {
     if (!showErrors || formularioOpcionalValid || image2Valid) {
@@ -155,6 +160,7 @@ abstract class _NovaNoticiaStore with Store {
     News news = News();
     news.title = title;
     news.image1 = image1;
+    news.image2 = image2;
     news.content = content;
     news.titleImage2 = titleImage2;
     news.optionalContent = optionalContent;
