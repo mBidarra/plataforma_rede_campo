@@ -3,7 +3,6 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:image_picker_web/image_picker_web.dart';
 import 'package:plataforma_rede_campo/components/bottom%20panel/botton%20panel.dart';
 import 'package:plataforma_rede_campo/components/remove_button.dart';
 import 'package:plataforma_rede_campo/stores/novo_projeto_store.dart';
@@ -465,10 +464,10 @@ class NovoProjetoScreen extends StatelessWidget {
   }
 
   Future<void> getImage() async {
-    final image = await ImagePickerWeb.getImageAsBytes();
+    /*final image = await ImagePickerWeb.getImageAsBytes();
     if (image != null) {
       novoProjetoStore.image.clear();
       novoProjetoStore.image.add(image);
-    }
+    }*/
   }
 }

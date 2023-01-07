@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:image_picker_web/image_picker_web.dart';
 import 'package:plataforma_rede_campo/components/error_box.dart';
 import 'package:plataforma_rede_campo/components/home_button.dart';
 import 'package:plataforma_rede_campo/stores/nova_noticia_store.dart';
