@@ -5,8 +5,8 @@ import 'package:plataforma_rede_campo/components/sign_out_button.dart';
 import 'package:plataforma_rede_campo/views/cadastro_screen/cadastro_screen.dart';
 import 'package:plataforma_rede_campo/views/create_news_screen/create_news_screen.dart';
 import 'package:plataforma_rede_campo/views/home_screen_pesquisador/components/bottom_button.dart';
-import 'package:plataforma_rede_campo/views/novo_projeto_screen/novo_projeto_screen.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
+import '../create_project_screen/create_project_screen.dart';
 import 'components/top_button.dart';
 
 class HomeScreenPesquisador extends StatelessWidget {
@@ -81,7 +81,7 @@ class HomeScreenPesquisador extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => NovoProjetoScreen(),
+                              builder: (context) => CreateProjectScreen(),
                             ),
                           );
                         },

@@ -11,9 +11,9 @@ import 'package:plataforma_rede_campo/repositories/user_repository.dart';
 import 'package:plataforma_rede_campo/stores/user_manager_store.dart';
 import 'package:plataforma_rede_campo/views/cadastro_screen/cadastro_screen.dart';
 import 'package:plataforma_rede_campo/views/create_news_screen/create_news_screen.dart';
+import 'package:plataforma_rede_campo/views/create_project_screen/create_project_screen.dart';
 import 'package:plataforma_rede_campo/views/home_screen/home_screen.dart';
 import 'package:plataforma_rede_campo/views/login_screen/login_screen.dart';
-import 'package:plataforma_rede_campo/views/novo_projeto_screen/novo_projeto_screen.dart';
 
 void setupLocators() {
   GetIt.I.registerSingleton(UserManagerStore());
@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
       ),
       title: "Plataforma Rede Campo",
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: CreateProjectScreen(),
     );
   }
 }

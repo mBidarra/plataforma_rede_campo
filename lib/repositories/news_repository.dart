@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:ansicolor/ansicolor.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
@@ -43,10 +42,6 @@ class NewsRepository {
     try {
       final parseUser = await ParseUser.currentUser() as ParseUser;
 
-      final parseImage1 = await saveImage(news.image1!);
-
-      final parseImage2 = await saveImage(news.image2!);
-
       //cria um objeto (registro da tabela News')
       final newsObject = ParseObject(keyNewsTable);
 
@@ -54,6 +49,10 @@ class NewsRepository {
       if (news.id != null) {
         newsObject.objectId = news.id;
       }
+
+      final parseImage1 = await saveImage(news.image1!);
+
+      final parseImage2 = await saveImage(news.image2!);
 
       //definir as permissões deste objeto(tabela)
       final parseAcl = ParseACL(owner: parseUser);

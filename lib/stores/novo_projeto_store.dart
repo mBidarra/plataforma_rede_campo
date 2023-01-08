@@ -1,6 +1,8 @@
 import 'package:mobx/mobx.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:path/path.dart' as path;
+import 'package:plataforma_rede_campo/models/project.dart';
+import 'package:plataforma_rede_campo/repositories/project_repository.dart';
 
 /*Comando queprecisa executar no terminal:
 flutter packages pub run build_runner watch
@@ -12,10 +14,14 @@ part 'novo_projeto_store.g.dart';
 class NovoProjetoStore = _NovoProjetoStore with _$NovoProjetoStore;
 
 abstract class _NovoProjetoStore with Store {
-  ObservableList image = ObservableList();
+  @observable
+  dynamic image;
+
+  @action
+  void setImage(dynamic value) => image = value;
 
   @computed
-  bool get imageValid => image.isNotEmpty;
+  bool get imageValid => image != null;
   String? get imageError {
     if (!showErrors || imageValid) {
       return null;
@@ -25,17 +31,17 @@ abstract class _NovoProjetoStore with Store {
   }
 
   @observable
-  String? titulo = '';
+  String? title = '';
 
   @action
-  void setTitulo(String? value) => titulo = value;
+  void setTitle(String? value) => title = value;
 
   @computed
-  bool get tituloValid => titulo!.length >= 6;
-  String? get tituloError {
-    if (!showErrors || tituloValid) {
+  bool get titleValid => title!.length >= 6;
+  String? get titleError {
+    if (!showErrors || titleValid) {
       return null;
-    } else if (titulo!.isEmpty) {
+    } else if (title!.isEmpty) {
       return 'Campo obrigatório';
     } else {
       return 'Título muito curto';
@@ -43,28 +49,25 @@ abstract class _NovoProjetoStore with Store {
   }
 
   @observable
-  String? descricao = '';
+  String? content = '';
 
   @action
-  void setDescricao(String? value) => descricao = value;
+  void setContent(String? value) => content = value;
 
   @computed
-  bool get descricaoValid => descricao!.length >= 100;
-  String? get descricaoError {
-    if (!showErrors || descricaoValid) {
+  bool get contentValid => content!.length >= 100;
+  String? get contentError {
+    if (!showErrors || contentValid) {
       return null;
-    } else if (descricao!.isEmpty) {
+    } else if (content!.isEmpty) {
       return 'Campo obrigatório';
     } else {
       return 'Descrição muito curta';
     }
   }
 
-/*  @computed
-  bool get formValid => imageValid && tituloValid && descricaoValid;*/
-
   @computed
-  bool get formValid => true;
+  bool get formValid => imageValid && titleValid && contentValid;
 
   @computed
   dynamic get publicarPressed => (formValid && !loading) ? _publicar : null;
@@ -90,28 +93,19 @@ abstract class _NovoProjetoStore with Store {
   @action
   Future<void> _publicar() async {
     setLoading(true);
+    setError(null);
 
-    setError('asdasd');
+    Project project = Project();
+    project.image = image;
+    project.title = title;
+    project.content = content;
 
-    final img = image.first;
-
-    print("*******************OI");
-    final parseFile = ParseFile(img, name: path.basename(img.path));
-    print("*******************OI");
-    print(parseFile.file);
-    print(parseFile.name);
-    print(parseFile.url);
-
-    final response = await parseFile.save();
-
-    if (!response.success) {
-      print(response.error);
+    try {
+      await ProjectRepository().saveProject(project);
+    } catch (e) {
+      setError(e.toString());
     }
 
-    await Future.delayed(Duration(seconds: 4));
-
     setLoading(false);
-
-    setError(null);
   }
 }

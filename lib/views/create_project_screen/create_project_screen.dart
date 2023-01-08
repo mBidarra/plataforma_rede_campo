@@ -1,5 +1,6 @@
 import 'dart:html';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,8 +11,8 @@ import '../../components/error_box.dart';
 import '../../components/home_button.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
 
-class NovoProjetoScreen extends StatelessWidget {
-  NovoProjetoScreen({Key? key}) : super(key: key);
+class CreateProjectScreen extends StatelessWidget {
+  CreateProjectScreen({Key? key}) : super(key: key);
 
   NovoProjetoStore novoProjetoStore = NovoProjetoStore();
 
@@ -79,7 +80,7 @@ class NovoProjetoScreen extends StatelessWidget {
                                 fit: StackFit.expand,
                                 children: [
                                   Card(
-                                    color: novoProjetoStore.image.isEmpty ? const Color.fromRGBO(217, 217, 217, 1) : Colors.transparent,
+                                    color: novoProjetoStore.image == null ? const Color.fromRGBO(217, 217, 217, 1) : Colors.transparent,
                                     shape: RoundedRectangleBorder(
                                       side: BorderSide(
                                         color: novoProjetoStore.imageError != null
@@ -94,9 +95,9 @@ class NovoProjetoScreen extends StatelessWidget {
                                       ),
                                     ),
                                     elevation: 0,
-                                    child: novoProjetoStore.image.isNotEmpty
+                                    child: novoProjetoStore.image != null
                                         ? Image.memory(
-                                            novoProjetoStore.image.first,
+                                            novoProjetoStore.image.files.first.bytes,
                                             fit: BoxFit.contain,
                                           )
                                         : Column(
@@ -124,14 +125,16 @@ class NovoProjetoScreen extends StatelessWidget {
                                             ],
                                           ),
                                   ),
-                                  novoProjetoStore.image.isNotEmpty
+                                  novoProjetoStore.image != null
                                       ? Padding(
                                           padding: const EdgeInsets.all(22),
                                           child: Align(
                                             alignment: Alignment.topLeft,
                                             child: RemoveButton(
                                               message: 'Remover imagem',
-                                              onTap: novoProjetoStore.image.clear,
+                                              onTap: () {
+                                                novoProjetoStore.setImage(null);
+                                              },
                                             ),
                                           ),
                                         )
@@ -178,13 +181,13 @@ class NovoProjetoScreen extends StatelessWidget {
                           builder: (context) => TextFormField(
                             style: const TextStyle(fontSize: 25),
                             maxLines: 1,
-                            onChanged: novoProjetoStore.setTitulo,
+                            onChanged: novoProjetoStore.setTitle,
                             enabled: !novoProjetoStore.loading,
                             decoration: InputDecoration(
-                              errorText: novoProjetoStore.tituloError,
+                              errorText: novoProjetoStore.titleError,
                               filled: true,
                               fillColor: const Color.fromRGBO(217, 217, 217, 1),
-                              border: novoProjetoStore.tituloError == null
+                              border: novoProjetoStore.titleError == null
                                   ? InputBorder.none
                                   : OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -228,13 +231,13 @@ class NovoProjetoScreen extends StatelessWidget {
                           builder: (context) => TextFormField(
                             style: const TextStyle(fontSize: 25),
                             maxLines: 20,
-                            onChanged: novoProjetoStore.setDescricao,
+                            onChanged: novoProjetoStore.setContent,
                             enabled: !novoProjetoStore.loading,
                             decoration: InputDecoration(
-                              errorText: novoProjetoStore.descricaoError,
+                              errorText: novoProjetoStore.contentError,
                               filled: true,
                               fillColor: const Color.fromRGBO(217, 217, 217, 1),
-                              border: novoProjetoStore.descricaoError == null
+                              border: novoProjetoStore.contentError == null
                                   ? InputBorder.none
                                   : OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -464,10 +467,10 @@ class NovoProjetoScreen extends StatelessWidget {
   }
 
   Future<void> getImage() async {
-    /*final image = await ImagePickerWeb.getImageAsBytes();
+    final image = await FilePicker.platform.pickFiles(type: FileType.image);
     if (image != null) {
-      novoProjetoStore.image.clear();
-      novoProjetoStore.image.add(image);
-    }*/
+      novoProjetoStore.setImage(null);
+      novoProjetoStore.setImage(image);
+    }
   }
 }

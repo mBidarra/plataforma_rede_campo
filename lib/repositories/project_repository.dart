@@ -1,7 +1,13 @@
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:plataforma_rede_campo/models/project.dart';
 import 'package:plataforma_rede_campo/repositories/parse_errors.dart';
 import 'package:plataforma_rede_campo/repositories/table_keys.dart';
+import 'package:ansicolor/ansicolor.dart';
+import 'package:path/path.dart' as path;
+
+AnsiPen greenPen = AnsiPen()..green();
 
 class ProjectRepository {
   Future<List<Project>> getAllProject() async {
@@ -20,22 +26,49 @@ class ProjectRepository {
         projectObject.objectId = project.id;
       }
 
+      final parseImage = await saveImage(project.image);
+
       //definir as permissões deste objeto(tabela)
       final parseAcl = ParseACL(owner: parseUser);
       parseAcl.setPublicReadAccess(allowed: true);
       parseAcl.setPublicWriteAccess(allowed: true);
       projectObject.setACL(parseAcl);
 
-      projectObject.set<String>(keyProjectTitle, project.title);
-      projectObject.set<String>(keyProjectDescription, project.description);
+      projectObject.set<ParseWebFile>(keyProjectImage, parseImage);
+      projectObject.set<String>(keyProjectTitle, project.title!);
+      projectObject.set<String>(keyProjectDescription, project.content!);
       projectObject.set<ParseUser>(keyProjectOwner, parseUser);
 
       final response = await projectObject.save();
+
       if (!response.success) {
         return Future.error(ParseErrors.getDescription(response.error!.code));
       }
     } catch (e) {
       return Future.error('Falha ao salvar Project: ${e.toString()}');
+    }
+  }
+
+  Future<ParseWebFile> saveImage(dynamic image) async {
+    ParseWebFile parseImage;
+    try {
+      if (image is FilePickerResult) {
+        if (kDebugMode) {
+          print(greenPen('Imagem sem upload'));
+        }
+        final parseFile = ParseWebFile(image.files.first.bytes, name: 'image${DateTime.now().millisecondsSinceEpoch.toString()}.jpg');
+        final response = await parseFile.save();
+        parseImage = parseFile;
+        if (!response.success) {
+          return Future.error(ParseErrors.getDescription(response.error!.code));
+        }
+      } else {
+        final parseFile = ParseWebFile(null, name: path.basename(image), url: image);
+        parseImage = parseFile;
+      }
+      return parseImage;
+    } catch (e) {
+      return Future.error('Falha ao salvar imagens ${e.toString()}');
     }
   }
 

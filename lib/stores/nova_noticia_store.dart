@@ -170,13 +170,11 @@ abstract class _NovaNoticiaStore with Store {
     news.optionalContent = optionalContent;
 
     try {
-      NewsRepository().saveNews(news);
+      await NewsRepository().saveNews(news);
     } catch (e) {
       setError(e.toString());
     }
 
     setLoading(false);
-
-    setError(null);
   }
 }

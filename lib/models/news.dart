@@ -41,4 +41,9 @@ class News {
     createdAt = parseObject.createdAt;
     updatedAt = parseObject.updatedAt;
   }
+
+  @override
+  String toString() {
+    return 'News{id: $id, title: $title, titleImage2: $titleImage2, content: $content, optionalContent: $optionalContent, field: $field, image1: $image1, image2: $image2, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }
