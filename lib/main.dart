@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:ansicolor/ansicolor.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
@@ -19,6 +19,10 @@ import 'package:plataforma_rede_campo/views/login_screen/login_screen.dart';
 void setupLocators() {
   GetIt.I.registerSingleton(UserManagerStore());
 }
+
+AnsiPen greenPen = AnsiPen()..green();
+
+var list;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -78,7 +82,7 @@ Future<void> inicializeParse() async {
   final user = User(id: 'O0x4Ydhmaz', name: 'name', email: 'email', phone: 'phone', type: UserType.PESQUISADOR);
   UserRepository().enableOrDisableUser(user: user, disable: true);
   */
-  var allNews = ProjectRepository().getAllProject();
+  list = await ProjectRepository().getAllProject();
 }
 
 class MyApp extends StatelessWidget {
@@ -96,3 +100,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//CreateProjectScreen(project: list.first)

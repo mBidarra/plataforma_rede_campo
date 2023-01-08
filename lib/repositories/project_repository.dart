@@ -15,15 +15,16 @@ class ProjectRepository {
       //especificando que a busca sera na tabela 'keyProjectTable'
       final queryBuilder = QueryBuilder<ParseObject>(ParseObject(keyProjectTable));
 
+      queryBuilder.includeObject([keyProjectOwner]);
+
       //ordena pela data de criacao 'do mais novo para o mais velho'
       queryBuilder.orderByAscending(keyProjectCreatedAt);
-
-      queryBuilder.query();
 
       final response = await queryBuilder.query();
 
       if (response.success && response.results != null) {
         //response contem uma lista de ParseObject então precisamos converter essa lista em uma lista de Project
+        //print(greenPen(response.results!));
         return response.results!.map((e) => Project.fromParse(e)).toList();
       } else if (response.success && response.results == null) {
         return [];
