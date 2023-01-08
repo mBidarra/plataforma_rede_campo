@@ -7,6 +7,7 @@ import 'package:plataforma_rede_campo/models/field.dart';
 import 'package:plataforma_rede_campo/models/news.dart';
 import 'package:plataforma_rede_campo/models/user.dart';
 import 'package:plataforma_rede_campo/repositories/news_repository.dart';
+import 'package:plataforma_rede_campo/repositories/project_repository.dart';
 import 'package:plataforma_rede_campo/repositories/user_repository.dart';
 import 'package:plataforma_rede_campo/stores/user_manager_store.dart';
 import 'package:plataforma_rede_campo/views/cadastro_screen/cadastro_screen.dart';
@@ -77,6 +78,7 @@ Future<void> inicializeParse() async {
   final user = User(id: 'O0x4Ydhmaz', name: 'name', email: 'email', phone: 'phone', type: UserType.PESQUISADOR);
   UserRepository().enableOrDisableUser(user: user, disable: true);
   */
+  var allNews = ProjectRepository().getAllProject();
 }
 
 class MyApp extends StatelessWidget {
