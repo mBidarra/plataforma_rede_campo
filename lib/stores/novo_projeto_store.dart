@@ -14,6 +14,14 @@ part 'novo_projeto_store.g.dart';
 class NovoProjetoStore = _NovoProjetoStore with _$NovoProjetoStore;
 
 abstract class _NovoProjetoStore with Store {
+  _NovoProjetoStore(this.project) {
+    title = project.title;
+    image = project.image;
+    content = project.content;
+  }
+
+  final Project project;
+
   @observable
   dynamic image;
 

@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -10,11 +8,25 @@ import 'package:plataforma_rede_campo/stores/novo_projeto_store.dart';
 import '../../components/error_box.dart';
 import '../../components/home_button.dart';
 import '../../components/navigation_bar/navigation_barra.dart';
+import '../../models/project.dart';
 
-class CreateProjectScreen extends StatelessWidget {
-  CreateProjectScreen({Key? key}) : super(key: key);
+class CreateProjectScreen extends StatefulWidget {
+  CreateProjectScreen({Key? key, this.project}) : super(key: key);
 
-  NovoProjetoStore novoProjetoStore = NovoProjetoStore();
+  final Project? project;
+
+  @override
+  State<CreateProjectScreen> createState() => _CreateProjectScreenState(project);
+}
+
+class _CreateProjectScreenState extends State<CreateProjectScreen> {
+  _CreateProjectScreenState(Project? project)
+      : editando = project != null,
+        novoProjetoStore = NovoProjetoStore(project ?? Project());
+
+  bool editando;
+
+  NovoProjetoStore novoProjetoStore;
 
   @override
   Widget build(BuildContext context) {
