@@ -117,6 +117,7 @@ abstract class _LoginStore with Store {
   void setEsqueceuSenha() => {
         this.esqueceuSenha = !esqueceuSenha,
         setExibirErros(false),
+        setError(null),
         setEmail(''),
         setEmail2(''),
         setPassword(''),
