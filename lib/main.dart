@@ -98,7 +98,7 @@ class MyApp extends StatelessWidget {
       ),
       title: "Plataforma Rede Campo",
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: CreateProjectScreen(project: list.first),
     );
   }
 }

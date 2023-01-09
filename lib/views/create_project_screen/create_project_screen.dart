@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -108,10 +109,15 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                                     ),
                                     elevation: 0,
                                     child: novoProjetoStore.image != null
-                                        ? Image.memory(
-                                            novoProjetoStore.image.files.first.bytes,
-                                            fit: BoxFit.contain,
-                                          )
+                                        ? novoProjetoStore.image is FilePickerResult
+                                            ? Image.memory(
+                                                novoProjetoStore.image.files.first.bytes,
+                                                fit: BoxFit.contain,
+                                              )
+                                            : CachedNetworkImage(
+                                                imageUrl: novoProjetoStore.image.url!,
+                                                fit: BoxFit.contain,
+                                              )
                                         : Column(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [

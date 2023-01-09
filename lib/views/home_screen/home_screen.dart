@@ -234,17 +234,18 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 3,
                         ),
                         GestureDetector(
                           onTap: homeStore.invalidSendPressed,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromRGBO(93, 163, 113, 1),
-                              fixedSize: Size(86, 40),
+                              backgroundColor: const Color.fromRGBO(93, 163, 113, 1),
+                              disabledBackgroundColor: const Color.fromRGBO(93, 163, 113, 1).withAlpha(120),
+                              fixedSize: const Size(86, 40),
                               padding: EdgeInsets.zero,
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                               ),
