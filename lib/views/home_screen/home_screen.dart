@@ -190,61 +190,75 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 510,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          maxLines: 1,
-                          style: const TextStyle(
-                            fontSize: 15,
-                            color: Color.fromRGBO(255, 255, 255, 0.77),
-                          ),
-                          decoration: InputDecoration(
-                            isDense: true,
-                            filled: true,
-                            fillColor: const Color.fromRGBO(52, 61, 67, 1),
-                            hintText: 'Digite seu email :)',
-                            hintStyle: const TextStyle(
+                  child: Observer(
+                    builder: (context) => Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            onChanged: homeStore.setEmail,
+                            keyboardType: TextInputType.emailAddress,
+                            enabled: !homeStore.loading,
+                            style: const TextStyle(
                               fontSize: 15,
                               color: Color.fromRGBO(255, 255, 255, 0.77),
                             ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4),
-                              borderSide: const BorderSide(
-                                color: Colors.white,
-                                width: 1.0,
+                            maxLines: 1,
+                            decoration: InputDecoration(
+                              errorText: homeStore.emailError,
+                              isDense: true,
+                              filled: true,
+                              fillColor: const Color.fromRGBO(52, 61, 67, 1),
+                              hintText: 'Digite seu email :)',
+                              hintStyle: const TextStyle(
+                                fontSize: 15,
+                                color: Color.fromRGBO(255, 255, 255, 0.77),
                               ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4),
-                              borderSide: BorderSide(
-                                color: Colors.white,
-                                width: 1.0,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                borderSide: const BorderSide(
+                                  color: Colors.white,
+                                  width: 1.0,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                borderSide: BorderSide(
+                                  color: Colors.white,
+                                  width: 1.0,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 3,
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(93, 163, 113, 1),
-                          fixedSize: Size(86, 40),
-                          padding: EdgeInsets.zero,
-                          textStyle: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
+                        SizedBox(
+                          width: 3,
                         ),
-                        onPressed: () {},
-                        child: Text('Inscreva-se'),
-                      )
-                    ],
+                        GestureDetector(
+                          onTap: homeStore.invalidSendPressed,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromRGBO(93, 163, 113, 1),
+                              fixedSize: Size(86, 40),
+                              padding: EdgeInsets.zero,
+                              textStyle: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            onPressed: homeStore.subscribeNewsletterPressed,
+                            child: homeStore.loading
+                                ? const CircularProgressIndicator(
+                                    color: Colors.white,
+                                  )
+                                : const Text('Inscreva-se'),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
