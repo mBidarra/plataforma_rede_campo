@@ -1,3 +1,7 @@
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+
+import '../repositories/table_keys.dart';
+
 enum UserType { ADMINISTRADOR, PESQUISADOR }
 
 class User {
@@ -8,16 +12,28 @@ class User {
     this.password,
     required this.phone,
     required this.type,
+    this.image,
     this.createdAt,
   });
 
   String? id;
-  String name;
-  String email;
+  late String name;
+  late String email;
   String? password;
-  String phone;
-  UserType type;
+  late String phone;
+  late UserType type;
+  dynamic image;
   DateTime? createdAt;
+
+  User.fromParse(ParseUser parseUser) {
+    id = parseUser.objectId!;
+    name = parseUser.get<String>(keyUserName)!;
+    email = parseUser.get<String>(keyUserEmail) ?? '';
+    phone = parseUser.get<String>(keyUserPhone)!;
+    type = UserType.values[parseUser.get(keyUserType)];
+    image = parseUser.get(keyUserImage);
+    createdAt = parseUser.createdAt;
+  }
 
   Map<String, dynamic> toJson() => {
         "name": name,
@@ -29,6 +45,6 @@ class User {
 
   @override
   String toString() {
-    return 'User{id: $id, nome: $name, email: $email, senha: $password, telefone: $phone, userType: $type}';
+    return 'User{id: $id, name: $name, email: $email, password: $password, phone: $phone, type: $type, image: $image, createdAt: $createdAt}';
   }
 }

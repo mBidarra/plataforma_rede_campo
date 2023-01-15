@@ -10,6 +10,7 @@ import 'package:plataforma_rede_campo/repositories/news_repository.dart';
 import 'package:plataforma_rede_campo/repositories/project_repository.dart';
 import 'package:plataforma_rede_campo/repositories/user_repository.dart';
 import 'package:plataforma_rede_campo/stores/user_manager_store.dart';
+import 'package:plataforma_rede_campo/views/about_screen/about_screen.dart';
 import 'package:plataforma_rede_campo/views/cadastro_screen/cadastro_screen.dart';
 import 'package:plataforma_rede_campo/views/create_news_screen/create_news_screen.dart';
 import 'package:plataforma_rede_campo/views/create_project_screen/create_project_screen.dart';
@@ -98,7 +99,7 @@ class MyApp extends StatelessWidget {
       ),
       title: "Plataforma Rede Campo",
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: AboutScreen(),
     );
   }
 }
